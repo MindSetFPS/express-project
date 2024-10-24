@@ -1,8 +1,10 @@
+import { Heading } from "@radix-ui/themes";
+
 const Logo: React.FC = () => {
     return(
-        <h1>
-            Faster <br />fashion
-        </h1>
+        <Heading style={{color: "white"}}>
+            mefit
+        </Heading>
     )
 }
 

@@ -1,18 +1,17 @@
-import { useState } from 'react'
-import { Container, Flex, Text, Button, Heading } from "@radix-ui/themes";
 import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Features from './components/Features';
+import Footer from './components/Footer';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <Container>
-      <Navbar/>
-      <Flex direction="column" gap="2">
-        <Heading color='pink' size="9" >Hello from Radix Themes :)</Heading>
-        <Button>Let's go</Button>
-      </Flex>
-    </Container>
+    <div className="app">
+      <Navbar />
+      <Hero />
+      <Features />
+      <Footer />
+    </div>
   )
 }
 
