@@ -4,7 +4,7 @@ import userRouter from "../../users/infrastructure/userRoutes";
 
 const globalRouter = Router()
 
-globalRouter.use(userRouter)
+globalRouter.use('/users', userRouter)
 globalRouter.get('/product', (req, res) => {
     res.json({
         name: "products"

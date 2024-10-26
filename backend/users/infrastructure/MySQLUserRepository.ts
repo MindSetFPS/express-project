@@ -1,10 +1,5 @@
-import mySQLRepository from "../../shared/MySQLConnectOptions";
-import UserRepository from "../domain/IUserRepository"
 import User from "../domain/User";
-import mysql, { Connection, ConnectionOptions, createConnection, ResultSetHeader, RowDataPacket } from "mysql2/promise";
-import IMySQLUserRepository from "./IMySQLUserRepository";
-import connectOptions from "../../shared/MySQLConnectOptions";
-// import conn from "./mysql";
+import { Connection, ConnectionOptions, createConnection, RowDataPacket } from "mysql2/promise";
 
 interface DBUser extends RowDataPacket {
     0: number,
