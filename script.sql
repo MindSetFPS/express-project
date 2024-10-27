@@ -34,12 +34,14 @@ CREATE TABLE IF NOT EXISTS profile (
 -- Create orders table
 CREATE TABLE IF NOT EXISTS orders (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL, -- new column to reference a user ID
   subtotal DECIMAL(10,2) NOT NULL,
-  total DECIMAL(10,2) NOT NULL
+  total DECIMAL(10,2) NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 -- Create orderItem table
-CREATE TABLE IF NOT EXISTS orderItem (
+CREATE TABLE IF NOT EXISTS orderProduct (
   order_id INT NOT NULL,
   product_id INT NOT NULL,
   amount INT NOT NULL DEFAULT 1,

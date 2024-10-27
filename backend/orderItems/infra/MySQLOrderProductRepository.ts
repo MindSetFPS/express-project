@@ -1,0 +1,35 @@
+import { Connection, ConnectionOptions, createConnection, RowDataPacket } from "mysql2/promise";
+import OrderProduct from "../domain/OrderProduct";
+
+class MySQLOrderProductRepository {
+    public conn!: Connection; // add ! so the linter doesnt complain when we dont initialize var in constructor
+    public credentials: ConnectionOptions;
+
+    constructor(credentials: ConnectionOptions) {
+        this.credentials = credentials;
+        this.init()
+    }
+
+    async init(): Promise<void> {
+        this.conn = await createConnection(this.credentials)
+    }
+    
+    async createOrderProduct(orderProduct: OrderProduct){
+        try{
+            var statement = `INSERT INTO orderProduct (amount, order_id, product_id) VALUES (?, ?, ?)`;
+            const  [ result ] = await this.conn.query(statement, [orderProduct.amount, orderProduct.orderId, orderProduct.productId]);
+        } catch (err){
+            console.log("Error creating order: ", err);
+        }
+    }
+}
+
+let mysqlorderProductRepository = new MySQLOrderProductRepository({
+    host: '127.0.0.1',
+    user: 'root',
+    password: 'password',
+    database: 'app',
+    rowsAsArray: true,
+})
+
+export default mysqlorderProductRepository;
