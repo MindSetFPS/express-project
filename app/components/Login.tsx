@@ -21,7 +21,7 @@ import { router } from "expo-router";
 
 export default function Login() {
     return (
-        <Box className="w-3/12 mx-auto flex flex-col justify-center px-16">
+        <Box className="w-3/12 lg:w-4/12 mx-auto flex flex-col justify-center px-16 lg:px-8">
             <Card variant='outline' className='shadow-soft-2' >
                 <VStack space="lg">
                     <Heading size="5xl"> Inicia sesión </Heading> 
