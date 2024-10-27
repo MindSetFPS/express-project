@@ -13,7 +13,7 @@ export default function Index() {
         <Box className='flex flex-row'>
 
             <Image source={require('@/assets/images/login.png')}
-                className='w-9/12 lg:w-8/12 h-screen'
+                className='absolute md:relative w-full md:w-9/12 lg:w-8/12 h-screen'
             >
             </Image>
             <Login />

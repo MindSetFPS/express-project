@@ -21,12 +21,18 @@ import { router } from "expo-router";
 
 export default function Login() {
     return (
-        <Box className="w-3/12 lg:w-4/12 mx-auto flex flex-col justify-center px-16 lg:px-8">
-            <Card variant='outline' className='shadow-soft-2' >
+        <Box className="
+            h-screen
+            md:w-3/12 lg:w-4/12  
+            flex flex-col justify-center 
+            mx-auto
+            md:px-16 lg:px-8
+        ">
+            <Card variant='filled' className='shadow-soft-2' >
                 <VStack space="lg">
                     <Heading size="5xl"> Inicia sesión </Heading> 
 
-                    <Input
+                     <Input
                         variant="outline"
                         size="lg"
                         isDisabled={false}
@@ -35,7 +41,7 @@ export default function Login() {
                     >
                         <InputField placeholder="correo" />
                         <InputSlot className="pr-3">
-                            <InputIcon as={Mail} /> {/* this is buggy and looks ugly af */}
+                            <InputIcon as={Mail} />
                         </InputSlot>
                     </Input>
 
