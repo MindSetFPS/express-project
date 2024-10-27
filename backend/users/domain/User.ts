@@ -4,9 +4,9 @@ class User implements IUser{
     name: String;
     email: String;
     password: String;
-    id: number;
+    id?: number;
 
-    constructor(name: string, email: string, password: string, id: number){
+    constructor(name: string, email: string, password: string, id?: number){
         this.name = name;
         this.email = email;
         this.password = password;

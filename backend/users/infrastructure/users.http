@@ -1,1 +1,13 @@
-GET http://localhost:3482/api/users/create
+POST http://localhost:3482/api/users/create
+Accept: application/json
+content-type: application/json
+
+{
+    "name": "name",
+    "email": "email@gmail.com",
+    "password": "password"
+}
+
+###
+
+GET http://localhost:3482/api/users/all

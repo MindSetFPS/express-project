@@ -1,7 +1,7 @@
 import mySqlUserRepository from "../infrastructure/MySQLUserRepository";
 import User from "../domain/User";
 
-export default function createUser(name: string, email: string, password: string, id: number) {
+export default function createUser(name: string, email: string, password: string, id?: number) {
     let UserRepository = mySqlUserRepository
     
 
