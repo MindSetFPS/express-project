@@ -1,19 +1,19 @@
-import { Tabs } from 'expo-router';
+import { Tabs, router } from 'expo-router';
 import React from 'react';
 
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { Text } from '@/components/ui/text';
 import { Spinner } from '@/components/ui/spinner';
 import { Icon } from '@/components/ui/icon';
 import { Search, ShoppingBag } from 'lucide-react-native';
 import { Box } from '@/components/ui/box';
-import { HStack } from '@/components/ui/hstack';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+
 
   return (
     <Tabs
@@ -53,6 +53,9 @@ export default function TabLayout() {
                   <InputIcon as={Search}/>
                 </InputSlot> 
               </Input>
+              <Button onPress={() => {
+                router.push('shoppingcar');
+              }}>Carrito</Button>
               <Icon as={ShoppingBag} size='xl' />
             </Box>
           ),
