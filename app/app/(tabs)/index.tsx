@@ -2,7 +2,6 @@ import { SafeAreaView, View } from 'react-native';
 
 import { Heading } from '@/components/ui/heading';
 import { ScrollView } from "react-native"
-import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import ClothesList from '@/components/ClothesList';
 import { Box } from '@/components/ui/box';
@@ -11,6 +10,8 @@ import { Icon } from '@/components/ui/icon';
 import { ArrowRight } from 'lucide-react-native';
 import { HStack } from '@/components/ui/hstack';
 import { Sun } from 'lucide-react-native';
+import { Button, ButtonText } from '@/components/ui/button';
+import { router } from 'expo-router';
 
 export default function HomeScreen() {
   return (
@@ -35,9 +36,11 @@ export default function HomeScreen() {
               <Heading size='xl'> Conoce a los estilistas </Heading>
               <Icon as={ArrowRight} size='lg' />
             </Card>
-            <Card variant='outline' className='bg-white rounded-3xl w-full flex flex-row items-center '>
-              <Heading size='xl'>  ¿Qué te vas a poner hoy? </Heading>
-              <Icon as={ArrowRight} size='lg' />
+            <Card variant='outline' className='bg-white rounded-3xl w-full flex flex-row items-center' >
+              <Button size="md" variant="link" action="primary" onPress={() => router.push('createOutfit')}>
+                <ButtonText>  ¿Qué te vas a poner hoy? </ButtonText>
+                <Icon as={ArrowRight} size='lg' />
+              </Button>
             </Card>
           </Box>
           <Heading size='2xl'> Prendas de tu armario que van bien con este clima:</Heading>
