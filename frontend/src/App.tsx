@@ -1,17 +1,27 @@
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Features from './components/Features';
-import Footer from './components/Footer';
+import Home from './components/Home';
+import Admin from './components/AdminContainer';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from "react-router-dom";
 
 function App() {
-
   return (
-    <div className="app">
+    <Router>
       <Navbar />
-      <Hero />
-      <Features />
-      <Footer />
-    </div>
+      <Switch>
+        <Route path="/admin">
+          <Admin />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 

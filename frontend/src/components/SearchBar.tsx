@@ -1,7 +1,7 @@
 // SearchBar.tsx
+import { TextInput } from 'flowbite-react';
 import React, { useState } from 'react';
-import { TextField } from '@radix-ui/themes';
-import { Box, Button, Flex } from '@radix-ui/themes';
+import { HiSearch } from "react-icons/hi";
 
 /* interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -22,13 +22,7 @@ const SearchBar: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} >
-      <Box maxWidth='1400px'>
-        <TextField.Root placeholder="Buscar" size={'2'} radius='full' >
-          <TextField.Slot>
-
-          </TextField.Slot>
-        </TextField.Root>
-      </Box>
+      <TextInput id="search" icon={HiSearch} type="search" placeholder="buscar" className='rounded-full'/>
     </form>
   );
 };

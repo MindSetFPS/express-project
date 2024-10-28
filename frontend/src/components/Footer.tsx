@@ -1,49 +1,61 @@
 // Footer.tsx
 import React from 'react';
-import { Flex, Box, Link, Container } from '@radix-ui/themes';
-
+import { Footer } from "flowbite-react";
+import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
 interface FooterProps {
 }
 
-const Footer: React.FC<FooterProps> = () => {
+const FooterX: React.FC<FooterProps> = () => {
   return (
-    <footer style={{ backgroundColor: 'white'}} >
-      <Container p="4">
-        <Flex justify="between" >
-          <Flex direction="column">
-            <Link href='/quienes-somos'>¿Quienes somos?</Link>
-            <Link href='Carreras'>Carreras</Link>
-            <Link href='Sostenibilidad'>Sostenibilidad</Link>
-            <Link href='Prensa'>Prensa</Link>
-            <Link href='Publicidad'>Publicidad</Link>
-          </Flex>
-          <Flex direction="column">
-            <Link href='¿Como funciona?'>¿Como funciona?</Link>
-            <Link href='Verificacion de articulos'>Verificacion de articulos</Link>
-            <Link href='Conviertete en Digital Stylist'>Conviertete en Digital Stylist</Link>
-          </Flex>
-          <Flex direction="column">
-            <Link href='Soporte'>Soporte</Link>
-            <Link href='Vender'>Vender</Link>
-            <Link href='Comprar'>Compra</Link>
-          </Flex>
-        </Flex>
-      </Container>
-      <Container p="4">
-        <Flex justify="between">
-          <Link href='/terms-conditions'>
-            Terminos y condiciones
-          </Link>
-          <Link href='/privacy'>
-            Politica de privacidad
-          </Link>
-          <Link href='/cookies'>
-            Cookies
-          </Link>
-        </Flex>
-      </Container>
-    </footer>
+    <Footer container>
+      <div className="w-full">
+        <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
+          <div>
+            <Footer.Brand
+              href="https://flowbite.com"
+              src="http://192.168.1.140:5173/src/assets/mefit.png"
+              alt="mefit Logo"
+              name="mefit"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+            <div>
+              <Footer.Title title="about" />
+              <Footer.LinkGroup col>
+                <Footer.Link href="#">mefit</Footer.Link>
+                <Footer.Link href="#">carrers</Footer.Link>
+              </Footer.LinkGroup>
+            </div>
+            <div>
+              <Footer.Title title="Follow us" />
+              <Footer.LinkGroup col>
+                <Footer.Link href="#">Instagram</Footer.Link>
+                <Footer.Link href="#">Tiktok</Footer.Link>
+              </Footer.LinkGroup>
+            </div>
+            <div>
+              <Footer.Title title="Legal" />
+              <Footer.LinkGroup col>
+                <Footer.Link href="#">Privacy Policy</Footer.Link>
+                <Footer.Link href="#">Terms &amp; Conditions</Footer.Link>
+              </Footer.LinkGroup>
+            </div>
+          </div>
+        </div>
+        <Footer.Divider />
+        <div className="w-full sm:flex sm:items-center sm:justify-between">
+          <Footer.Copyright href="#" by="Flowbite™" year={2022} />
+          <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+            <Footer.Icon href="#" icon={BsFacebook} />
+            <Footer.Icon href="#" icon={BsInstagram} />
+            <Footer.Icon href="#" icon={BsTwitter} />
+            <Footer.Icon href="#" icon={BsGithub} />
+            <Footer.Icon href="#" icon={BsDribbble} />
+          </div>
+        </div>
+      </div>
+    </Footer>
   );
 };
 
-export default Footer;
+export default FooterX;
