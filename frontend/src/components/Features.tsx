@@ -11,7 +11,7 @@ export default function Features() {
     ]
 
     return (
-        <div className="container mx-auto px-4 md:px-36 mt-52">
+        <div className="container mx-auto px-4 md:px-36 my-20">
             <SectionPoint
                 title={"Un lugar para los amantes de la ropa"}
                 subtitle="Explora diferentes categorías, tamaños, estilos y más."

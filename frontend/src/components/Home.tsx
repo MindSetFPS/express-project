@@ -4,7 +4,7 @@ import Hero from "./Hero";
 
 export default function Home() {
     return (
-        <div className="">
+        <div className="app">
             <Hero />
             <Features />
             <FooterX />
