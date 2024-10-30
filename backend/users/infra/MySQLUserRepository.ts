@@ -34,27 +34,6 @@ class MySQLUserRepository {
         }
     }
 
-    /* 
-        deleteUser(user: User): void {
-            this.mySQLRepository.query(
-                'DELETE FROM user WHERE id = ?', // query
-                [user.id], // data
-                (error, results) => { //callback
-                    if(error) throw error;
-                    console.log(results)
-                })
-        }
-      */
-
-    /* getUsers(callback: Function){
-         this.conn.query(
-            'SELECT * FROM users',
-            (_error, rows) => {
-                return callback(rows)
-            }
-        )
-    } */
-
     async getAllUsers() {
         try {
             const [fields] = await this.conn.query('SELECT * FROM users')
@@ -80,7 +59,6 @@ class MySQLUserRepository {
             console.error(error)
         }
         return new User('', '', '', 4);
-        // return null;
     }
 
     // pass the user instance where changes have been applied
@@ -102,15 +80,6 @@ class MySQLUserRepository {
         return null;
     } */
 }
-
-/* let mySqlUserRepository: MySQLUserRepository = new MySQLUserRepository({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'password',
-    database: 'app',
-    rowsAsArray: true,
-}) */
-
 
 let mySqlUserRepository: MySQLUserRepository = new MySQLUserRepository(connection);
 

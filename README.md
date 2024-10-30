@@ -16,6 +16,10 @@ Clothing app allows users to discover their next favorit clothes.
 
 <https://medium.com/@deivisonisidoro_94304/revolutionizing-software-development-unveiling-the-power-of-clean-architecture-with-typescript-5ee968357d35>
 
+## Execute database script in docker
+
+`docker exec -i container-name mysql -u root -ppassword <./script.sql`
+
 ## UI Library
 
 <https://www.radix-ui.com/>
