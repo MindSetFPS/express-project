@@ -1,5 +1,5 @@
 import { Router } from "express";
-import userRouter from "../../users/infrastructure/userRoutes";
+import userRouter from "../../users/infra/userRoutes";
 import { productRouter } from "../../products/infra/productRoute";
 import { orderRouter } from "../../orders/infra/orderRoutes";
 import orderProductRouter from "../../orderItems/infra/orderProductRoutes";
