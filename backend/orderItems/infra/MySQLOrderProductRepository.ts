@@ -1,5 +1,6 @@
 import { Connection, ConnectionOptions, createConnection, RowDataPacket } from "mysql2/promise";
 import OrderProduct from "../domain/OrderProduct";
+import connection from "../../shared/MySQLConnectionOptions";
 
 class MySQLOrderProductRepository {
     public conn!: Connection; // add ! so the linter doesnt complain when we dont initialize var in constructor
@@ -24,12 +25,6 @@ class MySQLOrderProductRepository {
     }
 }
 
-let mysqlorderProductRepository = new MySQLOrderProductRepository({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'password',
-    database: 'app',
-    rowsAsArray: true,
-})
+let mysqlorderProductRepository = new MySQLOrderProductRepository(connection)
 
 export default mysqlorderProductRepository;

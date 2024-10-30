@@ -1,3 +1,4 @@
+import connection from "../../shared/MySQLConnectionOptions";
 import User from "../domain/User";
 import { Connection, ConnectionOptions, createConnection, RowDataPacket } from "mysql2/promise";
 
@@ -102,12 +103,15 @@ class MySQLUserRepository {
     } */
 }
 
-let mySqlUserRepository: MySQLUserRepository = new MySQLUserRepository({
+/* let mySqlUserRepository: MySQLUserRepository = new MySQLUserRepository({
     host: '127.0.0.1',
     user: 'root',
     password: 'password',
     database: 'app',
     rowsAsArray: true,
-})
+}) */
+
+
+let mySqlUserRepository: MySQLUserRepository = new MySQLUserRepository(connection);
 
 export default mySqlUserRepository;
