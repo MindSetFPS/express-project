@@ -9,4 +9,11 @@ content-type: application/json
     "description":"this is my description"
 }
 
-##
+###
+
+GET http://localhost:3482/api/products/all
+
+
+###
+
+GET http://localhost:3482/api/products/1

@@ -1,5 +1,5 @@
 import Product from "../domain/Products";
-import { mySqlProductRepository } from "../infra/MySQLProductRepository";
+import mySqlProductRepository from "../infra/MySQLProductRepository";
 
 export default function createProduct( name: string, price: number, stock: number , description: string, id?: number ){
     let productRepository = mySqlProductRepository;
