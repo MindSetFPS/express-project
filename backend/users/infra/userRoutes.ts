@@ -17,8 +17,16 @@ userRouter.post('/create', (req: Request, res: Response) => {
     .then(data => res.json(data))
 })
 
-userRouter.get('/get-user-by-id', (req: Request, res: Response) => {
-    res.json(mySqlUserRepository.getUserByID(1))
+userRouter.get('/:id', (req: Request, res: Response) => {
+    const userId = req.params.id
+    mySqlUserRepository.getUserByID(parseInt(userId))
+    .then(data => {
+        console.log(data)
+        res.json(data)
+    })
+    .catch(err => {
+        console.error(err)
+    })
 })
 
 export default userRouter;

@@ -43,22 +43,20 @@ class MySQLUserRepository {
         }
     }
 
-    async getUserByID(id: number): Promise<User> {
-        var newuser: User;
-        let query: string = 'SELECT * FROM users WHERE id = ?;'
+    async getUserByID(id: number): Promise<User | null> {
+        let query: string = 'SELECT * FROM users WHERE id = ? LIMIT 1;'
         let params = [id]
+        let user: User;
 
         try {
             const [users] = await this.conn.query<DBUser[]>(query, params)
 
-            users.forEach((user: DBUser) => {
-                console.log(user)
-            })
-            // newuser = new User(results[0][0].name, results[0].email, results[0].password, results[0].id)
+            user = new User(users[0][1], users[0][2], users[0][3], users[0][0], );
+            return user;
         } catch (error) {
             console.error(error)
+            return null;
         }
-        return new User('', '', '', 4);
     }
 
     // pass the user instance where changes have been applied
