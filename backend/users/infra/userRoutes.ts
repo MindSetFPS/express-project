@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
-import getUsers from "../app/get-all-users";
-import createUser from "../app/create-user";
-import mySqlUserRepository from "./MySQLUserRepository";
+import getUsers from "../app/getAllUsers";
+import createUser from "../app/createUser";
+import getUserByID from "../app/getUserById";
 export const userRouter = Router();
 
 userRouter.get('/all', (req: Request, res: Response) => {
@@ -19,9 +19,8 @@ userRouter.post('/create', (req: Request, res: Response) => {
 
 userRouter.get('/:id', (req: Request, res: Response) => {
     const userId = req.params.id
-    mySqlUserRepository.getUserByID(parseInt(userId))
+    getUserByID(parseInt(userId))
     .then(data => {
-        console.log(data)
         res.json(data)
     })
     .catch(err => {
