@@ -4,13 +4,13 @@ import { Minus, Plus, Trash } from 'lucide-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ShoppingCart() {
-  // Datos de ejemplo para los productos en el carrito
+  // Datos de ejemplo para los productos en el carrito  
   const [products, setProducts] = useState([
     { id: 1, name: 'Product name', info: 'Product Info', price: 299, quantity: 1, imageUrl: 'https://via.placeholder.com/80' },
     { id: 2, name: 'Product name', info: 'Product Info', price: 199, quantity: 1, imageUrl: 'https://via.placeholder.com/80' },
     { id: 3, name: 'Product name', info: 'Product Info', price: 199, quantity: 1, imageUrl: 'https://via.placeholder.com/80' },
   ]);
-
+  
   // Función para incrementar la cantidad
   const incrementQuantity = (id) => {
     setProducts(products.map(product => 
