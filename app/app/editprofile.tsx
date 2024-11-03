@@ -16,8 +16,8 @@ const EditProfileScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white p-4">
-      <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
+    <SafeAreaView className="flex-1 container mx-auto bg-white p-4">
+      <ScrollView contentContainerStyle={{ alignItems: 'center' }} className='px-12'>
         
         {/* Header - Imagen de perfil y botón para cambiar */}
         <View className="w-full items-center mb-6">
