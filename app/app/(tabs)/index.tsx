@@ -1,4 +1,4 @@
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
 import { Heading } from '@/components/ui/heading';
 import { ScrollView } from "react-native"
@@ -14,6 +14,7 @@ import { Sun } from 'lucide-react-native';
 import { Button, ButtonText } from '@/components/ui/button';
 import { router } from 'expo-router';
 import { Text } from '@/components/ui/text';
+import Outfit from '@/components/Outfit';
 
 export default function HomeScreen() {
 
@@ -45,19 +46,19 @@ export default function HomeScreen() {
   ]
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <VStack className='container mx-auto px-4 pt-4' space='md'>
+    <ScrollView >
+      <SafeAreaView>
+        <VStack className='container mx-auto px-4 pt-4 flex-1 flex-col' space='md'>
           <HStack>
             <Card variant='outline' className='w-full bg-white rounded-3xl' >
               <HStack className='py-12 items-center'>
                 <Heading size='xl'>Digitaliza tu armario</Heading>
                 <Icon as={ArrowRight} size='xl' />
               </HStack>
-                <Text> 0 / 7</Text>
-                <Progress>
-                  <ProgressFilledTrack />
-                </Progress>
+              <Text> 0 / 7</Text>
+              <Progress>
+                <ProgressFilledTrack />
+              </Progress>
             </Card>
             <Card variant='outline'
               className='bg-white rounded-3xl w-full flex flex-row items-center py-12 '>
@@ -84,9 +85,16 @@ export default function HomeScreen() {
           </HStack>
           <ClothesList clothesList={vars} />
 
-        </VStack>
+          <HStack>
 
-      </ScrollView>
-    </SafeAreaView>
+            <Outfit />
+            <Outfit />
+            <Outfit />
+            <Outfit />
+
+          </HStack>
+        </VStack>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
