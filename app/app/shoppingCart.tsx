@@ -4,13 +4,13 @@ import { Minus, Plus, Trash } from 'lucide-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ShoppingCart() {
-  // Datos de ejemplo para los productos en el carrito
+  // Datos de ejemplo para los productos en el carrito  
   const [products, setProducts] = useState([
     { id: 1, name: 'Product name', info: 'Product Info', price: 299, quantity: 1, imageUrl: 'https://via.placeholder.com/80' },
     { id: 2, name: 'Product name', info: 'Product Info', price: 199, quantity: 1, imageUrl: 'https://via.placeholder.com/80' },
     { id: 3, name: 'Product name', info: 'Product Info', price: 199, quantity: 1, imageUrl: 'https://via.placeholder.com/80' },
   ]);
-
+  
   // Función para incrementar la cantidad
   const incrementQuantity = (id) => {
     setProducts(products.map(product => 
@@ -36,15 +36,15 @@ export default function ShoppingCart() {
   const totalAmount = products.reduce((acc, product) => acc + product.price * product.quantity, 0);
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-100">
-      <ScrollView contentContainerStyle={{ padding: 16 }}>
+    <SafeAreaView className="flex-1 container mx-auto bg-gray-100">
+      <ScrollView className='md:px-12'>
         <Text className="text-2xl font-bold mb-2">Shopping Cart</Text>
         <Text className="text-gray-600 mb-4">You have {products.length} items in your cart</Text>
 
         {/* Contenedor principal para la lista de productos y el resumen de compra */}
         <View className="flex-row justify-between">
           {/* Lista de productos */}
-          <View className="w-3/4 space-y-4">
+          <View className="w-3/4 space-y-4 pr-4">
             {products.map((product) => (
               <View key={product.id} className="flex-row items-center bg-white p-4 rounded-lg shadow-sm justify-between">
                 <Image source={{ uri: product.imageUrl }} className="w-16 h-16 rounded" />
@@ -70,7 +70,7 @@ export default function ShoppingCart() {
           </View>
 
           {/* Resumen de Compra */}
-          <View className="w-1/4 bg-white p-4 rounded-lg shadow-md ml-4">
+          <View className="w-1/4 bg-white p-4 rounded-lg shadow-md ">
             <Text className="text-lg font-semibold mb-4">Purchase Summary</Text>
             <View className="flex-row justify-between mb-2">
               <Text className="text-gray-500">Products ({products.length})</Text>

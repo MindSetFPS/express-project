@@ -57,8 +57,14 @@ export default function TabLayout() {
                 </InputSlot>
               </Input>
               <Button onPress={() => {
-                router.push('shoppingcar');
+                router.push('shoppingCart');
               }}>Carrito</Button>
+              <Button onPress={() => {
+                router.push('paymentMethod');
+              }}>paymentMethod</Button>
+              <Button onPress={() => {
+                router.push('addPaymentMethod');
+              }}>paymentMethod</Button>
               <Icon as={ShoppingBag} size='xl' />
             </Box>
           ),

@@ -20,8 +20,8 @@ const ProfileScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 container mx-auto bg-white p-4">
-      <ScrollView contentContainerStyle={{ alignItems: 'center' }} className='px-12'>
+    <SafeAreaView className="flex-1 bg-white p-4">
+      <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
         
         {/* Header - Imagen de perfil, nombre y estadísticas */}
         <View className="w-full items-center mb-6">
