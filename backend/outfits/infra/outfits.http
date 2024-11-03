@@ -1,0 +1,20 @@
+POST http://localhost:3482/api/outfits/create
+Accept: application/json
+content-type: application/json
+
+{
+    "userId": 1,
+    "name": "this is my name",
+    "price": "20",
+    "stock": "5",
+    "description":"this is my description"
+}
+
+###
+
+GET http://localhost:3482/api/outfits/all
+
+
+###
+
+GET http://localhost:3482/api/outfits/4

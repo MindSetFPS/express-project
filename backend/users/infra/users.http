@@ -11,3 +11,7 @@ content-type: application/json
 ###
 
 GET http://localhost:3482/api/users/all
+
+### 
+
+GET http://localhost:3482/api/users/1

@@ -50,20 +50,25 @@ CREATE TABLE IF NOT EXISTS orderProduct (
   FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
--- Create reviews table
-CREATE TABLE IF NOT EXISTS reviews (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  product_id INT NOT NULL,
-  user_id INT NOT NULL,
-  stars TINYINT NOT NULL DEFAULT 0,
-  description TEXT NULL,
-  FOREIGN KEY (product_id) REFERENCES products(id),
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
 -- Create brands table
 CREATE TABLE IF NOT EXISTS brands (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   image_url VARCHAR(255) NULL
+);
+
+-- Create outfits table
+CREATE TABLE IF NOT EXISTS outfits(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Create table to store products in outfits
+CREATE TABLE IF NOT EXISTS outfitProduct (
+  outfit_id INT NOT NULL,
+  product_id INT NOT NULL,
+  PRIMARY KEY (outfit_id, product_id),
+  FOREIGN KEY (outfit_id) REFERENCES outfits(id),
+  FOREIGN KEY (product_id) REFERENCES products(id)
 );

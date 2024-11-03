@@ -1,4 +1,4 @@
-import mySqlUserRepository from "../infrastructure/MySQLUserRepository";
+import mySqlUserRepository from "../infra/MySQLUserRepository";
 
 export default function getUsers(){
     let userRepository = mySqlUserRepository;

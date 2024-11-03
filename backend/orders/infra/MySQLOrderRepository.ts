@@ -1,3 +1,4 @@
+import connection from "../../shared/MySQLConnectionOptions";
 import Order from "../domain/Order";
 
 import { Connection, ConnectionOptions, createConnection, RowDataPacket } from "mysql2/promise";
@@ -25,12 +26,6 @@ class MySQLOrderRepository {
     }
 }
 
-let mysqlOrderRepository = new MySQLOrderRepository({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'password',
-    database: 'app',
-    rowsAsArray: true,
-})
+let mysqlOrderRepository = new MySQLOrderRepository(connection)
 
 export default mysqlOrderRepository;

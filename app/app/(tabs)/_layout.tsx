@@ -6,10 +6,12 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Spinner } from '@/components/ui/spinner';
 import { Icon } from '@/components/ui/icon';
-import { Search, ShoppingBag } from 'lucide-react-native';
+import { Hospital, Search, ShoppingBag } from 'lucide-react-native';
 import { Box } from '@/components/ui/box';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { House, Store, Shirt, CircleFadingPlus, CircleUserRound } from 'lucide-react-native';
+
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -20,22 +22,23 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
+        tabBarItemStyle: {
+          alignItems: 'center',
+        },
+        
+        tabBarLabelStyle: {
+          marginTop: 5,
+        }
+        
       }}>
+
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            // <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <Icon as={House} color={color}/>
           ),
         }}
       />
@@ -50,8 +53,8 @@ export default function TabLayout() {
               <Input variant='rounded' size='sm' className='w-2/4 md:w-auto' >
                 <InputField />
                 <InputSlot className='pr-3'>
-                  <InputIcon as={Search}/>
-                </InputSlot> 
+                  <InputIcon as={Search} />
+                </InputSlot>
               </Input>
               <Button onPress={() => {
                 router.push('shoppingcar');
@@ -63,7 +66,20 @@ export default function TabLayout() {
             </Box>
           ),
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <Icon as={Store} color={color}/>
+          ),
+        }}
+      />
+
+
+      <Tabs.Screen
+        name="new"
+        options={{
+          title: 'Nuevo',
+          tabBarIcon: ({ color, focused }) => (
+            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <Icon as={CircleFadingPlus} color={color}/>
           ),
         }}
       />
@@ -73,7 +89,20 @@ export default function TabLayout() {
         options={{
           title: 'Wardrobe',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <Icon as={Shirt} color={color}/>
+          ),
+        }}
+      />
+
+
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, focused }) => (
+            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <Icon as={CircleUserRound} color={color}/>
           ),
         }}
       />

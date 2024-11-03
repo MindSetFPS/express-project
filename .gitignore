@@ -2,3 +2,5 @@ node_modules
 dist
 site
 *.env
+backend/presentation/express/swagger_output.json
+.prompts/

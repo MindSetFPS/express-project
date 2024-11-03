@@ -1,31 +1,27 @@
 import React from "react";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-import { Button, Container, Flex, Box } from '@radix-ui/themes';
+import { Button, Navbar as Nav } from "flowbite-react";
 
 const Navbar: React.FC = () => {
     return (
-        <nav>
-            <Container>
-                <Flex justify={"between"} align={"center"} gapX={"2"}>
-                    <Logo />
-                    <Box flexGrow="1">
-                        <SearchBar />
-                    </Box>
-                    <Box>
-                        <Button m="1" radius="full" variant="surface">
-                            Iniciar sesión
-                        </Button>
-                        <Button m="1" radius="full">
-                            Registrarme
-                        </Button>
-                    </Box>
-
-                    {/* <loginButton /> */}
-                    {/* <createAccount /> */}
-                </Flex>
-            </Container>
-        </nav>
+        <Nav fluid className="z-10 bg-white py-2">
+            <Nav.Brand>
+                <Logo />
+            </Nav.Brand>
+            <div className="flex">
+                <Nav.Toggle />
+            </div>
+            <Nav.Collapse className="md:flex md:justify-between mx-2 bg-blue items-center" >
+                <div >
+                    <SearchBar />
+                </div>
+                <div className="flex py-2 md:py-0 ">
+                    <Button className="mr-2 w-full md:w-auto" > Iniciar sesión</Button>
+                    <Button className="w-full md:w-auto" color="gray">Registrarme</Button>
+                </div>
+            </Nav.Collapse>
+        </Nav>
     );
 }
 

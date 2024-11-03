@@ -1,1 +1,19 @@
-GET http://localhost:3482/api/products/create
+POST http://localhost:3482/api/products/create
+Accept: application/json
+content-type: application/json
+
+{
+    "name": "this is my name",
+    "price": "20",
+    "stock": "5",
+    "description":"this is my description"
+}
+
+###
+
+GET http://localhost:3482/api/products/all
+
+
+###
+
+GET http://localhost:3482/api/products/1
