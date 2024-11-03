@@ -1,21 +1,18 @@
 import { Tabs, router } from 'expo-router';
 import React from 'react';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { Spinner } from '@/components/ui/spinner';
 import { Icon } from '@/components/ui/icon';
-import { Hospital, Search, ShoppingBag } from 'lucide-react-native';
+import { Search, ShoppingBag } from 'lucide-react-native';
 import { Box } from '@/components/ui/box';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { House, Store, Shirt, CircleFadingPlus, CircleUserRound } from 'lucide-react-native';
-
+import AppLogo from '@/components/AppLogo';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
 
   return (
     <Tabs
@@ -25,20 +22,21 @@ export default function TabLayout() {
         tabBarItemStyle: {
           alignItems: 'center',
         },
-        
         tabBarLabelStyle: {
           marginTop: 5,
         }
-        
       }}>
 
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
+          headerShown: true,
+          headerTitle: (props) => (
+            <AppLogo />
+          ),
           tabBarIcon: ({ color, focused }) => (
-            // <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-            <Icon as={House} color={color}/>
+            <Icon as={House} color={color} />
           ),
         }}
       />
@@ -57,20 +55,19 @@ export default function TabLayout() {
                 </InputSlot>
               </Input>
               <Button onPress={() => {
-                router.push('shoppingCart');
+                router.push('/shoppingCart');
               }}>Carrito</Button>
               <Button onPress={() => {
-                router.push('paymentMethod');
+                router.push('/paymentMethod');
               }}>paymentMethod</Button>
               <Button onPress={() => {
-                router.push('addPaymentMethod');
+                router.push('/addPaymentMethod');
               }}>paymentMethod</Button>
               <Icon as={ShoppingBag} size='xl' />
             </Box>
           ),
           tabBarIcon: ({ color, focused }) => (
-            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-            <Icon as={Store} color={color}/>
+            <Icon as={Store} color={color} />
           ),
         }}
       />
@@ -81,8 +78,7 @@ export default function TabLayout() {
         options={{
           title: 'Nuevo',
           tabBarIcon: ({ color, focused }) => (
-            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-            <Icon as={CircleFadingPlus} color={color}/>
+            <Icon as={CircleFadingPlus} color={color} />
           ),
         }}
       />
@@ -92,8 +88,7 @@ export default function TabLayout() {
         options={{
           title: 'Wardrobe',
           tabBarIcon: ({ color, focused }) => (
-            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-            <Icon as={Shirt} color={color}/>
+            <Icon as={Shirt} color={color} />
           ),
         }}
       />
@@ -104,8 +99,7 @@ export default function TabLayout() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ color, focused }) => (
-            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-            <Icon as={CircleUserRound} color={color}/>
+            <Icon as={CircleUserRound} color={color} />
           ),
         }}
       />
