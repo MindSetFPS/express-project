@@ -1,15 +1,18 @@
 import 'dotenv/config' // Must go first
+console.log(process.env.MYSQL_HOST)
+console.log(process.env.MYSQL_PASSWORD)
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { apiRoutes } from './apiRoutes';
 import swaggerOutput from "./swagger_output.json";
+import path from 'path';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static("site"));
+app.use(express.static(path.join(__dirname, "site")));
 
 apiRoutes(app)
 

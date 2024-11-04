@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:23
+FROM node:23-alpine
 
 # Set the working directory in the container
 WORKDIR /app
@@ -11,9 +11,10 @@ COPY package*.json ./
 RUN npm install
 
 # Copy other application code into the container at the working dir
-COPY ./dist ./dist
+COPY ./backend_dist ./dist
+COPY ./app/dist ./dist/presentation/express/site
 
-# Make port 3000 available to the world outside this container
+# Make port available to the world outside this container
 EXPOSE 3482
 
 # Define environment variable
