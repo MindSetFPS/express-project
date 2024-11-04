@@ -1,10 +1,22 @@
-import { Text } from "@/components/ui/text";
-import { Box } from "@/components/ui/box";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import ClothesPage from "../clothesPage";
+import OutfitsPage from "../outfitsPage";
+import CalendarPage from "../calendarPage";
+
+const Tab = createMaterialTopTabNavigator();
 
 export default function Wardrobe() {
-    return(
-        <Box>
-            <Text>Wardrobe</Text>
-        </Box>
+    return (
+        <Tab.Navigator
+            screenOptions={{
+                tabBarContentContainerStyle: {
+                    justifyContent: "space-around"
+                },
+            }}
+        >
+            <Tab.Screen name="Prendas" component={ClothesPage} />
+            <Tab.Screen name="Outfits" component={OutfitsPage} />
+            <Tab.Screen name="Calendario" component={CalendarPage} />
+        </Tab.Navigator>
     )
 }
