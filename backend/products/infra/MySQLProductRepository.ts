@@ -1,5 +1,5 @@
 import { Connection, ConnectionOptions, createConnection } from "mysql2/promise";
-import Product from "../domain/Products";
+import Product, { DBProduct } from "../domain/Products";
 import connection from "../../shared/MySQLConnectionOptions";
 
 class MySQLProductRepository {
@@ -47,7 +47,7 @@ class MySQLProductRepository {
         }
     }
     
-    async updateProductById(id: number, updatedProduct: Product): Promise<any> {
+    async updateProductById( updatedProduct: DBProduct ): Promise<any> {
         try {
             let sqlQuery = "UPDATE products SET name=?, price=?, stock=?, description=? WHERE id=?";
             let data = [updatedProduct.name, updatedProduct.price, updatedProduct.stock, updatedProduct.description, updatedProduct.id]
