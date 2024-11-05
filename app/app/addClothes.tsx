@@ -14,15 +14,15 @@ export default function AddClothe() {
     const [inputValue, setInputValue] = useState("12345")
 
     return (
-        <Box className="mx-auto mt-10 container flex items-center">
-            <Box className="flex-1 p-6 flex-row h-min justify-center items-center bg-white rounded-lg">
+        <Box className="mx-auto container flex items-center">
+            <Box className="flex-1 flex-row h-min justify-evenly w-full items-center bg-white rounded-lg">
                 <Image
                     size="2xl"
                     source={{
                         uri: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                     }}
                 />
-                <Box className="flex-col h-min ml-8">
+                <Box className="flex-col h-min ml-4 ">
                     <FormControl>
                         <FormControlLabel>
                             <FormControlLabel className="font-bold text-xl">
@@ -88,18 +88,7 @@ export default function AddClothe() {
                             <InputField type="text" placeholder="Tipo de prenda" />
                         </Input>
                     </FormControl>
-
-                    <Button 
-                        className="mt-4"
-                        onPress={ () => router.push('/wardrobe')}
-                    >
-                        <ButtonText>
-                            Finalizar
-                        </ButtonText>
-                    </Button>
-
                 </Box>
-
             </Box>
         </Box>
     )

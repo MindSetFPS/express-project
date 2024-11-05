@@ -25,6 +25,7 @@ const ClothesList: React.FC<Props> = ({ clothesList }) => {
                                 key={clothePiece.id}
                                 name={clothePiece.name}
                                 imageURL={clothePiece.imageURL}
+                                size="2xl"
                             />
                         ))
                 }
