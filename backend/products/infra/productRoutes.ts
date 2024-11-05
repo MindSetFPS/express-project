@@ -10,8 +10,9 @@ productRouter.post("/create", (req:Request, res:Response) => {
     let price = req.body.price;
     let stock = req.body.stock;
     let description = req.body.description;
+    let url = req.body.url;
     
-    createProduct(name, price, stock, description)
+    createProduct(name, price, stock, description, url)
     .then(data=>(res.json(data)))
 })
 

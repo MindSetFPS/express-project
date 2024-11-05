@@ -3,5 +3,6 @@ export default interface IProduct {
     price: number;
     stock?: number;
     description?: string;
+    url?: string;
     id?: number;
 }
