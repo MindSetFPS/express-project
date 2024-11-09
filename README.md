@@ -4,7 +4,8 @@
 
 mefit allows users to discover their next favorite clothes.
 
-![](diagram.png)
+![](backend-diagram.png.png)
+![](docker-diagram.png.png.png)
 
 # Business info
 
