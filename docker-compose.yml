@@ -49,16 +49,23 @@ services:
       - "7000:7000"
     command: s --host 0.0.0.0 --port 7000 --log_level info
   
-  oot-diffusion:
-    image: registry.hf.space/levihsu-ootdiffusion:latest
-    platform: linux/amd64
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
-    ports:
-      - "7860:7860"
-    command: python ./run/gradio_ootd.py
+  ngrok:
+    image: ngrok/ngrok:latest
+    network_mode: host
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command: http --url=antelope-able-hardly.ngrok-free.app 3482
+  
+  # oot-diffusion:
+    # image: registry.hf.space/levihsu-ootdiffusion:latest
+    # platform: linux/amd64
+    # deploy:
+      # resources:
+        # reservations:
+          # devices:
+            # - driver: nvidia
+              # count: all
+              # capabilities: [gpu]
+    # ports:
+      # - "7860:7860"
+    # command: python ./run/gradio_ootd.py
