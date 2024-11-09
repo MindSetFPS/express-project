@@ -1,28 +1,21 @@
-# express-project
+# mefit
 
-## Clothes app
+![image](logoapp.png)
 
-Clothing app allows users to discover their next favorit clothes.
+mefit allows users to discover their next favorite clothes.
 
 ![](diagram.png)
 
-# Objectives:
+# Business info
+
+https://night-existence-458.notion.site/Proyecto-Integrador-bf781a0e8800499499a1ff6e52a49b9f?pvs=74
+
+## Objectives:
 
 - [ ] Landing page
 - [ ] Dashboard
 - [ ] 6 tables
 - [ ] Api 
-
-
-<https://medium.com/@deivisonisidoro_94304/revolutionizing-software-development-unveiling-the-power-of-clean-architecture-with-typescript-5ee968357d35>
-
-## Execute database script in docker
-
-`docker exec -i container-name mysql -u root -ppassword <./script.sql`
-
-## UI Library
-
-<https://www.radix-ui.com/>
 
 ## Structure
 
@@ -38,6 +31,81 @@ Clothing app allows users to discover their next favorit clothes.
             infra/ -- imports from application -- constantly change
                 persistance/
 ```
+
+## Tutorials
+
+### Typescript
+
+<https://www.youtube.com/watch?v=xtp_DuPxo9Q&pp=ygUcdHlwZXNjcmlwdCB0dXRvcmlhbCBlc3Bhw7FvbA==>
+
+<https://www.youtube.com/watch?v=30LWjhZzg50&pp=ygUUdHlwZXNjcmlwdCB0dXRvcmlhbCA=>
+
+### React Native
+
+<https://www.youtube.com/watch?v=U23lNFm_J70&pp=ygUUcmVhY3QgbmF0aXZlIG1pZHVkZXY=>
+
+<https://www.youtube.com/watch?v=ZBCUegTZF7M&pp=ygUTcmVhY3QgbmF0aXZlIGNvdXJzZQ==>
+
+<https://medium.com/@deivisonisidoro_94304/revolutionizing-software-development-unveiling-the-power-of-clean-architecture-with-typescript-5ee968357d35>
+
+[OOTDiffusion](https://huggingface.co/spaces/levihsu/OOTDiffusion)
+
+## Project setup
+
+### Backend
+
+https://www.notion.so/Proyecto-Integrador-bf781a0e8800499499a1ff6e52a49b9f#12f072f408468011a100ceaad972ad6a
+
+#### Dotenv
+
+Crea un archivo en la raíz del proyecto llamado `.env` llena el archivo con la siguiente información:
+
+```bash
+MYSQL_HOST=127.0.0.1
+MYSQL_USER=root
+MYSQL_PORT=3306
+MYSQL_PASSWORD=password
+MYSQL_DATABASE=app
+```
+
+
+### Database
+
+#### Execute database script in docker
+
+`docker exec -i container-name mysql -u root -ppassword <./script.sql`
+
+### Frontend
+
+#### UI Library
+
+<https://www.radix-ui.com/>
+
+#### Tools
+https://colorgradient.dev/gradient-generator/
+https://css-tricks.com/clipping-masking-css/
+https://css-tricks.com/clipping-masking-css/
+https://codepen.io/chriscoyier/pen/PwPEJd?editors=1000
+https://www.tailframes.com/marketing/hero-section
+https://bennettfeely.com/clippy/
+
+### App
+
+#### UI Library
+https://gluestack.io/
+
+#### Might use later
+https://shopify.github.io/react-native-skia/
+https://github.com/gre/react-native-view-shot
+https://github.com/gunnartorfis/sonner-native
+
+### Hosting
+
+#### Might use
+https://sevalla.com/static-site-hosting/
+
+
+
 
 # Team work
 
