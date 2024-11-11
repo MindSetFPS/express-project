@@ -12,6 +12,13 @@ import { useState } from "react";
 export default function AddClothe() {
 
     const [inputValue, setInputValue] = useState("12345")
+    
+    const [typeOfGarment, setTypeOfGarment] = useState("");
+    const [brand, setBrand] = useState("");
+    const [size, setSize] = useState("");
+    const [color, setColor] = useState("");
+    const [price, setPrice] = useState("");
+    const [season, setSeason] = useState("");
 
     return (
         <Box className="mx-auto container flex items-center">
@@ -30,7 +37,12 @@ export default function AddClothe() {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField type="text" placeholder="Tipo de prenda" />
+                            <InputField 
+                                type="text" 
+                                onChangeText={setTypeOfGarment} 
+                                value={typeOfGarment}
+                                placeholder="Tipo de prenda" 
+                            />
                         </Input>
                     </FormControl>
 
@@ -41,7 +53,12 @@ export default function AddClothe() {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField type="text" placeholder="Tipo de prenda" />
+                            <InputField 
+                                type="text" 
+                                onChangeText={setBrand}
+                                value={brand}
+                                placeholder="Tipo de prenda" 
+                            />
                         </Input>
                     </FormControl>
 
@@ -52,7 +69,12 @@ export default function AddClothe() {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField type="text" placeholder="Tipo de prenda" />
+                            <InputField 
+                                type="text" 
+                                onChangeText={setSize}
+                                value={size}
+                                placeholder="Tipo de prenda" 
+                            />
                         </Input>
                     </FormControl>
 
@@ -63,7 +85,12 @@ export default function AddClothe() {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField type="text" placeholder="Tipo de prenda" />
+                            <InputField 
+                                type="text" 
+                                onChangeText={setColor}
+                                value={color}
+                                placeholder="Tipo de prenda" 
+                            />
                         </Input>
                     </FormControl>
 
@@ -74,7 +101,12 @@ export default function AddClothe() {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField type="text" placeholder="Tipo de prenda" />
+                            <InputField 
+                                type="text" 
+                                onChangeText={setPrice}
+                                value={price}
+                                placeholder="Tipo de prenda" 
+                            />
                         </Input>
                     </FormControl>
 
@@ -85,7 +117,12 @@ export default function AddClothe() {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField type="text" placeholder="Tipo de prenda" />
+                            <InputField 
+                                type="text" 
+                                onChangeText={setSeason}
+                                value={season}   
+                                placeholder="Tipo de prenda" 
+                            />
                         </Input>
                     </FormControl>
                 </Box>

@@ -1,5 +1,5 @@
 import { Box } from "@/components/ui/box";
-import {  CirclePlus, Search } from 'lucide-react-native';
+import { CirclePlus, Search } from 'lucide-react-native';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
 import { Badge, BadgeText } from '@/components/ui/badge';
 import { Fab, FabLabel, FabIcon } from '@/components/ui/fab';
@@ -12,9 +12,37 @@ import { Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalF
 import { Heading } from "@/components/ui/heading";
 import { CloseIcon, Icon } from "@/components/ui/icon";
 import AddClothe from "./addClothes";
+import ChipList from "@/components/ChipList";
 
 export default function ClothesPage() {
     const [doc, setDoc] = useState<any>();
+
+    // Post to backend
+    const useGetProducts = () => {
+        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/products/create", {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: '<NAME>',
+                price: 10000,
+                stock: 1,
+                description: 'some description',
+                url: "www.image.com"
+                // image_url: doc?.uri,
+
+            })
+        })
+        .then(res => res?.json())
+        .then(data => {
+            console.log('data', data);
+            // apend to clothes list
+            setShowModal(false)
+        })
+    };
+
 
     const pickDocument = async () => {
         let result = await DocumentPicker.getDocumentAsync({
@@ -39,30 +67,7 @@ export default function ClothesPage() {
                 space="md"
                 className="flex-1 flex-row justify-between"
             >
-                <HStack className="h-min">
-                    <Badge size="sm" action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge size="sm" action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge size="sm" action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge size="sm" action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-
-                    <Badge action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                </HStack>
+                <ChipList />
                 <Input size="sm" variant="rounded">
                     <InputField placeholder="Buscar" />
                     <InputSlot className="mr-4">
@@ -71,12 +76,7 @@ export default function ClothesPage() {
                 </Input>
             </HStack>
             <Fab
-                onPress={
-                    // () => router.push('/addClothes')
-                    // () => pickDocument()
-                    // 
-                    () => setShowModal(true)
-                }
+                onPress={() => setShowModal(true)}
             >
                 <FabLabel> Agregar </FabLabel>
                 <FabIcon as={CirclePlus} />
@@ -94,7 +94,7 @@ export default function ClothesPage() {
                     <ModalContent>
                         <ModalHeader>
                             <Heading size="md" className="text-typography-950">
-                                Invite your team
+                                Crea una nueva prenda
                             </Heading>
                             <ModalCloseButton>
                                 <Icon
@@ -105,7 +105,6 @@ export default function ClothesPage() {
                             </ModalCloseButton>
                         </ModalHeader>
                         <ModalBody>
-                            
                             <AddClothe />
                         </ModalBody>
                         <ModalFooter>
@@ -120,10 +119,11 @@ export default function ClothesPage() {
                             </Button>
                             <Button
                                 onPress={() => {
-                                    setShowModal(false)
+                                    useGetProducts()
+                                    // setShowModal(false)
                                 }}
                             >
-                                <ButtonText>Explore</ButtonText>
+                                <ButtonText>Agregar</ButtonText>
                             </Button>
                         </ModalFooter>
                     </ModalContent>
