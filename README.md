@@ -67,6 +67,7 @@ MYSQL_USER=root
 MYSQL_PORT=3306
 MYSQL_PASSWORD=password
 MYSQL_DATABASE=app
+ENV=env                     # makes server accept cors
 ```
 
 
@@ -91,6 +92,12 @@ https://www.tailframes.com/marketing/hero-section
 https://bennettfeely.com/clippy/
 
 ### App
+
+Create .env file along with package.json file
+
+```bash
+EXPO_PUBLIC_API_URL=http://localhost:3482
+```
 
 #### UI Library
 https://gluestack.io/
