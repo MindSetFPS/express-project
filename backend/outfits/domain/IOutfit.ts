@@ -1,4 +1,4 @@
-import IProduct from "../../products/domain/IProduct";
+import IProduct, { productExample } from "../../products/domain/IProduct";
 
 export default interface IOutfit {
     id: number;
@@ -10,3 +10,17 @@ export default interface IOutfit {
     shoes?: IProduct[];
     accessory?: IProduct[];
 }
+
+const outfitExample: IOutfit = {
+    id: 1,
+    userId: 4,
+    name: 'Summer Outfit',
+    head: [productExample],
+    chest: [productExample],
+    legs: [],
+    shoes: [productExample],
+    accessory: []
+  };
+  
+  export { outfitExample };
+  
