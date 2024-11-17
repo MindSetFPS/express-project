@@ -1,19 +1,25 @@
-export default interface IProduct {
-    name: string;
-    price: number;
-    stock?: number;
-    description?: string;
-    url?: string;
-    id?: number;
+import IPieceOfClothing from "../../pieceOfClothing/domain/IPieceOfClothing";
+
+export default interface IProduct extends IPieceOfClothing {
+    stock: number;
+    sellingPrice: number;
+    description: string;
 }
 
 
 const productExample: IProduct = {
     name: 'Laptop',
-    price: 999.99,
+    sellingPrice: 999.99,
     stock: 10,
     description: 'High-performance laptop with the latest specs.',
-    url: 'https://www.example.com/laptops/notebook'
+    brand: 'sarah',
+    color: 'blue',
+    id: 42,
+    imageURL: "https://i.imgur.com/v7q0o8p.jpg",
+    originalPrice: 122,
+    season: 'Summer',
+    size: 'big',
+    typeOfClothing: "t-shrt"
 };
 
 export { productExample };

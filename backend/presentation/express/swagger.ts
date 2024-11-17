@@ -4,6 +4,7 @@ import { OrderProductExample } from '../../orderProducts/domain/IOrderProduct';
 import { outfitExample } from '../../outfits/domain/IOutfit';
 import { productExample } from '../../products/domain/IProduct';
 import { userExample } from '../../users/domain/IUser';
+import { pieceOfClothingExample } from '../../pieceOfClothing/domain/IPieceOfClothing';
 
 const doc = {
     info: {
@@ -23,6 +24,7 @@ const doc = {
         Outfit: outfitExample,
         Product: productExample,
         User: userExample,
+        PieceOfClothing: pieceOfClothingExample,
 /*      Make a variable required  
         AddUser: { 
           $name: 'John Doe',

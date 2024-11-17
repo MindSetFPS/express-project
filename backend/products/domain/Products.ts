@@ -5,20 +5,37 @@ export default class Product implements IProduct {
     price: number;
     stock: number;
     description: string;
+    sellingPrice: number;
     url?: string;
     id?: number;
+    brand?: string;
+    color?: string;
+    imageURL?: string;
+    originalPrice?: number;
+    season?: string;
+    size?: string;
+    typeOfClothing?: string;
 
-    constructor(name:string,price:number,stock:number, description: string, id?:number, url?: string){
-        this.id = id ;
+    constructor(
+        name:string,
+        price:number,
+        stock:number, 
+        description: string, 
+        sellingPrice: number,
+        id?:number, 
+        url?: string
+    ){
         this.name = name ;
         this.price = price;
         this.stock = stock;
         this.description = description ;
+        this.sellingPrice = sellingPrice;
         this.url = url ;
+        this.id = id ;
     }
 }
 
-export class DBProduct implements IProduct {
+/* export class DBProduct implements IProduct {
     description?: string | undefined;
     id: number;
     name: string;
@@ -34,4 +51,4 @@ export class DBProduct implements IProduct {
         this.url = url;
         this.id = id;
     }
-}
+} */
