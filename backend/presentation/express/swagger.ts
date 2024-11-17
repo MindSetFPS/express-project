@@ -1,4 +1,9 @@
 import swaggerAutogen from 'swagger-autogen';
+import { OrderExample } from '../../orders/domain/IOrder';
+import { OrderProductExample } from '../../orderProducts/domain/IOrderProduct';
+import { outfitExample } from '../../outfits/domain/IOutfit';
+import { productExample } from '../../products/domain/IProduct';
+import { userExample } from '../../users/domain/IUser';
 
 const doc = {
     info: {
@@ -12,17 +17,30 @@ const doc = {
             description: ''
         },
     ],
+    definitions: {
+        Order: OrderExample,
+        OrderProduct: OrderProductExample,
+        Outfit: outfitExample,
+        Product: productExample,
+        User: userExample,
+/*      Make a variable required  
+        AddUser: { 
+          $name: 'John Doe',
+          $age: 29,
+          about: ''
+        } */
+      },
     components: {
         securitySchemes: {
             bearerAuth: {
                 type: 'http',
                 scheme: 'bearer',
             }
-        }
+        },
     }
 };
 
 const outputFile = './swagger_output.json';
-const endpointsFiles = ['./globalRoutes.ts'];
+const endpointsFiles = ['./apiRoutes.ts'];
 
-swaggerAutogen({openapi: '3.0.0'})(outputFile, endpointsFiles, doc);
+swaggerAutogen({openapi: '3.1.0'})(outputFile, endpointsFiles, doc);

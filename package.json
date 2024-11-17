@@ -5,10 +5,11 @@
   "main": "dist/presentation/express/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "serve": "node dist/presentation/express/index.js",
-    "start": "ts-node backend/presentation/express/swagger.ts && ts-node backend/presentation/express/index.ts",
-    "listen": "ts-node backend/presentation/express/swagger.ts && nodemon backend/presentation/express/index.ts"
+    "build": " npm un swagger && tsc",
+    "serve": "node backend_dist/presentation/express/index.js",
+    "start": "ts-node backend/presentation/express/index.ts",
+    "listen": "nodemon backend/presentation/express/index.ts",
+    "swagger": "ts-node backend/presentation/express/swagger.ts"
   },
   "author": "",
   "license": "ISC",
