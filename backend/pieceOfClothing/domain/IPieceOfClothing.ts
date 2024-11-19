@@ -1,5 +1,6 @@
 export default interface IPieceOfClothing {
     id?: number;
+    userId?: number;
     name?: string;
     typeOfClothing?: string;
     brand?: string;

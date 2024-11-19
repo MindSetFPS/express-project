@@ -22,6 +22,21 @@ CREATE TABLE IF NOT EXISTS products (
   description TEXT NULL
 );
 
+CREATE TABLE IF NOT EXISTS piece_of_clothings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NULL,
+  type_of_clothing VARCHAR(255) NULL,
+  brand VARCHAR(255) NULL,
+  size VARCHAR(255) NULL,
+  color VARCHAR(255) NULL,
+  original_price DECIMAL(10,2) NULL,
+  season VARCHAR(255) NULL,
+  image_url VARCHAR(255) NULL,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
 -- Create profile table
 CREATE TABLE IF NOT EXISTS profile (
   user_id INT NOT NULL,
@@ -42,7 +57,7 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 
 -- Create orderItem table
-CREATE TABLE IF NOT EXISTS orderProduct (
+CREATE TABLE IF NOT EXISTS order_product (
   order_id INT NOT NULL,
   product_id INT NOT NULL,
   amount INT NOT NULL DEFAULT 1,
@@ -66,7 +81,7 @@ CREATE TABLE IF NOT EXISTS outfits(
 );
 
 -- Create table to store products in outfits
-CREATE TABLE IF NOT EXISTS outfitProduct (
+CREATE TABLE IF NOT EXISTS outfit_product (
   outfit_id INT NOT NULL,
   product_id INT NOT NULL,
   PRIMARY KEY (outfit_id, product_id),
