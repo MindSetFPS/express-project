@@ -36,9 +36,8 @@ CREATE TABLE IF NOT EXISTS piece_of_clothings (
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-
 -- Create profile table
-CREATE TABLE IF NOT EXISTS profile (
+CREATE TABLE IF NOT EXISTS profiles (
   user_id INT NOT NULL,
   image_url VARCHAR(255) NULL,
   following INT NOT NULL DEFAULT 0,
@@ -57,7 +56,7 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 
 -- Create orderItem table
-CREATE TABLE IF NOT EXISTS order_product (
+CREATE TABLE IF NOT EXISTS order_products (
   order_id INT NOT NULL,
   product_id INT NOT NULL,
   amount INT NOT NULL DEFAULT 1,
@@ -80,11 +79,11 @@ CREATE TABLE IF NOT EXISTS outfits(
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
--- Create table to store products in outfits
-CREATE TABLE IF NOT EXISTS outfit_product (
+ -- Create table to store pieces of clothing in outfits
+CREATE TABLE IF NOT EXISTS outfit_piece_of_clothing (
   outfit_id INT NOT NULL,
-  product_id INT NOT NULL,
-  PRIMARY KEY (outfit_id, product_id),
+  piece_of_clothing_id INT NOT NULL,
+  PRIMARY KEY (outfit_id, piece_of_clothing_id),
   FOREIGN KEY (outfit_id) REFERENCES outfits(id),
-  FOREIGN KEY (product_id) REFERENCES products(id)
+  FOREIGN KEY (piece_of_clothing_id) REFERENCES piece_of_clothings(id)
 );
