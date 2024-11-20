@@ -3,7 +3,7 @@ import IPieceOfClothing from "../../pieceOfClothing/domain/IPieceOfClothing";
 export default interface IProduct extends IPieceOfClothing {
     stock: number;
     sellingPrice: number;
-    description: string;
+    description?: string;
 }
 
 

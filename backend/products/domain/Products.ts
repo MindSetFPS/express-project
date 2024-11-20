@@ -35,20 +35,20 @@ export default class Product implements IProduct {
     }
 }
 
-/* export class DBProduct implements IProduct {
+export class ProductRequestDTO implements IProduct {
     description?: string | undefined;
     id: number;
     name: string;
-    price: number;
-    stock?: number | undefined;
+    sellingPrice: number;
+    stock: number;
     url: string | undefined;
 
-    constructor(name: string, price: number, stock: number, url: string, description: string, id: number){
+    constructor(name: string, sellingPrice: number, stock: number, url: string, description: string, id: number){
         this.name = name;
-        this.price = price;
+        this.sellingPrice = sellingPrice;
         this.stock = stock;
         this.description = description;
         this.url = url;
         this.id = id;
     }
-} */
+}
