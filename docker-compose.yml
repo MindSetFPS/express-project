@@ -28,33 +28,33 @@ services:
       MINIO_ROOT_PASSWORD: CHANGEME123
     command: server /data --console-address ":9001"
 
-  mefit-backend:
-    build: .
-    depends_on:
-      db:
-        condition: service_started
-    ports:
-      - 3482:3482
-    restart: unless-stopped
-    environment:
-      - MYSQL_HOST=db
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PORT=${MYSQL_PORT}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
+  # mefit-backend:
+    # build: .
+    # depends_on:
+      # db:
+        # condition: service_started
+    # ports:
+      # - 3482:3482
+    # restart: unless-stopped
+    # environment:
+      # - MYSQL_HOST=db
+      # - MYSQL_USER=${MYSQL_USER}
+      # - MYSQL_PORT=${MYSQL_PORT}
+      # - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      # - MYSQL_DATABASE=${MYSQL_DATABASE}
   
-  rembg:
-    image: danielgatis/rembg
-    ports:
-      - "7000:7000"
-    command: s --host 0.0.0.0 --port 7000 --log_level info
+  # rembg:
+    # image: danielgatis/rembg
+    # ports:
+      # - "7000:7000"
+    # command: s --host 0.0.0.0 --port 7000 --log_level info
   
-  ngrok:
-    image: ngrok/ngrok:latest
-    network_mode: host
-    environment:
-      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
-    command: http --url=antelope-able-hardly.ngrok-free.app 3482
+  # ngrok:
+    # image: ngrok/ngrok:latest
+    # network_mode: host
+    # environment:
+      # - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    # command: http --url=antelope-able-hardly.ngrok-free.app 3482
   
   # oot-diffusion:
     # image: registry.hf.space/levihsu-ootdiffusion:latest
