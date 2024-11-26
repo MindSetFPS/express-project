@@ -18,21 +18,6 @@ https://night-existence-458.notion.site/Proyecto-Integrador-bf781a0e8800499499a1
 - [ ] 6 tables
 - [ ] Api 
 
-## Structure
-
-```src/
-    backend/
-        entity/
-            domain/ -- imports from itself -- rarely change
-                entities/
-                value-objects/
-            app/  -- imports from domain -- sometimes changes
-                use-case-implementations/
-                integrations/
-            infra/ -- imports from application -- constantly change
-                persistance/
-```
-
 ## Tutorials
 
 ### Typescript
@@ -56,20 +41,6 @@ https://night-existence-458.notion.site/Proyecto-Integrador-bf781a0e8800499499a1
 ### Backend
 
 https://www.notion.so/Proyecto-Integrador-bf781a0e8800499499a1ff6e52a49b9f#12f072f408468011a100ceaad972ad6a
-
-#### Dotenv
-
-Crea un archivo en la raíz del proyecto llamado `.env` llena el archivo con la siguiente información:
-
-```bash
-MYSQL_HOST=127.0.0.1
-MYSQL_USER=root
-MYSQL_PORT=3306
-MYSQL_PASSWORD=password
-MYSQL_DATABASE=app
-ENV=env                     # makes server accept cors
-```
-
 
 ### Database
 
@@ -111,9 +82,6 @@ https://github.com/gunnartorfis/sonner-native
 
 #### Might use
 https://sevalla.com/static-site-hosting/
-
-
-
 
 # Team work
 
