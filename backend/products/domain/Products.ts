@@ -37,13 +37,13 @@ export default class Product implements IProduct {
 
 export class ProductRequestDTO implements IProduct {
     description?: string | undefined;
-    id: number;
+    id?: number;
     name: string;
     sellingPrice: number;
     stock: number;
-    url: string | undefined;
+    url?: string | undefined;
 
-    constructor(name: string, sellingPrice: number, stock: number, url: string, description: string, id: number){
+    constructor(name: string, sellingPrice: number, stock: number, url?: string, description?: string, id?: number){
         this.name = name;
         this.sellingPrice = sellingPrice;
         this.stock = stock;
