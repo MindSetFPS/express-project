@@ -18,6 +18,11 @@ userRouter.post('/create', (req: Request, res: Response) => {
 })
 
 userRouter.get('/:id', (req: Request, res: Response) => {
+    /* #swagger.responses[200] = {
+            description: 'Some description...',
+            schema: { $ref: '#/components/schemas/User' }
+    } */
+    
     const userId = req.params.id
     getUserByID(parseInt(userId))
     .then(data => {
