@@ -8,7 +8,7 @@
     "build": "npm run swagger && tsc",
     "serve": "node build/presentation/express/index.js",
     "start": "ts-node presentation/express/index.ts",
-    "listen": "nodemon presentation/express/index.ts",
+    "listen": "ENV=dev nodemon presentation/express/index.ts",
     "swagger": "ts-node presentation/express/swagger.ts"
   },
   "author": "",
