@@ -4,24 +4,41 @@ import { Image } from "@/components/ui/image";
 import { Input, InputField } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { ProductPost } from "@/interfaces";
+import * as DocumentPicker from 'expo-document-picker';
+import { Button, ButtonText } from "@/components/ui/button";
+import { postApiPieceOfClothingCreateImage } from "@/api";
 
 interface updateProp {
     liftProps: (object: ProductPost) => void;
 }
 
-export default function AddClothe({ liftProps }: updateProp) {
-
-    const [inputValue, setInputValue] = useState("12345")
-    
+export default function AddClothes({ liftProps }: updateProp) {
     const [typeOfGarment, setTypeOfGarment] = useState("");
     const [brand, setBrand] = useState("");
     const [size, setSize] = useState("");
     const [color, setColor] = useState("");
     const [price, setPrice] = useState<number>(0);
     const [season, setSeason] = useState("");
-    const [url, setUrl] = useState("https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
+    const [url, setUrl] = useState<string | null>(null);
+    const [doc, setDoc] = useState<any>();
+    
+    postApiPieceOfClothingCreateImage()
+    
+    const pickDocument = async () => {
+        let result = await DocumentPicker.getDocumentAsync({
+            type: '*/*',
+            copyToCacheDirectory: true
+        })
+            .then(response => {
+                if (response.output) {
+                    console.log(response.assets[0])
+                    setDoc(response.output[0])
+                    setUrl(response.assets[0].uri)
+                }
+            })
+    }
 
-    useEffect( () => {
+    useEffect(() => {
         var productPost: ProductPost = {
             brand: brand,
             size: size,
@@ -31,18 +48,27 @@ export default function AddClothe({ liftProps }: updateProp) {
             season: season,
             url: url
         }
-        
         liftProps(productPost)
-
     }, [typeOfGarment, brand, size, color, price, season])
 
     return (
         <Box className="mx-auto container flex items-center">
             <Box className="flex-1 flex-row h-min justify-evenly w-full items-center bg-white rounded-lg">
-                <Image
-                    size="2xl"
-                    source={{uri: url}}
-                />
+                {url && url.length > 0 ?
+                    <Image
+                        size="2xl"
+                        source={{
+                            uri: url
+                        }}
+                        alt="user image"
+                    />
+                    :
+                    <Button onPress={() => pickDocument()}>
+                        <ButtonText>
+                            Subir una foto
+                        </ButtonText>
+                    </Button>
+                }
                 <Box className="flex-col h-min ml-4 ">
                     <FormControl>
                         <FormControlLabel>
@@ -53,11 +79,11 @@ export default function AddClothe({ liftProps }: updateProp) {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField 
-                                type="text" 
-                                onChangeText={setTypeOfGarment} 
+                            <InputField
+                                type="text"
+                                onChangeText={setTypeOfGarment}
                                 value={typeOfGarment}
-                                placeholder="Tipo de prenda" 
+                                placeholder="Tipo de prenda"
                             />
                         </Input>
                     </FormControl>
@@ -71,11 +97,11 @@ export default function AddClothe({ liftProps }: updateProp) {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField 
-                                type="text" 
+                            <InputField
+                                type="text"
                                 onChangeText={setBrand}
                                 value={brand}
-                                placeholder="Tipo de prenda" 
+                                placeholder="Tipo de prenda"
                             />
                         </Input>
                     </FormControl>
@@ -89,11 +115,11 @@ export default function AddClothe({ liftProps }: updateProp) {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField 
-                                type="text" 
+                            <InputField
+                                type="text"
                                 onChangeText={setSize}
                                 value={size}
-                                placeholder="Tipo de prenda" 
+                                placeholder="Tipo de prenda"
                             />
                         </Input>
                     </FormControl>
@@ -107,11 +133,11 @@ export default function AddClothe({ liftProps }: updateProp) {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField 
-                                type="text" 
+                            <InputField
+                                type="text"
                                 onChangeText={setColor}
                                 value={color}
-                                placeholder="Tipo de prenda" 
+                                placeholder="Tipo de prenda"
                             />
                         </Input>
                     </FormControl>
@@ -125,11 +151,11 @@ export default function AddClothe({ liftProps }: updateProp) {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField 
-                                type="text" 
-                                onChangeText={(e) => setPrice( parseFloat(e) )}
-                                value={ price.toString()}
-                                placeholder="Precio de compra" 
+                            <InputField
+                                type="text"
+                                onChangeText={(e) => setPrice(parseFloat(e))}
+                                value={price.toString()}
+                                placeholder="Precio de compra"
                             />
                         </Input>
                     </FormControl>
@@ -143,11 +169,11 @@ export default function AddClothe({ liftProps }: updateProp) {
                             </FormControlLabel>
                         </FormControlLabel>
                         <Input variant="underlined" size="sm">
-                            <InputField 
-                                type="text" 
+                            <InputField
+                                type="text"
                                 onChangeText={setSeason}
-                                value={season}   
-                                placeholder="Tipo de prenda" 
+                                value={season}
+                                placeholder="Tipo de prenda"
                             />
                         </Input>
                     </FormControl>

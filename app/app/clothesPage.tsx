@@ -9,25 +9,7 @@ import ChipList from "@/components/ChipList";
 import AddClothesModal from "@/components/addClothesModal";
 
 export default function ClothesPage() {
-    const [doc, setDoc] = useState<any>();
-
-    const pickDocument = async () => {
-        let result = await DocumentPicker.getDocumentAsync({
-            type: '*/*',
-            copyToCacheDirectory: true
-        })
-            .then(response => {
-                if (response.output) {
-                    console.log(
-                        response.output[0].name
-                    )
-                    setDoc(response.output[0])
-                }
-            })
-    }
-
     const [showModal, setShowModal] = useState(false);
-
     return (
         <Box className="container mx-auto px-12 py-4 bg-white h-screen">
             <HStack
