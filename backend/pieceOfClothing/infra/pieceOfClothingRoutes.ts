@@ -11,7 +11,7 @@ const upload = multer({
 
 export const pieceOfClothingRouter = Router();
 
-pieceOfClothingRouter.post("/create", (req:Request, res:Response) => {
+pieceOfClothingRouter.post("/create", (req: Request, res: Response) => {
     let userId = req.body.userId;
     let name = req.body.name;
     let price = req.body.price;
@@ -27,16 +27,27 @@ pieceOfClothingRouter.post("/create", (req:Request, res:Response) => {
     let season = req.body.season;
     let size = req.body.size;
     let typeOfClothing = req.body.typeOfClothing;
-    
+
     let newPieceOfClothing = new PieceOfClothing(brand, color, id, imageURL, name, originalPrice, season, size, typeOfClothing, userId)
-    
+
     createPieceOfClothing(newPieceOfClothing)
-    .then(data=>(res.json(data)))
+        .then(data => (res.json(data)))
 })
 
 pieceOfClothingRouter.post("/createImage", upload.single('file'), (req: Request, res: Response) => {
-    console.log(req.file?.originalname)
-    if(req.file?.originalname && req.file.buffer){
+
+    /*
+        #swagger.consumes = ['multipart/form-data']  
+        #swagger.parameters['multFiles'] = {
+            in: 'formData',
+            type: 'file',
+            required: true,
+            description: 'Some description...',
+            collectionFormat: 'multi',
+            items: { type: 'file' }
+        } */
+
+    if (req.file?.originalname && req.file.buffer) {
         var fileURL = createImage(req.file.originalname, req.file.buffer)
         res.json({
             fileURL: fileURL
