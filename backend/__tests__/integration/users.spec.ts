@@ -10,13 +10,13 @@ describe("integration for users", () => {
     vi.stubEnv("PORT", "3307")
     vi.stubEnv("MYSQL_DATABASE", "app")
 
-    test('should return a users list', async () => {
+    test('01 should return a users list', async () => {
         await request(app)
         .get("/api/users/all")
         .expect(200)
     })   
     
-    test('should return a user', async () => {
+    test('02 should return a user', async () => {
         await request(app)
         .post("/api/users/create")
         .send({name: 'john'})
@@ -24,7 +24,7 @@ describe("integration for users", () => {
         .expect(200)
     })
     
-    test("should return a user by id", async () => {
+    test("03 should return a user by id", async () => {
         await request(app)
        .get("/api/users/1")
        .set('Accept', 'application/json')

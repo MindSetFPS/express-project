@@ -3,7 +3,7 @@ import { expect, test, vi } from "vitest"
 import getAllUsers from "../../../../users/app/getAllUsers";
 import exp from "constants";
 
-test("it returns a list of users",async () => {
+test("05 it returns a list of users",async () => {
     // Pre-conditions
     vi.stubEnv("MYSQL_HOST", "127.0.0.1")
     vi.stubEnv("MYSQL_USER", "root")

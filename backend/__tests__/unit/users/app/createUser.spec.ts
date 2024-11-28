@@ -2,7 +2,7 @@ import createUser from "../../../../users/app/createUser";
 import User from "../../../../users/domain/User";
 import { expect, test, vi } from "vitest"
 
-test("it creates a user",async () => {
+test("04 it creates a user",async () => {
     // Pre-conditions
     vi.stubEnv("MYSQL_HOST", "127.0.0.1")
     vi.stubEnv("MYSQL_USER", "root")
