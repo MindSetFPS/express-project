@@ -4,11 +4,12 @@
   "description": "",
   "main": "dist/presentation/express/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "serve": "node dist/presentation/express/index.js",
-    "start": "ts-node backend/presentation/express/swagger.ts && ts-node backend/presentation/express/index.ts",
-    "listen": "ts-node backend/presentation/express/swagger.ts && nodemon backend/presentation/express/index.ts"
+    "test": "vitest",
+    "build": "npm run swagger && tsc",
+    "serve": "node build/presentation/express/index.js",
+    "start": "ts-node presentation/express/index.ts",
+    "listen": "ENV=dev nodemon presentation/express/index.ts",
+    "swagger": "ts-node presentation/express/swagger.ts"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +17,12 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^22.7.4",
+    "@types/supertest": "^6.0.2",
     "express": "^4.21.1",
+    "supertest": "^7.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.5"
   },
   "dependencies": {
     "@types/multer": "^1.4.12",

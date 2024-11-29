@@ -1,5 +1,5 @@
 import { Connection, ConnectionOptions, createConnection } from "mysql2/promise";
-import Product, { DBProduct } from "../domain/Products";
+import Product from "../domain/Products";
 import connection from "../../shared/MySQLConnectionOptions";
 
 class MySQLProductRepository {
@@ -15,6 +15,8 @@ class MySQLProductRepository {
         this.conn = await createConnection(this.credentials);
     }
 
+
+    // async createProduct(product: Product): Promise<Product> {
     async createProduct(product: Product) {
         try {
             let sqlQuery = "INSERT INTO products (name, price, stock, url, description) VALUES (?, ?, ?, ?, ?)";
@@ -49,7 +51,7 @@ class MySQLProductRepository {
         }
     }
     
-    async updateProductById( updatedProduct: DBProduct ): Promise<any> {
+/*     async updateProductById( updatedProduct: DBProduct ): Promise<any> {
         try {
             let sqlQuery = "UPDATE products SET name=?, price=?, stock=?, description=? WHERE id=?";
             let data = [updatedProduct.name, updatedProduct.price, updatedProduct.stock, updatedProduct.description, updatedProduct.id]
@@ -59,7 +61,7 @@ class MySQLProductRepository {
         catch(error) {
             console.log("Error: ", error);
         }
-    }
+    } */
 }
 
 let mySqlProductRepository: MySQLProductRepository = new MySQLProductRepository(connection);

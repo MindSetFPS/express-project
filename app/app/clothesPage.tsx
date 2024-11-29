@@ -1,134 +1,92 @@
 import { Box } from "@/components/ui/box";
-import {  CirclePlus, Search } from 'lucide-react-native';
+import { CirclePlus, Search } from 'lucide-react-native';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
-import { Badge, BadgeText } from '@/components/ui/badge';
 import { Fab, FabLabel, FabIcon } from '@/components/ui/fab';
 import { HStack } from "@/components/ui/hstack";
-import * as DocumentPicker from 'expo-document-picker';
-import { useState } from "react";
-import { Center } from "@/components/ui/center";
-import { Button, ButtonText } from "@/components/ui/button";
-import { Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader } from "@/components/ui/modal";
-import { Heading } from "@/components/ui/heading";
-import { CloseIcon, Icon } from "@/components/ui/icon";
-import AddClothe from "./addClothes";
+import { useEffect, useState } from "react";
+import ChipList from "@/components/ChipList";
+import ModalCreatePieceOfClothing from "@/components/ModalCreatePieceOfClothing";
+import { Text } from "@/components/ui/text";
+import { Image } from "@/components/ui/image";
+import { ScrollView } from "react-native";
+
+interface clothingImageProps {
+    name: string,
+    url: string
+}
+
+const ClothingImage: React.FC<clothingImageProps> = ({ name, url }) => {
+    return (
+        <Box>
+            <Image
+                size="xl"
+                source={{
+                    uri: url
+                }}
+                alt="image"
+            />
+            <Text>
+                {name}
+            </Text>
+        </Box>
+    )
+}
 
 export default function ClothesPage() {
-    const [doc, setDoc] = useState<any>();
-
-    const pickDocument = async () => {
-        let result = await DocumentPicker.getDocumentAsync({
-            type: '*/*',
-            copyToCacheDirectory: true
-        })
-            .then(response => {
-                if (response.output) {
-                    console.log(
-                        response.output[0].name
-                    )
-                    setDoc(response.output[0])
-                }
-            })
+    const [products, setProducts] = useState([])
+    const useGetProducts = () => {
+        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/products/all")
+            .then(res => res.json())
+            .then(jsonResponse => setProducts(jsonResponse.data))
     }
 
+    useGetProducts()
     const [showModal, setShowModal] = useState(false);
-
     return (
-        <Box className="container mx-auto px-12 py-4 bg-white h-screen">
-            <HStack
-                space="md"
-                className="flex-1 flex-row justify-between"
-            >
-                <HStack className="h-min">
-                    <Badge size="sm" action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge size="sm" action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge size="sm" action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge size="sm" action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-                    <Badge action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
-
-                    <Badge action="info" className="rounded-full">
-                        <BadgeText>Hello</BadgeText>
-                    </Badge>
+        <Box className="container mx-auto px-4 md:px-12 bg-white h-screen">
+            <Box>
+                <HStack
+                    className="
+                        flex-1 items-center flex-row justify-between bg-white p-6
+                        hidden md:flex // hide if looks bad
+                    "
+                >
+                    <ChipList />
+                    <Input size="sm" variant="rounded">
+                        <InputField placeholder="Buscar" />
+                        <InputSlot className="mr-4">
+                            <InputIcon as={Search} />
+                        </InputSlot>
+                    </Input>
                 </HStack>
-                <Input size="sm" variant="rounded">
-                    <InputField placeholder="Buscar" />
-                    <InputSlot className="mr-4">
-                        <InputIcon as={Search} />
-                    </InputSlot>
-                </Input>
-            </HStack>
+            </Box>
+            <ScrollView >
+                <Box className="grid grid-cols-2 md:grid-cols-4 h-full mt-4">
+                    {
+                        products && products.length > 0 ? (
+                            products.map(product => (
+                                <ClothingImage
+                                    name={product[1]}
+                                    url={product[4]}
+                                    key={product[0]}
+                                />
+                            )
+                            )
+                        )
+                            :
+                            <Text>
+                                No hay productos
+                            </Text>
+                    }
+                </Box>
+                <ModalCreatePieceOfClothing showModal={showModal} setShowModal={setShowModal} />
+            </ScrollView>
             <Fab
-                onPress={
-                    // () => router.push('/addClothes')
-                    // () => pickDocument()
-                    // 
-                    () => setShowModal(true)
-                }
+                onPress={() => setShowModal(true)}
             >
                 <FabLabel> Agregar </FabLabel>
                 <FabIcon as={CirclePlus} />
             </Fab>
-
-            <Center className="h-[300px]">
-                <Modal
-                    isOpen={showModal}
-                    onClose={() => {
-                        setShowModal(false)
-                    }}
-                    size="lg"
-                >
-                    <ModalBackdrop />
-                    <ModalContent>
-                        <ModalHeader>
-                            <Heading size="md" className="text-typography-950">
-                                Invite your team
-                            </Heading>
-                            <ModalCloseButton>
-                                <Icon
-                                    as={CloseIcon}
-                                    size="md"
-                                    className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"
-                                />
-                            </ModalCloseButton>
-                        </ModalHeader>
-                        <ModalBody>
-                            
-                            <AddClothe />
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button
-                                variant="outline"
-                                action="secondary"
-                                onPress={() => {
-                                    setShowModal(false)
-                                }}
-                            >
-                                <ButtonText>Cancel</ButtonText>
-                            </Button>
-                            <Button
-                                onPress={() => {
-                                    setShowModal(false)
-                                }}
-                            >
-                                <ButtonText>Explore</ButtonText>
-                            </Button>
-                        </ModalFooter>
-                    </ModalContent>
-                </Modal>
-            </Center>
         </Box>
     )
 }

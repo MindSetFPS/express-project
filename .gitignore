@@ -2,7 +2,10 @@ node_modules
 dist
 site
 *.env
+.env.*
 backend/presentation/express/swagger_output.json
 .prompts/
 data/
 backend_dist/
+backend/build
+minio/

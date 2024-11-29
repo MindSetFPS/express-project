@@ -23,14 +23,14 @@ FROM node:23-alpine AS final
 WORKDIR /app
 
 # Copy package*.json files so we have access to dependencies
-COPY package*.json ./
+COPY backend/package*.json ./
 
 # Install dependencies
 RUN npm install
 
 # Copy other application code into the container at the working dir
-COPY ./backend_dist ./dist
-COPY --from=builder ./app/dist ./dist/presentation/express/site
+COPY ./backend/build ./build
+COPY --from=builder ./app/dist ./build/presentation/express/site
 
 # Make port available to the world outside this container
 EXPOSE 3482
@@ -40,3 +40,5 @@ EXPOSE 3482
 
 # Run app.js when the container launches
 CMD ["npm", "run", "serve"]
+
+# docker build -t mefit-backend:0.1 .

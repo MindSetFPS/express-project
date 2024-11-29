@@ -5,30 +5,47 @@ export default class Product implements IProduct {
     price: number;
     stock: number;
     description: string;
+    sellingPrice: number;
     url?: string;
     id?: number;
+    brand?: string;
+    color?: string;
+    imageURL?: string;
+    originalPrice?: number;
+    season?: string;
+    size?: string;
+    typeOfClothing?: string;
 
-    constructor(name:string,price:number,stock:number, description: string, id?:number, url?: string){
-        this.id = id ;
+    constructor(
+        name:string,
+        price:number,
+        stock:number, 
+        description: string, 
+        sellingPrice: number,
+        id?:number, 
+        url?: string
+    ){
         this.name = name ;
         this.price = price;
         this.stock = stock;
         this.description = description ;
+        this.sellingPrice = sellingPrice;
         this.url = url ;
+        this.id = id ;
     }
 }
 
-export class DBProduct implements IProduct {
+export class ProductRequestDTO implements IProduct {
     description?: string | undefined;
-    id: number;
+    id?: number;
     name: string;
-    price: number;
-    stock?: number | undefined;
-    url: string | undefined;
+    sellingPrice: number;
+    stock: number;
+    url?: string | undefined;
 
-    constructor(name: string, price: number, stock: number, url: string, description: string, id: number){
+    constructor(name: string, sellingPrice: number, stock: number, url?: string, description?: string, id?: number){
         this.name = name;
-        this.price = price;
+        this.sellingPrice = sellingPrice;
         this.stock = stock;
         this.description = description;
         this.url = url;
