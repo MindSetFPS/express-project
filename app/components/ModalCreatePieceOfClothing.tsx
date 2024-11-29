@@ -1,4 +1,4 @@
-import AddClothes from "@/app/addClothesForm"
+import FormCreatePieceOfClothing from "@/app/FormCreatePieceOfClothing"
 import { CloseIcon, Icon } from "@/components/ui/icon";
 import { Center } from "./ui/center"
 import { Heading } from "./ui/heading"
@@ -12,11 +12,11 @@ interface Props {
     setShowModal: (value: boolean) => void;
 }
 
-const AddClothesModal: React.FC<Props> = ({ showModal, setShowModal }) => {
+const ModalCreatePieceOfClothing: React.FC<Props> = ({ showModal, setShowModal }) => {
     const [productPost, setProductPost] = useState<ProductPost>();
 
     // Post to backend
-    const useGetProducts = () => {
+    const usePostProducts = () => {
         console.log(productPost)
         fetch(process.env.EXPO_PUBLIC_API_URL + "/api/products/create", {
             method: 'POST',
@@ -64,7 +64,7 @@ const AddClothesModal: React.FC<Props> = ({ showModal, setShowModal }) => {
                         </ModalCloseButton>
                     </ModalHeader>
                     <ModalBody>
-                        <AddClothes liftProps={setProductPost} />
+                        <FormCreatePieceOfClothing liftProps={setProductPost} />
                     </ModalBody>
                     <ModalFooter>
                         <Button
@@ -78,7 +78,7 @@ const AddClothesModal: React.FC<Props> = ({ showModal, setShowModal }) => {
                         </Button>
                         <Button
                             onPress={() => {
-                                useGetProducts()
+                                usePostProducts()
                                 // setShowModal(false)
                             }}
                         >
@@ -91,4 +91,4 @@ const AddClothesModal: React.FC<Props> = ({ showModal, setShowModal }) => {
     )
 }
 
-export default AddClothesModal;
+export default ModalCreatePieceOfClothing;

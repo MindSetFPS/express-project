@@ -5,7 +5,7 @@ import { Fab, FabLabel, FabIcon } from '@/components/ui/fab';
 import { HStack } from "@/components/ui/hstack";
 import { useEffect, useState } from "react";
 import ChipList from "@/components/ChipList";
-import AddClothesModal from "@/components/addClothesModal";
+import ModalCreatePieceOfClothing from "@/components/ModalCreatePieceOfClothing";
 import { Text } from "@/components/ui/text";
 import { Image } from "@/components/ui/image";
 import { ScrollView } from "react-native";
@@ -15,7 +15,6 @@ interface clothingImageProps {
     url: string
 }
 
-
 const ClothingImage: React.FC<clothingImageProps> = ({ name, url }) => {
     return (
         <Box>
@@ -24,7 +23,6 @@ const ClothingImage: React.FC<clothingImageProps> = ({ name, url }) => {
                 source={{
                     uri: url
                 }}
-
                 alt="image"
             />
             <Text>
@@ -81,7 +79,7 @@ export default function ClothesPage() {
                             </Text>
                     }
                 </Box>
-                <AddClothesModal showModal={showModal} setShowModal={setShowModal} />
+                <ModalCreatePieceOfClothing showModal={showModal} setShowModal={setShowModal} />
             </ScrollView>
             <Fab
                 onPress={() => setShowModal(true)}

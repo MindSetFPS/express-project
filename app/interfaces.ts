@@ -5,7 +5,7 @@ interface ProductPost {
     color: string;
     price: number;
     season: string;
-    url: string;
+    url: string | null;
 }
 
 export { ProductPost };

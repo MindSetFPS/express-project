@@ -6,13 +6,12 @@ import { useEffect, useState } from "react";
 import { ProductPost } from "@/interfaces";
 import * as DocumentPicker from 'expo-document-picker';
 import { Button, ButtonText } from "@/components/ui/button";
-import { postApiPieceOfClothingCreateImage } from "@/api";
 
 interface updateProp {
     liftProps: (object: ProductPost) => void;
 }
 
-export default function AddClothes({ liftProps }: updateProp) {
+export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
     const [typeOfGarment, setTypeOfGarment] = useState("");
     const [brand, setBrand] = useState("");
     const [size, setSize] = useState("");
@@ -22,7 +21,7 @@ export default function AddClothes({ liftProps }: updateProp) {
     const [url, setUrl] = useState<string | null>(null);
     const [doc, setDoc] = useState<any>();
     
-    postApiPieceOfClothingCreateImage()
+    // postApiPieceOfClothingCreateImage()
     
     const pickDocument = async () => {
         let result = await DocumentPicker.getDocumentAsync({
