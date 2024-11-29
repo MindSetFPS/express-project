@@ -32,7 +32,7 @@ const OutfitImage: React.FC<outfitImageProps> = ({ name, url }) => {
     )
 }
 
-const OutfitsPage: React.FC<outfitImageProps> = ({ name, url }) => {
+const OutfitsPage = () => {
     const [ outfits, setOutfits ] = useState([])
     const getOutfits = () => {
         fetch( process.env.EXPO_PUBLIC_API_URL + '/api/outfits/all')
