@@ -1,4 +1,4 @@
-import FormCreatePieceOfClothing from "@/app/FormCreatePieceOfClothing"
+import FormCreatePieceOfClothing from "@/components/FormCreatePieceOfClothing"
 import { CloseIcon, Icon } from "@/components/ui/icon";
 import { Center } from "./ui/center"
 import { Heading } from "./ui/heading"
