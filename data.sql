@@ -1,3 +1,5 @@
+USE app;
+
 -- Ensure the table exists before inserting data
 CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,

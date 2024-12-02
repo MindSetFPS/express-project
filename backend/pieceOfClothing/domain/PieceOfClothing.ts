@@ -6,7 +6,7 @@ export default class PieceOfClothing implements IPieceOfClothing {
     id?: number | undefined;
     imageURL?: string | undefined;
     name?: string | undefined;
-    originalPrice?: number | undefined;
+    purchasePrice?: number | undefined;
     season?: string | undefined;
     size?: string | undefined;
     typeOfClothing?: string | undefined;
@@ -29,7 +29,7 @@ export default class PieceOfClothing implements IPieceOfClothing {
         this.id   = id;
         this.imageURL = imageURL;
         this.name = name;
-        this.originalPrice = originalPrice;
+        this.purchasePrice = originalPrice;
         this.season = season;
         this.size   = size;
         this.typeOfClothing = typeOfClothing;
