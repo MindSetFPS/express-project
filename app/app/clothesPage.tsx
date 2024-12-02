@@ -39,8 +39,11 @@ export default function ClothesPage() {
             .then(res => res.json())
             .then(jsonResponse => setProducts(jsonResponse.data))
     }
+    
+    useEffect( () => {
+        useGetProducts()
+    }, [])
 
-    useGetProducts()
     const [showModal, setShowModal] = useState(false);
     return (
         <Box className="container mx-auto px-4 md:px-12 bg-white h-screen">

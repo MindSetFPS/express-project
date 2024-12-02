@@ -1,4 +1,3 @@
-# Use root/example as user/password credentials
 services:
   adminer:
     image: adminer
@@ -19,12 +18,14 @@ services:
     
   minio:
     image: quay.io/minio/minio
+    volumes: 
+      - ./minio:/data
     ports:
       - "9000:9000"
       - "9001:9001"
     environment:
-      MINIO_ROOT_USER: ROOTNAME
-      MINIO_ROOT_PASSWORD: CHANGEME123
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     command: server /data --console-address ":9001"
 
   mefit-backend:
@@ -48,7 +49,6 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d
     ports:
       - "80:80"
-    # network_mode: "host"
   
   # rembg:
     # image: danielgatis/rembg
