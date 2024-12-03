@@ -5,7 +5,7 @@ import { Heading } from "./ui/heading"
 import { Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader } from "./ui/modal"
 import { Button, ButtonText } from "./ui/button"
 import { useState } from "react";
-import { ProductPost } from "@/interfaces";
+// import { ProductPost } from "@/interfaces";
 
 interface Props {
     showModal: boolean;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ModalCreatePieceOfClothing: React.FC<Props> = ({ showModal, setShowModal }) => {
-    const [productPost, setProductPost] = useState<ProductPost>();
+    const [productPost, setProductPost] = useState<any>();
 
     // Post to backend
     const usePostProducts = () => {
@@ -26,7 +26,7 @@ const ModalCreatePieceOfClothing: React.FC<Props> = ({ showModal, setShowModal }
             },
             body: JSON.stringify({
                 name: productPost?.clotheType + " " + productPost?.brand + productPost?.size,
-                price: productPost?.price,
+                price: productPost?.purchasePrice,
                 stock: 1,
                 description: productPost?.season + " " + productPost?.color,
                 url: productPost?.url

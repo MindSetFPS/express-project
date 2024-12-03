@@ -16,9 +16,10 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
     const [brand, setBrand] = useState("");
     const [size, setSize] = useState("");
     const [color, setColor] = useState("");
-    const [price, setPrice] = useState<number>(0);
+    const [purchasePrice, setPurchasePrice] = useState<number>(0);
     const [season, setSeason] = useState("");
-    const [url, setUrl] = useState<string | null>(null);
+    const [imageURL, setImageURL] = useState<string | null>(null);
+    const [userId, setUserId] = useState()
     const [doc, setDoc] = useState<any>();
     
     // postApiPieceOfClothingCreateImage()
@@ -32,7 +33,7 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
                 if (response.output) {
                     console.log(response.assets[0])
                     setDoc(response.output[0])
-                    setUrl(response.assets[0].uri)
+                    setImageURL(response.assets[0].uri)
                 }
             })
     }
@@ -43,21 +44,21 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
             size: size,
             clotheType: typeOfGarment,
             color: color,
-            price: price,
+            price: purchasePrice,
             season: season,
-            url: url
+            url: imageURL
         }
         liftProps(productPost)
-    }, [typeOfGarment, brand, size, color, price, season])
+    }, [typeOfGarment, brand, size, color, purchasePrice, season])
 
     return (
         <Box className="mx-auto container flex items-center">
             <Box className="flex-1 flex-row h-min justify-evenly w-full items-center bg-white rounded-lg">
-                {url && url.length > 0 ?
+                {imageURL && imageURL.length > 0 ?
                     <Image
                         size="2xl"
                         source={{
-                            uri: url
+                            uri: imageURL
                         }}
                         alt="user image"
                     />
@@ -152,8 +153,8 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
                         <Input variant="underlined" size="sm">
                             <InputField
                                 type="text"
-                                onChangeText={(e) => setPrice(parseFloat(e))}
-                                value={price.toString()}
+                                onChangeText={(e) => setPurchasePrice(parseFloat(e))}
+                                value={purchasePrice.toString()}
                                 placeholder="Precio de compra"
                             />
                         </Input>
