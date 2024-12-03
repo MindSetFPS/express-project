@@ -39,13 +39,13 @@ export class ProductRequestDTO implements IProduct {
     description?: string | undefined;
     id?: number;
     name: string;
-    price: number;
+    sellingPrice: number;
     stock: number;
     url?: string | undefined;
 
     constructor(name: string, sellingPrice: number, stock: number, url?: string, description?: string, id?: number){
         this.name = name;
-        this.price = sellingPrice;
+        this.sellingPrice = sellingPrice;
         this.stock = stock;
         this.description = description;
         this.url = url;

@@ -12,23 +12,20 @@ const upload = multer({
 export const pieceOfClothingRouter = Router();
 
 pieceOfClothingRouter.post("/create", (req: Request, res: Response) => {
-    let userId = req.body.userId;
-    let name = req.body.name;
-    let price = req.body.price;
-    let stock = req.body.stock;
-    let sellingPrice = req.body.sellingPrice;
-    let description = req.body.description;
-    let url = req.body.url;
-    let brand = req.body.brand;
-    let color = req.body.color;
     let id = req.body.id;
-    let imageURL = req.body.imageURL;
-    let originalPrice = req.body.originalPrice;
-    let season = req.body.season;
-    let size = req.body.size;
+    let name = req.body.name;
     let typeOfClothing = req.body.typeOfClothing;
+    let brand = req.body.brand;
+    let size = req.body.size;
+    let color = req.body.color;
+    let purchasePrice = req.body.purchasePrice;
+    let season = req.body.season;
+    let imageURL = req.body.imageURL;
+    let userId = req.body.userId;
 
-    let newPieceOfClothing = new PieceOfClothing(brand, color, id, imageURL, name, originalPrice, season, size, typeOfClothing, userId)
+    let newPieceOfClothing = new PieceOfClothing(
+        brand, color, id, imageURL, name, purchasePrice, season, size, typeOfClothing, userId
+    )
 
     createPieceOfClothing(newPieceOfClothing)
         .then(data => (res.json(data)))
