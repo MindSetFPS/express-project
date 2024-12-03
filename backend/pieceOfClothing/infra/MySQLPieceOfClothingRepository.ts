@@ -16,8 +16,8 @@ class MySQLPieceOfClothingRepository { public conn!: Connection;
     
     async createPieceOfClothing(pieceOfClothing: PieceOfClothing){
         try {
-            let query = "INSERT INTO piece_of_clothings(id, name, type_of_clothing, brand, size, color, original_price, season, image_url, user_id) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )"
-            let params = [pieceOfClothing.id, pieceOfClothing.name, pieceOfClothing.typeOfClothing, pieceOfClothing.brand, pieceOfClothing.size, pieceOfClothing.color, pieceOfClothing.originalPrice, pieceOfClothing.season, pieceOfClothing.imageURL, pieceOfClothing.userId]
+            let query = "INSERT INTO piece_of_clothings(id, name, type_of_clothing, brand, size, color, purchase_price, season, image_url, user_id) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )"
+            let params = [pieceOfClothing.id, pieceOfClothing.name, pieceOfClothing.typeOfClothing, pieceOfClothing.brand, pieceOfClothing.size, pieceOfClothing.color, pieceOfClothing.purchasePrice, pieceOfClothing.season, pieceOfClothing.imageURL, pieceOfClothing.userId]
             const [ result, fields ] = await this.conn.query(query, params)
             console.log(result)
             console.log(fields)
