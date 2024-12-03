@@ -1,11 +1,13 @@
 interface ProductPost {
-    clotheType: string;
+    name: string;
+    typeOfClothing: string;
     brand: string;
     size: string;
     color: string;
-    price: number;
+    purchasePrice: number;
     season: string;
-    url: string | null;
+    imageURL: string | null;
+    userId?: number | undefined;
 }
 
 export { ProductPost };

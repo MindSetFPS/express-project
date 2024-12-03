@@ -40,13 +40,14 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
 
     useEffect(() => {
         var productPost: ProductPost = {
+            name: typeOfGarment + " " + brand + " " + size,
             brand: brand,
             size: size,
-            clotheType: typeOfGarment,
+            typeOfClothing: typeOfGarment,
             color: color,
-            price: purchasePrice,
+            purchasePrice: purchasePrice,
             season: season,
-            url: imageURL
+            imageURL: imageURL
         }
         liftProps(productPost)
     }, [typeOfGarment, brand, size, color, purchasePrice, season])
@@ -173,7 +174,7 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
                                 type="text"
                                 onChangeText={setSeason}
                                 value={season}
-                                placeholder="Tipo de prenda"
+                                placeholder="Temporada"
                             />
                         </Input>
                     </FormControl>

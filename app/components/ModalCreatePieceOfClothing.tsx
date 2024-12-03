@@ -15,23 +15,14 @@ interface Props {
 const ModalCreatePieceOfClothing: React.FC<Props> = ({ showModal, setShowModal }) => {
     const [productPost, setProductPost] = useState<any>();
 
-    // Post to backend
     const usePostProducts = () => {
-        console.log(productPost)
-        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/products/create", {
+        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/piece-of-clothing/create", {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                name: productPost?.clotheType + " " + productPost?.brand + productPost?.size,
-                price: productPost?.purchasePrice,
-                stock: 1,
-                description: productPost?.season + " " + productPost?.color,
-                url: productPost?.url
-                // image_url: doc?.uri,
-            })
+            body: JSON.stringify(productPost)
         })
             .then(res => res?.json())
             .then(data => {

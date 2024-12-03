@@ -22,6 +22,10 @@ pieceOfClothingRouter.post("/create", (req: Request, res: Response) => {
     let season = req.body.season;
     let imageURL = req.body.imageURL;
     let userId = req.body.userId;
+    
+    // let { id, name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, userId } = req.body
+    
+    console.log(req.body)
 
     let newPieceOfClothing = new PieceOfClothing(
         brand, color, id, imageURL, name, purchasePrice, season, size, typeOfClothing, userId
