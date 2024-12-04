@@ -1,7 +1,6 @@
 import { Router, Request, Response } from "express";
-import IPieceOfClothing from "../domain/IPieceOfClothing";
 import createPieceOfClothing from "../app/createPieceOfClothing";
-import PieceOfClothing from "../domain/PieceOfClothing";
+import { NewPieceOfClothing } from "../domain/PieceOfClothing";
 import createImage from "../app/createImage";
 import multer from 'multer';
 
@@ -12,27 +11,16 @@ const upload = multer({
 export const pieceOfClothingRouter = Router();
 
 pieceOfClothingRouter.post("/create", (req: Request, res: Response) => {
-    let id = req.body.id;
-    let name = req.body.name;
-    let typeOfClothing = req.body.typeOfClothing;
-    let brand = req.body.brand;
-    let size = req.body.size;
-    let color = req.body.color;
-    let purchasePrice = req.body.purchasePrice;
-    let season = req.body.season;
-    let imageURL = req.body.imageURL;
-    let userId = req.body.userId;
+    let { name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, userId } = req.body
     
-    // let { id, name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, userId } = req.body
-    
-    console.log(req.body)
-
-    let newPieceOfClothing = new PieceOfClothing(
-        brand, color, id, imageURL, name, purchasePrice, season, size, typeOfClothing, userId
+    let newPieceOfClothing = new NewPieceOfClothing(
+        name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, 2
     )
-
+    
     createPieceOfClothing(newPieceOfClothing)
-        .then(data => (res.json(data)))
+        .then(data => {
+            res.json(data)
+        })
 })
 
 pieceOfClothingRouter.post("/createImage", upload.single('file'), (req: Request, res: Response) => {
