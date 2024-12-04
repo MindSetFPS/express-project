@@ -35,9 +35,11 @@ const ClothingImage: React.FC<clothingImageProps> = ({ name, url }) => {
 export default function ClothesPage() {
     const [products, setProducts] = useState([])
     const useGetProducts = () => {
-        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/products/all")
+        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/piece-of-clothing/all")
             .then(res => res.json())
-            .then(jsonResponse => setProducts(jsonResponse.data))
+            .then(jsonResponse => {
+                setProducts(jsonResponse)
+            })
     }
     
     useEffect( () => {
@@ -70,7 +72,7 @@ export default function ClothesPage() {
                             products.map(product => (
                                 <ClothingImage
                                     name={product[1]}
-                                    url={product[4]}
+                                    url={product[8]}
                                     key={product[0]}
                                 />
                             )

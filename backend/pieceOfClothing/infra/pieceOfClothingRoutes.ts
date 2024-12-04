@@ -3,6 +3,8 @@ import createPieceOfClothing from "../app/createPieceOfClothing";
 import { NewPieceOfClothing } from "../domain/PieceOfClothing";
 import createImage from "../app/createImage";
 import multer from 'multer';
+import connection from "../../shared/MySQLConnectionOptions";
+import { Connection, ConnectionOptions, createConnection } from "mysql2/promise";
 
 const upload = multer({
     storage: multer.memoryStorage(),
@@ -21,6 +23,21 @@ pieceOfClothingRouter.post("/create", (req: Request, res: Response) => {
         .then(data => {
             res.json(data)
         })
+})
+
+pieceOfClothingRouter.get('/all', async (req: Request, res: Response) => {
+    let conn = await createConnection(connection);
+    
+    try {
+        let [rows] = await conn.query("SELECT * FROM piece_of_clothings")
+        res.json(rows)
+    } catch(e) {
+        console.error(e)
+        res.json({
+            text: "error"
+        })
+    }
+    
 })
 
 pieceOfClothingRouter.post("/createImage", upload.single('file'), (req: Request, res: Response) => {
