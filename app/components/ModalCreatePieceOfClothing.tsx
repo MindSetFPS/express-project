@@ -5,16 +5,16 @@ import { Heading } from "./ui/heading"
 import { Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader } from "./ui/modal"
 import { Button, ButtonText } from "./ui/button"
 import { useState } from "react";
-// import { ProductPost } from "@/interfaces";
 
 interface Props {
     showModal: boolean;
     setShowModal: (value: boolean) => void;
+    onNewPieceOfClothingCreated: () => void;
 }
 
-const ModalCreatePieceOfClothing: React.FC<Props> = ({ showModal, setShowModal }) => {
+const ModalCreatePieceOfClothing: React.FC<Props> = ({ showModal, setShowModal, onNewPieceOfClothingCreated }) => {
     const [productPost, setProductPost] = useState<any>();
-
+    
     const usePostProducts = () => {
         fetch(process.env.EXPO_PUBLIC_API_URL + "/api/piece-of-clothing/create", {
             method: 'POST',
@@ -26,8 +26,8 @@ const ModalCreatePieceOfClothing: React.FC<Props> = ({ showModal, setShowModal }
         })
             .then(res => res?.json())
             .then(data => {
-                console.log('data', data);
                 setShowModal(false)
+                onNewPieceOfClothingCreated()
             })
     };
 

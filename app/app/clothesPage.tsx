@@ -84,7 +84,11 @@ export default function ClothesPage() {
                             </Text>
                     }
                 </Box>
-                <ModalCreatePieceOfClothing showModal={showModal} setShowModal={setShowModal} />
+                <ModalCreatePieceOfClothing 
+                    showModal={showModal} 
+                    setShowModal={setShowModal} 
+                    onNewPieceOfClothingCreated={useGetProducts}
+                />
             </ScrollView>
             <Fab
                 onPress={() => setShowModal(true)}
