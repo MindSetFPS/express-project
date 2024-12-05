@@ -22,20 +22,33 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
     const [userId, setUserId] = useState()
     const [doc, setDoc] = useState<any>();
     
-    // postApiPieceOfClothingCreateImage()
+    function postApiPieceOfClothingCreateImage(image: File){
+        const formData = new FormData()
+        formData.append('file', image)
+        fetch(process.env.EXPO_PUBLIC_API_URL + '/api/piece-of-clothing/createImage', {
+            method:'POST',
+            body: formData,
+        })
+       .then((res) => res.json())
+       .then(data => {
+            setImageURL(data.fileURL)
+        })
+       .catch(err => console.log(err))
+    }
     
     const pickDocument = async () => {
         let result = await DocumentPicker.getDocumentAsync({
-            type: '*/*',
+            type: 'image/*',
             copyToCacheDirectory: true
         })
-            .then(response => {
-                if (response.output) {
-                    console.log(response.assets[0])
-                    setDoc(response.output[0])
-                    setImageURL(response.assets[0].uri)
+        .then(response => {
+            if (response.output && response.assets[0].file) {
+                setDoc(response.output[0])
+                if(response.assets && response.assets[0]){
+                    postApiPieceOfClothingCreateImage(response.assets[0].file)
                 }
-            })
+            }
+        })
     }
 
     useEffect(() => {
