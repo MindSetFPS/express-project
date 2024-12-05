@@ -48,7 +48,7 @@ const ModalCreateOutfit: React.FC<Props> = ({ showModal, setShowModal }) => {
                 <ModalContent>
                     <ModalHeader>
                         <Heading size="md" className="text-typography-950">
-                            Crea una nueva prenda
+                            Crea una nuevo outfit
                         </Heading>
                         <ModalCloseButton>
                             <Icon
