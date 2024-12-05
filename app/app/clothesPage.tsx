@@ -7,33 +7,13 @@ import { useEffect, useState } from "react";
 import ChipList from "@/components/ChipList";
 import ModalCreatePieceOfClothing from "@/components/ModalCreatePieceOfClothing";
 import { Text } from "@/components/ui/text";
-import { Image } from "@/components/ui/image";
 import { ScrollView } from "react-native";
-
-interface clothingImageProps {
-    name: string,
-    url: string
-}
-
-const ClothingImage: React.FC<clothingImageProps> = ({ name, url }) => {
-    return (
-        <Box>
-            <Image
-                size="xl"
-                source={{
-                    uri: url
-                }}
-                alt="image"
-            />
-            <Text>
-                {name}
-            </Text>
-        </Box>
-    )
-}
+import ClothingImage from "@/components/ClothingImage";
 
 export default function ClothesPage() {
     const [products, setProducts] = useState([])
+    
+    // https://dev.to/gboladetrue/react-custom-hooks-crafting-reusable-and-clean-code-like-a-pro-3kol
     const useGetProducts = () => {
         fetch(process.env.EXPO_PUBLIC_API_URL + "/api/piece-of-clothing/all")
             .then(res => res.json())
