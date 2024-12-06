@@ -1,5 +1,3 @@
-// /home/daniel/Documents/projects/express-project/backend/outfits/infra/outfitRoutes.ts
-
 import { Router, Request, Response } from "express";
 import createOutfit from "../app/createOutfit";
 import getOutfitByID from "../app/getOutfitById";
@@ -11,12 +9,15 @@ outfitRouter.get('/all', (req: Request, res: Response) => {
     getAllOutfits().then(data => res.json(data))
 })
 
-outfitRouter.post('/create', (req: Request, res: Response) => {
-    let name = req.body.name;
-    let userId = req.body.userId;
+// https://javascript.plainenglish.io/typed-express-request-and-response-with-typescript-7277aea028c
+outfitRouter.post('/create', async (req: Request, res: Response) => {
+    let { userId, pieceOfClothingIdList } = req.body;
 
-    createOutfit(name, userId)
-    .then(data => res.json(data))
+    let outfit = await createOutfit(userId, pieceOfClothingIdList)
+    console.log(outfit)
+    res.json({
+        ok: true
+    })
 })
 
 outfitRouter.get('/:id', (req: Request, res: Response) => {

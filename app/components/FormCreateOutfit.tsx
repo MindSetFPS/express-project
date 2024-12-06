@@ -39,6 +39,10 @@ export default function FormCreateOutfit({ liftProps }: updateProp) {
             }
         })
     }
+    
+    useEffect(() => {
+        liftProps(selectedPiecesOfClothing)
+    }, [selectedPiecesOfClothing])
 
     useEffect(() => {
         useGetPieceOfClothings()

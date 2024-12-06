@@ -20,16 +20,19 @@ class MySQLOutfitRepository {
         this.conn = await createConnection(this.credentials)
     }
 
-    async createOutfit(outfit: Outfit) {
+    async createOutfit(outfit: Outfit){
         // This method will grow bigger, as it needs to consider clothes belonging to 
         // a user, befor saving.
         // And it will also save to at least 2 tables.
         try {
             let query = 'INSERT INTO outfits (user_id) VALUES (?)'
             let params = [outfit.userId]
-            const [result, fields] = await this.conn.query(query, params);
-            console.log("result:", result)
-            console.log("fields: ", fields)
+            await this.conn.query(query, params);
+            const [result] = await this.conn.query<RowDataPacket[]>("SELECT * FROM outfits WHERE id = LAST_INSERT_ID()")
+            return {
+                outfitId: result[0][0],
+                userId: result[0][1]
+            }
         } catch (err) {
             console.error(err)
         }

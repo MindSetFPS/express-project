@@ -1,7 +1,7 @@
 import IProduct, { productExample } from "../../products/domain/IProduct";
 
 export default interface IOutfit {
-    id: number;
+    id?: number;
     userId: number,
     name?: string;
     head?: IProduct[];

@@ -12,11 +12,10 @@ interface Props {
 }
 
 const ModalCreateOutfit: React.FC<Props> = ({ showModal, setShowModal }) => {
-    const [productPost, setProductPost] = useState();
+    const [pieceOfClothingList, setPieceOfClothingList] = useState();
 
     // Post to backend
-    const usePostPieceOutfit = () => {
-        console.log(productPost)
+    const usePostOutfit = () => {
         fetch(process.env.EXPO_PUBLIC_API_URL + "/api/outfits/create", {
             method: 'POST',
             headers: {
@@ -24,8 +23,8 @@ const ModalCreateOutfit: React.FC<Props> = ({ showModal, setShowModal }) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: 1,
-                user_id: 1
+                userId: 2,
+                pieceOfClothingIdList: pieceOfClothingList
             })
         })
             .then(res => res?.json())
@@ -59,7 +58,7 @@ const ModalCreateOutfit: React.FC<Props> = ({ showModal, setShowModal }) => {
                         </ModalCloseButton>
                     </ModalHeader>
                     <ModalBody>
-                        <FormCreateOutfit liftProps={setProductPost} />
+                        <FormCreateOutfit liftProps={setPieceOfClothingList} />
                     </ModalBody>
                     <ModalFooter>
                         <Button
@@ -73,7 +72,7 @@ const ModalCreateOutfit: React.FC<Props> = ({ showModal, setShowModal }) => {
                         </Button>
                         <Button
                             onPress={() => {
-                                usePostPieceOutfit()
+                                usePostOutfit()
                                 // setShowModal(false)
                             }}
                         >

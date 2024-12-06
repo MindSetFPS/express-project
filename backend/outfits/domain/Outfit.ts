@@ -2,8 +2,8 @@ import IProduct from "../../products/domain/IProduct";
 import IOutfit from "./IOutfit";
 
 class Outfit implements IOutfit {
-  id: number;
   userId: number;
+  id?: number;
   name?: string;
   head?: IProduct[];
   chest?: IProduct[];
@@ -12,8 +12,8 @@ class Outfit implements IOutfit {
   accessory?: IProduct[];
 
   constructor(
-    id: number, 
     userId: number, 
+    id?: number, 
     name?: string, 
     head?: IProduct[], 
     chest?: IProduct[], 
