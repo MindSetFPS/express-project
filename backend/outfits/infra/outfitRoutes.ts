@@ -6,7 +6,10 @@ import getAllOutfits from "../app/getAllOutfits";
 export const outfitRouter = Router();
 
 outfitRouter.get('/all', (req: Request, res: Response) => {
-    getAllOutfits().then(data => res.json(data))
+    getAllOutfits().then(data => {
+        console.log(data)
+        res.json(data)
+    })
 })
 
 // https://javascript.plainenglish.io/typed-express-request-and-response-with-typescript-7277aea028c

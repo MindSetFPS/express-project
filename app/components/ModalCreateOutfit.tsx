@@ -9,9 +9,10 @@ import FormCreateOutfit from "./FormCreateOutfit";
 interface Props {
     showModal: boolean;
     setShowModal: (value: boolean) => void;
+    onNewOutfitCreated: () => void;
 }
 
-const ModalCreateOutfit: React.FC<Props> = ({ showModal, setShowModal }) => {
+const ModalCreateOutfit: React.FC<Props> = ({ showModal, setShowModal, onNewOutfitCreated }) => {
     const [pieceOfClothingList, setPieceOfClothingList] = useState();
 
     // Post to backend
@@ -30,6 +31,7 @@ const ModalCreateOutfit: React.FC<Props> = ({ showModal, setShowModal }) => {
             .then(res => res?.json())
             .then(data => {
                 console.log('data', data);
+                onNewOutfitCreated()
                 setShowModal(false)
             })
     };

@@ -84,7 +84,11 @@ const OutfitsPage = () => {
                             </Text>
                     }
                 </Box>
-                <ModalCreateOutfit showModal={showModal} setShowModal={setShowModal} />
+                <ModalCreateOutfit 
+                    showModal={showModal} 
+                    setShowModal={setShowModal} 
+                    onNewOutfitCreated={useGetOutfits}
+                />
             </ScrollView>
             <Fab
                 onPress={() => setShowModal(true)}
