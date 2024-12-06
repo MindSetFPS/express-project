@@ -6,7 +6,7 @@ import { Image } from "@/components/ui/image";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
 import { CirclePlus, Search } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import ModalCreateOutfit from "@/components/ModalCreateOutfit";
 
@@ -34,10 +34,18 @@ const OutfitImage: React.FC<outfitImageProps> = ({ name, url }) => {
 
 const OutfitsPage = () => {
     const [ outfits, setOutfits ] = useState([])
-    const getOutfits = () => {
+    const useGetOutfits = () => {
         fetch( process.env.EXPO_PUBLIC_API_URL + '/api/outfits/all')
        .then((res)=> res.json())
+       .then(out => setOutfits(out))
     }
+    
+    
+    useEffect( () => {
+        useGetOutfits()
+    }, [])
+
+    
     const [showModal, setShowModal] = useState(false);
     return (
         <Box className="container mx-auto px-4 md:px-12 bg-white h-screen">
@@ -45,7 +53,7 @@ const OutfitsPage = () => {
                 <HStack
                     className="
                         flex-1 items-center flex-row justify-between bg-white p-6
-                        hidden md:flex // hide if looks bad
+                        hidden md:flex
                     "
                 >
                     <ChipList />
@@ -63,8 +71,8 @@ const OutfitsPage = () => {
                         outfits && outfits.length > 0 ? (
                             outfits.map(product => (
                                 <OutfitImage
-                                    name={product[1]}
-                                    url={product[4]}
+                                    name={product[0]}
+                                    url={product[1]}
                                     key={product[0]}
                                 />
                             )
