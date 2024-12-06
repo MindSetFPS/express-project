@@ -5,38 +5,29 @@ import { Heading } from "./ui/heading"
 import { Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader } from "./ui/modal"
 import { Button, ButtonText } from "./ui/button"
 import { useState } from "react";
-import { ProductPost } from "@/interfaces";
 
 interface Props {
     showModal: boolean;
     setShowModal: (value: boolean) => void;
+    onNewPieceOfClothingCreated: () => void;
 }
 
-const ModalCreatePieceOfClothing: React.FC<Props> = ({ showModal, setShowModal }) => {
-    const [productPost, setProductPost] = useState<ProductPost>();
-
-    // Post to backend
+const ModalCreatePieceOfClothing: React.FC<Props> = ({ showModal, setShowModal, onNewPieceOfClothingCreated }) => {
+    const [productPost, setProductPost] = useState<any>();
+    
     const usePostProducts = () => {
-        console.log(productPost)
-        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/products/create", {
+        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/piece-of-clothing/create", {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                name: productPost?.clotheType + " " + productPost?.brand + productPost?.size,
-                price: productPost?.price,
-                stock: 1,
-                description: productPost?.season + " " + productPost?.color,
-                url: productPost?.url
-                // image_url: doc?.uri,
-            })
+            body: JSON.stringify(productPost)
         })
             .then(res => res?.json())
             .then(data => {
-                console.log('data', data);
                 setShowModal(false)
+                onNewPieceOfClothingCreated()
             })
     };
 

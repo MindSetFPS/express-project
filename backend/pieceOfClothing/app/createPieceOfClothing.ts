@@ -5,6 +5,8 @@ export default function createPieceOfClothing(pieceOfClothing: PieceOfClothing){
     let PieceOfClothingRepository = mysqlPieceOfClothingRepository
     
     return PieceOfClothingRepository.createPieceOfClothing(pieceOfClothing)
-    .then()
+    .then(data => {
+        return data
+    })
     .catch( error => console.error(error))
 }

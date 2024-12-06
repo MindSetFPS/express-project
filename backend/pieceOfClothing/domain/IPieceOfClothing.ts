@@ -6,7 +6,7 @@ export default interface IPieceOfClothing {
     brand?: string;
     size?: string;
     color?: string;
-    originalPrice?: number;
+    purchasePrice?: number;
     season?: string;
     imageURL?: string;
 }
@@ -18,7 +18,7 @@ const pieceOfClothingExample: IPieceOfClothing = {
     brand: 'Nike',
     size: 'L',
     color: 'White',
-    originalPrice: 20.99,
+    purchasePrice: 20.99,
     season: 'Summer',
     imageURL: "http://myimage.com/image.png"
 };

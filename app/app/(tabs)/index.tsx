@@ -67,8 +67,11 @@ export default function HomeScreen() {
             </Card>
             <Card variant='outline'
               className='bg-white rounded-3xl w-full flex flex-row items-center py-12'>
-              <Heading size='xl'> Conoce a los estilistas </Heading>
-              <Icon as={ArrowRight} size='lg' />
+                <Button size="md" variant="link" action="primary" onPress={() => router.push('/StylistsScreen')}>
+                  <ButtonText> Conoce a los estilistas </ButtonText>
+                  <Icon as={ArrowRight} size='lg' />
+                </Button>
+            
             </Card>
             <Card variant='outline' className='bg-white rounded-3xl w-full flex flex-row items-center' >
               <Button size="md" variant="link" action="primary" onPress={() => router.push('/createOutfit')}>

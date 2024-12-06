@@ -1,38 +1,74 @@
 import IPieceOfClothing from "./IPieceOfClothing";
 
 export default class PieceOfClothing implements IPieceOfClothing {
-    brand?: string | undefined;
-    color?: string | undefined;
     id?: number | undefined;
-    imageURL?: string | undefined;
     name?: string | undefined;
-    originalPrice?: number | undefined;
-    season?: string | undefined;
-    size?: string | undefined;
     typeOfClothing?: string | undefined;
+    brand?: string | undefined;
+    size?: string | undefined;
+    color?: string | undefined;
+    purchasePrice?: number | undefined;
+    season?: string | undefined;
+    imageURL?: string | undefined;
     userId?: number | undefined;
 
     constructor(
-        brand: string,
-        color: string,
         id: number,
-        imageURL: string,
         name: string,
-        originalPrice: number,
-        season: string,
-        size: string,
         typeOfClothing: string,
+        brand: string,
+        size: string,
+        color: string,
+        purchasePrice: number,
+        season: string,
+        imageURL: string,
         userId: number
     ){
-        this.brand = brand;
-        this.color  = color;
-        this.id   = id;
-        this.imageURL = imageURL;
+        this.id = id;
         this.name = name;
-        this.originalPrice = originalPrice;
-        this.season = season;
-        this.size   = size;
         this.typeOfClothing = typeOfClothing;
+        this.brand = brand;
+        this.size   = size;
+        this.color  = color;
+        this.purchasePrice = purchasePrice;
+        this.season = season;
+        this.imageURL = imageURL;
         this.userId = userId;
     }
-} 
+}
+
+class NewPieceOfClothing implements IPieceOfClothing {
+name?: string | undefined;
+typeOfClothing?: string | undefined;
+brand?: string | undefined;
+size?: string | undefined;
+color?: string | undefined;
+purchasePrice?: number | undefined;
+season?: string | undefined;
+imageURL?: string | undefined;
+userId?: number | undefined;
+
+constructor(
+    name: string,
+    typeOfClothing: string,
+    brand: string,
+    size: string,
+    color: string,
+    purchasePrice: number,
+    season: string,
+    imageURL: string,
+    userId: number
+){
+    this.name = name;
+    this.typeOfClothing = typeOfClothing;
+    this.brand = brand;
+    this.size   = size;
+    this.color  = color;
+    this.purchasePrice = purchasePrice;
+    this.season = season;
+    this.imageURL = imageURL;
+    this.userId = userId;
+}
+}
+
+export { NewPieceOfClothing };

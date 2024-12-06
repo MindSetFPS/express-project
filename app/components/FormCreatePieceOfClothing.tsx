@@ -16,48 +16,63 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
     const [brand, setBrand] = useState("");
     const [size, setSize] = useState("");
     const [color, setColor] = useState("");
-    const [price, setPrice] = useState<number>(0);
+    const [purchasePrice, setPurchasePrice] = useState<number>(0);
     const [season, setSeason] = useState("");
-    const [url, setUrl] = useState<string | null>(null);
+    const [imageURL, setImageURL] = useState<string | null>(null);
+    const [userId, setUserId] = useState()
     const [doc, setDoc] = useState<any>();
     
-    // postApiPieceOfClothingCreateImage()
+    function postApiPieceOfClothingCreateImage(image: File){
+        const formData = new FormData()
+        formData.append('file', image)
+        fetch(process.env.EXPO_PUBLIC_API_URL + '/api/piece-of-clothing/createImage', {
+            method:'POST',
+            body: formData,
+        })
+       .then((res) => res.json())
+       .then(data => {
+            setImageURL(data.fileURL)
+        })
+       .catch(err => console.log(err))
+    }
     
     const pickDocument = async () => {
         let result = await DocumentPicker.getDocumentAsync({
-            type: '*/*',
+            type: 'image/*',
             copyToCacheDirectory: true
         })
-            .then(response => {
-                if (response.output) {
-                    console.log(response.assets[0])
-                    setDoc(response.output[0])
-                    setUrl(response.assets[0].uri)
+        .then(response => {
+            if (response.output && response.assets[0].file) {
+                setDoc(response.output[0])
+                if(response.assets && response.assets[0]){
+                    postApiPieceOfClothingCreateImage(response.assets[0].file)
                 }
-            })
+            }
+        })
     }
 
     useEffect(() => {
         var productPost: ProductPost = {
+            name: typeOfGarment + " " + brand + " " + size,
             brand: brand,
             size: size,
-            clotheType: typeOfGarment,
+            typeOfClothing: typeOfGarment,
             color: color,
-            price: price,
+            purchasePrice: purchasePrice,
             season: season,
-            url: url
+            imageURL: imageURL
         }
         liftProps(productPost)
-    }, [typeOfGarment, brand, size, color, price, season])
+    }, [typeOfGarment, brand, size, color, purchasePrice, season])
 
     return (
         <Box className="mx-auto container flex items-center">
             <Box className="flex-1 flex-row h-min justify-evenly w-full items-center bg-white rounded-lg">
-                {url && url.length > 0 ?
+                {imageURL && imageURL.length > 0 ?
                     <Image
                         size="2xl"
                         source={{
-                            uri: url
+                            uri: imageURL
                         }}
                         alt="user image"
                     />
@@ -152,8 +167,8 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
                         <Input variant="underlined" size="sm">
                             <InputField
                                 type="text"
-                                onChangeText={(e) => setPrice(parseFloat(e))}
-                                value={price.toString()}
+                                onChangeText={(e) => setPurchasePrice(parseFloat(e))}
+                                value={purchasePrice.toString()}
                                 placeholder="Precio de compra"
                             />
                         </Input>
@@ -172,7 +187,7 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
                                 type="text"
                                 onChangeText={setSeason}
                                 value={season}
-                                placeholder="Tipo de prenda"
+                                placeholder="Temporada"
                             />
                         </Input>
                     </FormControl>

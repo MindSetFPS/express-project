@@ -7,40 +7,25 @@ import { useEffect, useState } from "react";
 import ChipList from "@/components/ChipList";
 import ModalCreatePieceOfClothing from "@/components/ModalCreatePieceOfClothing";
 import { Text } from "@/components/ui/text";
-import { Image } from "@/components/ui/image";
 import { ScrollView } from "react-native";
-
-interface clothingImageProps {
-    name: string,
-    url: string
-}
-
-const ClothingImage: React.FC<clothingImageProps> = ({ name, url }) => {
-    return (
-        <Box>
-            <Image
-                size="xl"
-                source={{
-                    uri: url
-                }}
-                alt="image"
-            />
-            <Text>
-                {name}
-            </Text>
-        </Box>
-    )
-}
+import ClothingImage from "@/components/ClothingImage";
 
 export default function ClothesPage() {
     const [products, setProducts] = useState([])
+    
+    // https://dev.to/gboladetrue/react-custom-hooks-crafting-reusable-and-clean-code-like-a-pro-3kol
     const useGetProducts = () => {
-        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/products/all")
+        fetch(process.env.EXPO_PUBLIC_API_URL + "/api/piece-of-clothing/all")
             .then(res => res.json())
-            .then(jsonResponse => setProducts(jsonResponse.data))
+            .then(jsonResponse => {
+                setProducts(jsonResponse)
+            })
     }
+    
+    useEffect( () => {
+        useGetProducts()
+    }, [])
 
-    useGetProducts()
     const [showModal, setShowModal] = useState(false);
     return (
         <Box className="container mx-auto px-4 md:px-12 bg-white h-screen">
@@ -67,7 +52,7 @@ export default function ClothesPage() {
                             products.map(product => (
                                 <ClothingImage
                                     name={product[1]}
-                                    url={product[4]}
+                                    url={product[8]}
                                     key={product[0]}
                                 />
                             )
@@ -79,7 +64,11 @@ export default function ClothesPage() {
                             </Text>
                     }
                 </Box>
-                <ModalCreatePieceOfClothing showModal={showModal} setShowModal={setShowModal} />
+                <ModalCreatePieceOfClothing 
+                    showModal={showModal} 
+                    setShowModal={setShowModal} 
+                    onNewPieceOfClothingCreated={useGetProducts}
+                />
             </ScrollView>
             <Fab
                 onPress={() => setShowModal(true)}

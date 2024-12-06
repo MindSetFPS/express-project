@@ -27,9 +27,12 @@ class MySQLOutfitRepository {
         try {
             let query = 'INSERT INTO outfits (user_id) VALUES (?)'
             let params = [outfit.userId]
-            const [result, fields] = await this.conn.query(query, params);
-            console.log("result:", result)
-            console.log("fields: ", fields)
+            await this.conn.query(query, params);
+            const [result] = await this.conn.query<RowDataPacket[]>("SELECT * FROM outfits WHERE id = LAST_INSERT_ID()")
+            return {
+                outfitId: result[0][0],
+                userId: result[0][1]
+            }
         } catch (err) {
             console.error(err)
         }
@@ -37,14 +40,13 @@ class MySQLOutfitRepository {
 
     async getAllOutfits() {
         try {
-            const [fields] = await this.conn.query<DBOutfit[]>('SELECT * FROM outfits')
-            let outfitsList = fields.map((outfit) => {
-                return new Outfit(
-                    outfit[0],
-                    outfit[1]
-                )
-            })
-            return outfitsList
+            const [fields] = await this.conn.query<RowDataPacket[]>(`SELECT DISTINCT outfit_piece_of_clothing.outfit_id, MIN(piece_of_clothings.image_url) AS image_url
+            FROM outfit_piece_of_clothing 
+            JOIN piece_of_clothings ON piece_of_clothings.id = outfit_piece_of_clothing.piece_of_clothing_id
+            GROUP BY outfit_piece_of_clothing.outfit_id;
+            `)
+            
+            return fields
         } catch (error) {
             console.error(error)
         }
@@ -58,8 +60,8 @@ class MySQLOutfitRepository {
         try {
             const [outfits] = await this.conn.query<DBOutfit[]>(query, params)
             let res = outfits[0];
-            outfit = new Outfit(res[0], res[1] );
-            
+            outfit = new Outfit(res[0], res[1]);
+
             return outfit;
         } catch (error) {
             console.error(error)

@@ -1,16 +1,26 @@
 import mySqlOutfitRepository from "../infra/MySQLOutfitRepository";
 import Outfit from "../domain/Outfit";
+import { createConnection } from "mysql2/promise"
+import connection from "../../shared/MySQLConnectionOptions";
 
-export default function createOutfit(
-    outfitId: number,
+export default async function createOutfit(
     userId: number,
-){
-    let OutfitRepository = mySqlOutfitRepository;
-    let outfit = new Outfit(outfitId,userId);
+    pieceOfClothingIdList: number[]
+) {
     
-    return OutfitRepository.createOutfit(outfit)
-    .then()
-    .catch(err => {
-        console.log("Error: " + err);
-    })
+    let OutfitRepository = mySqlOutfitRepository;
+    let outfit: Outfit = new Outfit(userId)
+    let obj = await OutfitRepository.createOutfit(outfit)
+
+    try {
+        const conne = await createConnection(connection);
+        console.log('Connected to the database!');
+        
+        pieceOfClothingIdList.forEach(pieceOfClothingId=> {
+            conne.execute('INSERT INTO outfit_piece_of_clothing (outfit_id, piece_of_clothing_id) VALUES (?, ?)', [obj?.outfitId, pieceOfClothingId]);
+        });
+        
+    } catch (error) {
+        console.error('Error connecting to database:', error);
+    }
 }

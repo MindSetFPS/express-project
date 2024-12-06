@@ -15,10 +15,8 @@ CREATE TABLE IF NOT EXISTS users (
 -- Create products table
 CREATE TABLE IF NOT EXISTS products (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  price DECIMAL(10,2) NOT NULL,
+  selling_price DECIMAL(10,2) NOT NULL,
   stock INT NOT NULL DEFAULT 0,
-  url VARCHAR(2048) NULL,
   description TEXT NULL
 );
 
@@ -29,7 +27,7 @@ CREATE TABLE IF NOT EXISTS piece_of_clothings (
   brand VARCHAR(255) NULL,
   size VARCHAR(255) NULL,
   color VARCHAR(255) NULL,
-  original_price DECIMAL(10,2) NULL,
+  purchase_price DECIMAL(10,2) NULL,
   season VARCHAR(255) NULL,
   image_url VARCHAR(255) NULL,
   user_id INT,

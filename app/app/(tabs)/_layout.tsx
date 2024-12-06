@@ -8,7 +8,7 @@ import { Search, ShoppingBag } from 'lucide-react-native';
 import { Box } from '@/components/ui/box';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { House, Store, Shirt, CircleFadingPlus, CircleUserRound } from 'lucide-react-native';
+import { House, Store, Shirt, CircleUserRound } from 'lucide-react-native';
 import AppLogo from '@/components/AppLogo';
 
 export default function TabLayout() {
@@ -72,16 +72,6 @@ export default function TabLayout() {
         }}
       />
 
-
-      <Tabs.Screen
-        name="new"
-        options={{
-          title: 'Nuevo',
-          tabBarIcon: ({ color, focused }) => (
-            <Icon as={CircleFadingPlus} color={color} />
-          ),
-        }}
-      />
 
       <Tabs.Screen
         name="wardrobe"

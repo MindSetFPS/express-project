@@ -14,7 +14,9 @@ COPY ./app /app
 RUN npm i
 
 # Build web app
-RUN npx expo export -p web
+# RUN npx expo export -p web
+# may fix:
+RUN npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css.web.css && npx expo export -p web 
 
 # Stage 2: Use an official Node.js runtime as a parent image
 FROM node:23-alpine AS final
