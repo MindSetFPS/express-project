@@ -3,23 +3,24 @@ import { FormControl, FormControlError, FormControlErrorIcon, FormControlErrorTe
 import { Image } from "@/components/ui/image";
 import { Input, InputField } from "@/components/ui/input";
 import { useEffect, useState } from "react";
-import { ProductPost } from "@/interfaces";
+import { PostPieceOfClothing } from "@/interfaces";
 import * as DocumentPicker from 'expo-document-picker';
 import { Button, ButtonText } from "@/components/ui/button";
 
 interface updateProp {
-    liftProps: (object: ProductPost) => void;
+    liftProps: (object: PostPieceOfClothing) => void;
+    product?: PostPieceOfClothing;
 }
 
-export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
-    const [typeOfGarment, setTypeOfGarment] = useState("");
-    const [brand, setBrand] = useState("");
-    const [size, setSize] = useState("");
-    const [color, setColor] = useState("");
-    const [purchasePrice, setPurchasePrice] = useState<number>(0);
-    const [season, setSeason] = useState("");
-    const [imageURL, setImageURL] = useState<string | null>(null);
-    const [userId, setUserId] = useState()
+export default function FormCreatePieceOfClothing({ liftProps, product }: updateProp) {
+    const [typeOfGarment, setTypeOfGarment] = useState(product?.typeOfClothing || "");
+    const [brand, setBrand] = useState( product?.brand || "");
+    const [size, setSize] = useState( product?.size || "");
+    const [color, setColor] = useState( product?.color || "");
+    const [purchasePrice, setPurchasePrice] = useState<number>( product?.purchasePrice || 0);
+    const [season, setSeason] = useState( product?.season || "");
+    const [imageURL, setImageURL] = useState<string | null>( product?.imageURL || null);
+    const [userId, setUserId] = useState( product?.userId || 0)
     const [doc, setDoc] = useState<any>();
     
     function postApiPieceOfClothingCreateImage(image: File){
@@ -52,7 +53,7 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
     }
 
     useEffect(() => {
-        var productPost: ProductPost = {
+        var postPieceOfClothing: PostPieceOfClothing = {
             name: typeOfGarment + " " + brand + " " + size,
             brand: brand,
             size: size,
@@ -62,7 +63,7 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
             season: season,
             imageURL: imageURL
         }
-        liftProps(productPost)
+        liftProps(postPieceOfClothing)
     }, [typeOfGarment, brand, size, color, purchasePrice, season])
 
     return (

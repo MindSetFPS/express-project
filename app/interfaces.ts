@@ -1,6 +1,6 @@
-interface ProductPost {
+interface PostPieceOfClothing {
     name: string;
-    typeOfClothing: string;
+    typeOfClothing?: string;
     brand: string;
     size: string;
     color: string;
@@ -10,4 +10,4 @@ interface ProductPost {
     userId?: number | undefined;
 }
 
-export { ProductPost };
+export { PostPieceOfClothing };
