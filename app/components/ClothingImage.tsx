@@ -27,7 +27,6 @@ const ClothingImage: React.FC<clothingImageProps> = ({
     function handleClick() {
         onClick ? onClick() : false
         setSelected(!selected)
-        console.log("clicked")
     }
 
 

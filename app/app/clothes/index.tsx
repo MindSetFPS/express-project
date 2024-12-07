@@ -1,14 +1,15 @@
-import { Box } from "@/components/ui/box";
+import { useEffect, useState } from "react";
+import { ScrollView } from "react-native";
 import { CirclePlus, Search } from 'lucide-react-native';
+import { router } from 'expo-router';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { Box } from "@/components/ui/box";
 import { Fab, FabLabel, FabIcon } from '@/components/ui/fab';
 import { HStack } from "@/components/ui/hstack";
-import { useEffect, useState } from "react";
-import ChipList from "@/components/ChipList";
 import ModalCreatePieceOfClothing from "@/components/ModalCreatePieceOfClothing";
 import { Text } from "@/components/ui/text";
-import { ScrollView } from "react-native";
 import ClothingImage from "@/components/ClothingImage";
+import ChipList from "@/components/ChipList";
 
 export default function ClothesPage() {
     const [products, setProducts] = useState([])
@@ -54,6 +55,7 @@ export default function ClothesPage() {
                                     name={product[1]}
                                     url={product[8]}
                                     key={product[0]}
+                                    onClick={() => router.navigate(`/clothes/edit/${product[0]}`)}
                                 />
                             )
                             )

@@ -1,5 +1,5 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import ClothesPage from "../clothesPage";
+import ClothesPage from '../clothes/index';
 import OutfitsPage from "../outfitsPage";
 import CalendarPage from "../calendarPage";
 
