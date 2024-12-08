@@ -1,36 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box } from "@/components/ui/box";
-import { Text } from "@/components/ui/text/index.web";
 import { useLocalSearchParams } from "expo-router";
 import FormCreatePieceOfClothing from "../../../components/FormCreatePieceOfClothing"
-import { PostPieceOfClothing } from "@/interfaces";
+import { GETPieceOfClothingById, IPieceOfClothing } from "@/interfaces";
+import { Button, ButtonText } from "@/components/ui/button";
 
 export default function EditClothes() {
 
-    const [productPost, setProductPost] = useState<any>();
-    const { id } = useLocalSearchParams()
-    
-    let p: PostPieceOfClothing = {
-        // this should also have an id
-        name: "clothing cool",
-        typeOfClothing: "t-shirt",
-        brand: "zara",
-        size: "small",
-        color: "blue",
-        purchasePrice: 503,
-        season: "windter",
-        imageURL: "http://localhost:9000/app/cs-l-sueter.jpg",
-    }
-    
-    return (
+    const [pieceOfClothing, setPieceOfClothing] = useState<any>();
+    const { id } = useLocalSearchParams<{ id: string }>()
 
+    useEffect(() => {
+        GETPieceOfClothingById(id)
+            .then((e) => setPieceOfClothing(e))
+    }, []);
+
+    if (pieceOfClothing == null) return ("loading")
+
+    return (
         <Box className="container mx-auto px-4 md:px-12 bg-white h-screen">
-            <FormCreatePieceOfClothing 
+            <FormCreatePieceOfClothing
                 liftProps={(d) => {
                     console.log(d)
-                }} 
-                product={p}
+                }}
+                product={pieceOfClothing}
             />
+            <Button
+                onPress={() => {
+                    console.log(pieceOfClothing)
+                }}
+            >
+                <ButtonText>Actualizar</ButtonText>
+            </Button>
+
+            <Button
+                className="mt-2"
+                onPress={() => {
+                    console.log(pieceOfClothing)
+                }}
+                variant="outline"
+            >
+                <ButtonText>Poner a la venta</ButtonText>
+            </Button>
+
         </Box>
     )
 }
