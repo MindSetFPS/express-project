@@ -57,4 +57,28 @@ async function GETPieceOfClothingById(id: number | string): Promise<IPieceOfClot
     }
 }
 
-export { IPieceOfClothing, PostPieceOfClothing, GETPieceOfClothingById };
+async function UPDATEPieceOfClothing(pieceId: number, pieceOfClothing: IPieceOfClothing) {
+    try {
+        const response = await fetch(process.env.EXPO_PUBLIC_API_URL + `/api/piece-of-clothing/update/${pieceId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pieceOfClothing)
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data); // Should print an object with ok: true
+            return {
+                ok: true
+            }
+        } else {
+            throw new Error(`Error updating piece of clothing: ${response.status} ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export { IPieceOfClothing, PostPieceOfClothing, GETPieceOfClothingById, UPDATEPieceOfClothing };
