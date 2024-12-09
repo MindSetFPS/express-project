@@ -4,6 +4,8 @@ import { useLocalSearchParams } from "expo-router";
 import FormCreatePieceOfClothing from "../../../components/FormCreatePieceOfClothing"
 import { GETPieceOfClothingById, IPieceOfClothing, UPDATEPieceOfClothing } from "@/interfaces";
 import { Button, ButtonText } from "@/components/ui/button";
+import ModalDeletePieceOfClothing from "@/components/ModalDeletePieceOfClothing";
+import ModalPostPieceOfClothingInMarket from "@/components/ModalPostPieceOfClothingInMarket";
 
 export default function EditClothes() {
 
@@ -28,18 +30,24 @@ export default function EditClothes() {
                     UPDATEPieceOfClothing(parseInt(id), pieceOfClothing)
                     console.log(pieceOfClothing)
                 }}
+                className="mb-2 mt-2"
             >
                 <ButtonText>Actualizar</ButtonText>
             </Button>
 
-            <Button
+            {/* <Button
                 className="mt-2"
                 onPress={() => {
                 }}
                 variant="outline"
             >
                 <ButtonText>Poner a la venta</ButtonText>
-            </Button>
+            </Button> */}
+           
+            <Box className="mb-2">
+            <ModalPostPieceOfClothingInMarket />
+            </Box>
+            <ModalDeletePieceOfClothing />
 
         </Box>
     )
