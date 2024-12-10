@@ -42,7 +42,6 @@ export default function ModalPostPieceOfClothingInMarket() {
             </Text>
           </ModalBody>
 
-
           {
             showForm ?
               <>
@@ -61,7 +60,7 @@ export default function ModalPostPieceOfClothingInMarket() {
                   </Input>
                   <Select>
                     <SelectTrigger variant="underlined" size="md" >
-                      <SelectInput placeholder="Select option" />
+                      <SelectInput placeholder="Estado de tu prenda" />
                       <SelectIcon className="mr-3" as={ChevronDownIcon} />
                     </SelectTrigger>
                     <SelectPortal>
