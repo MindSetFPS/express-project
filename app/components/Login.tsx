@@ -72,7 +72,7 @@ export default function Login() {
 
                     <Button onPress={() => {
                         console.log("loging in")
-                        router.push('(tabs)')
+                        router.push('/(tabs)')
                     }}>
                         <ButtonText >
                             iniciar sesión
