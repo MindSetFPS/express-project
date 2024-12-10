@@ -1,18 +1,22 @@
 import { useState } from "react";
+import { router } from "expo-router";
 import { Button, ButtonText } from "./ui/button";
-import { Modal, ModalBackdrop, ModalBody, ModalContent, ModalFooter, ModalHeader } from "./ui/modal";
+import { Modal, ModalBackdrop, ModalBody, ModalContent, ModalHeader } from "./ui/modal";
 import { Box } from "./ui/box";
-import { ChevronDownIcon, Icon, TrashIcon } from "./ui/icon";
+import { Icon, RepeatIcon } from "./ui/icon";
 import { Heading } from "./ui/heading";
 import { Text } from "./ui/text";
+import { Alert, AlertIcon, AlertText } from "./ui/alert";
+import { HStack } from "./ui/hstack";
+import { VStack } from "./ui/vstack";
 import { Store } from "lucide-react-native"
-import { Input, InputField } from "./ui/input";
-import { FormControl, FormControlLabel, FormControlLabelText } from "./ui/form-control";
-import { Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectTrigger } from "./ui/select";
+import FormPostPieceOfClothingInMarket from "./FormPostPieceOfClothingInMarket";
+import FormConfirmProductPost from "./FormConfirmProductPost";
 
 export default function ModalPostPieceOfClothingInMarket() {
   const [showModal, setShowModal] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+
   return (
     <>
       <Button onPress={() => setShowModal(true)} action="positive" >
@@ -41,86 +45,49 @@ export default function ModalPostPieceOfClothingInMarket() {
               Al poner esta prenda en venta dejará de estar en tu armario. Cuando alguien la compre, tendras que prepararla para su envío.
             </Text>
           </ModalBody>
+          {
+            step === 1 &&
+            <FormConfirmProductPost
+              onClose={() => setShowModal(false)}
+              onConfirm={() => setStep(2)}
+            />
+          }
 
           {
-            showForm ?
-              <>
-                <FormControl>
-                  <FormControlLabel>
-                    <FormControlLabelText>Precio</FormControlLabelText>
-                  </FormControlLabel>
-                  <Input>
-                    <InputField variant="underlined" placeholder="Enter your email" />
-                  </Input>
-                  <FormControlLabel>
-                    <FormControlLabelText>Descripción</FormControlLabelText>
-                  </FormControlLabel>
-                  <Input>
-                    <InputField placeholder="Describe esta prenda" />
-                  </Input>
-                  <Select>
-                    <SelectTrigger variant="underlined" size="md" >
-                      <SelectInput placeholder="Estado de tu prenda" />
-                      <SelectIcon className="mr-3" as={ChevronDownIcon} />
-                    </SelectTrigger>
-                    <SelectPortal>
-                      <SelectBackdrop />
-                      <SelectContent>
-                        <SelectDragIndicatorWrapper>
-                          <SelectDragIndicator />
-                        </SelectDragIndicatorWrapper>
-                        <SelectItem 
-                          label="Como nuevo" 
-                          value="1" 
-                        />
-                        <SelectItem 
-                          label="Muy buena" 
-                          value="2" 
-                        />
-                        <SelectItem
-                          label="Buena"
-                          value="3"
-                        />
-                        <SelectItem
-                          label="Gema escondida"
-                          value="4"
-                        />
-                      </SelectContent>
-                    </SelectPortal>
-                  </Select>
-                  <Button className="mt-2">
-                    <ButtonText>
-                      Publicar
-                    </ButtonText>
-                  </Button>
-                </FormControl>
-              </>
-              :
-              <>
-                <ModalFooter className="w-full">
-                  <Button
-                    variant="outline"
-                    action="secondary"
-                    size="sm"
-                    onPress={() => {
-                      setShowModal(false);
-                    }}
-                    className="flex-grow"
-                  >
-                    <ButtonText>Cancelar</ButtonText>
-                  </Button>
-                  <Button
-                    onPress={() => {
-                      setShowForm(true);
-                    }}
-                    size="sm"
-                    className="flex-grow"
-                    action="positive"
-                  >
-                    <ButtonText>Sí, poner a la venta</ButtonText>
-                  </Button>
-                </ModalFooter>
-              </>
+            step === 2 &&
+            <FormPostPieceOfClothingInMarket
+              onPost={() => setStep(3)}
+            />
+          }
+
+          {
+            step === 3 &&
+            <>
+              <Alert
+                action="success"
+                className="gap-4 max-w-[516px] w-full flex-row flex py-4 items-start self-center"
+              >
+                <AlertIcon as={RepeatIcon} className="mt-1" />
+                <HStack className="justify-between flex-1 items-center gap-1 sm:gap-8">
+                  <VStack className="flex-1">
+                    <Text className="font-semibold text-typography-900">
+                      Tu prenda se publicó
+                    </Text>
+                    <AlertText className="text-typography-900" size="sm">
+                      Te avisaremos cuando se venda para continuar el proceso.
+                    </AlertText>
+                  </VStack>
+                </HStack>
+              </Alert>
+              <Button action="positive" className="mt-2" 
+                onPress={() => {
+                  setShowModal(false)
+                  router.navigate("/(tabs)")
+                }}
+              >
+                <ButtonText>Aceptar</ButtonText>
+              </Button>
+            </>
           }
         </ModalContent>
       </Modal>
