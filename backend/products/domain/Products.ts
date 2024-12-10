@@ -1,13 +1,14 @@
 import IProduct from "./IProduct";
 
 export default class Product implements IProduct {
-    name: string;
-    price: number;
     stock: number;
     description: string;
     sellingPrice: number;
-    url?: string;
+    condition: 1 | 2 | 3 | 4;
     id?: number;
+    price?: number;
+    name?: string;
+    url?: string;
     brand?: string;
     color?: string;
     imageURL?: string;
@@ -17,13 +18,14 @@ export default class Product implements IProduct {
     typeOfClothing?: string;
 
     constructor(
-        name:string,
-        price:number,
         stock:number, 
         description: string, 
         sellingPrice: number,
+        condition: 1 | 2 | 3 | 4,
         id?:number, 
-        url?: string
+        price?:number,
+        name?:string,
+        url?: string,
     ){
         this.name = name ;
         this.price = price;
@@ -31,7 +33,8 @@ export default class Product implements IProduct {
         this.description = description ;
         this.sellingPrice = sellingPrice;
         this.url = url ;
-        this.id = id ;
+        this.id = id;
+        this.condition = condition;
     }
 }
 
@@ -42,12 +45,22 @@ export class ProductRequestDTO implements IProduct {
     sellingPrice: number;
     stock: number;
     url?: string | undefined;
+    condition: 1 | 2 | 3 | 4;
 
-    constructor(name: string, sellingPrice: number, stock: number, url?: string, description?: string, id?: number){
+    constructor(
+        name: string, 
+        sellingPrice: number, 
+        stock: number, 
+        condition: 1 | 2 | 3 | 4,
+        url?: string, 
+        description?: string, 
+        id?: number
+    ){
         this.name = name;
         this.sellingPrice = sellingPrice;
         this.stock = stock;
         this.description = description;
+        this.condition = condition;
         this.url = url;
         this.id = id;
     }

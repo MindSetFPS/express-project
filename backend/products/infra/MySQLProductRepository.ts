@@ -15,12 +15,13 @@ class MySQLProductRepository {
         this.conn = await createConnection(this.credentials);
     }
 
-
     // async createProduct(product: Product): Promise<Product> {
     async createProduct(product: Product) {
         try {
-            let sqlQuery = "INSERT INTO products (name, price, stock, url, description) VALUES (?, ?, ?, ?, ?)";
-            let data = [product.name, product.price, product.stock, product.url, product.description]
+            let sqlQuery = `INSERT INTO products 
+            (id, selling_price, stock, product_condition, description) VALUES 
+            (?, ?, ?, ?, ?)`;
+            let data = [product.id, product.sellingPrice, product.stock, product.condition, product.description]
             const [rows] = await this.conn.query(sqlQuery, data)
 
         } catch (error) {
