@@ -43,9 +43,9 @@ export default function EditClothes() {
             >
                 <ButtonText>Poner a la venta</ButtonText>
             </Button> */}
-           
+
             <Box className="mb-2">
-            <ModalPostPieceOfClothingInMarket />
+                <ModalPostPieceOfClothingInMarket />
             </Box>
             <ModalDeletePieceOfClothing />
 

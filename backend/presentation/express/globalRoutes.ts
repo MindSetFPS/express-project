@@ -19,7 +19,11 @@ globalRouter.use('/products', productRouter)
 globalRouter.use('/orders', orderRouter)
 globalRouter.use('/orderproduct', orderProductRouter)
 globalRouter.use('/outfits', outfitRouter)
-globalRouter.use('/piece-of-clothing', pieceOfClothingRouter)
+globalRouter.use(
+    '/piece-of-clothing', 
+    pieceOfClothingRouter
+    // #swagger.tags = ['PieceOfClothing']
+)
 globalRouter.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput))
 
 export default globalRouter;
