@@ -17,7 +17,7 @@ pieceOfClothingRouter.post("/create", (req: Request, res: Response) => {
     let { name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, userId } = req.body
     
     let newPieceOfClothing = new NewPieceOfClothing(
-        name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, 2
+        name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, 2, false
     )
     
     createPieceOfClothing(newPieceOfClothing)
@@ -30,7 +30,7 @@ pieceOfClothingRouter.get('/all', async (req: Request, res: Response) => {
     let conn = await createConnection(connection);
     
     try {
-        let [rows] = await conn.query("SELECT * FROM piece_of_clothings")
+        let [rows] = await conn.query("SELECT * FROM piece_of_clothings WHERE is_for_sale = FALSE;")
         res.json(rows)
     } catch(e) {
         console.error(e)
@@ -102,8 +102,6 @@ pieceOfClothingRouter.put(
 
             let [results, fp] = await conn.execute(query, data);
             
-            console.log(results)
-            console.log(fp)
             res.json({
                 ok: true
             })

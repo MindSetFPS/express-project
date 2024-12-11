@@ -16,6 +16,7 @@ export default class Product implements IProduct {
     season?: string;
     size?: string;
     typeOfClothing?: string;
+    isForSale?: boolean;
 
     constructor(
         stock:number, 
