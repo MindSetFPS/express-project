@@ -32,7 +32,7 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           headerShown: true,
-          headerTitle: (props) => (
+          headerTitle: () => (
             <AppLogo />
           ),
           tabBarIcon: ({ color, focused }) => (
@@ -46,26 +46,6 @@ export default function TabLayout() {
         options={{
           title: 'Shop',
           headerShown: true,
-          headerTitle: (props) => (
-            <Box className='flex flex-row justify-end items-center w-screen p-8'>
-              <Input variant='rounded' size='sm' className='w-2/4 md:w-auto' >
-                <InputField />
-                <InputSlot className='pr-3'>
-                  <InputIcon as={Search} />
-                </InputSlot>
-              </Input>
-              <Button onPress={() => {
-                router.push('/shoppingCart');
-              }}>Carrito</Button>
-              <Button onPress={() => {
-                router.push('/paymentMethod');
-              }}>paymentMethod</Button>
-              <Button onPress={() => {
-                router.push('/addPaymentMethod');
-              }}>paymentMethod</Button>
-              <Icon as={ShoppingBag} size='xl' />
-            </Box>
-          ),
           tabBarIcon: ({ color, focused }) => (
             <Icon as={Store} color={color} />
           ),
