@@ -33,10 +33,6 @@ export default function ShopContent() {
     getAllProducts().then(r => setProducts(r.data))
   }, [])
 
-  useEffect(() => {
-    console.log(products)
-  }, [products])
-
   if (products.length == 0) return <Text> Loading </Text>
 
   return (

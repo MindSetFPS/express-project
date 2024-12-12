@@ -29,6 +29,7 @@ const ClothesList: React.FC<Props> = ({ clothesList, even }) => {
                         (clothePiece) => (
                             <ClothesPiece
                                 key={clothePiece.id}
+                                id={clothePiece.id}
                                 name={clothePiece.name}
                                 imageURL={clothePiece.imageURL}
                                 sellingPrice={clothePiece.sellingPrice}

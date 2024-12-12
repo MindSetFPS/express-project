@@ -16,6 +16,7 @@ export default class Product implements IProduct {
     size?: string;
     typeOfClothing?: string;
     isForSale?: boolean;
+    userId?: number | undefined;
 
     constructor(
         stock:number, 
@@ -25,7 +26,15 @@ export default class Product implements IProduct {
         id?:number, 
         price?:number,
         name?:string,
+        brand?: string,
+        color?: string,
         imageURL?: string,
+        originalPrice?: number,
+        season?: string,
+        size? : string,
+        typeOfClothing?: string,
+        isForSale?: boolean,
+        userId?: number,
     ){
         this.name = name ;
         this.price = price;
@@ -35,6 +44,14 @@ export default class Product implements IProduct {
         this.imageURL = imageURL;
         this.id = id;
         this.condition = condition;
+        this.size = size;
+        this.brand = brand;
+        this.color = color;
+        this.originalPrice = originalPrice;
+        this.season = season;
+        this.typeOfClothing = typeOfClothing;
+        this.isForSale = isForSale;
+        this.userId = userId;
     }
 }
 
