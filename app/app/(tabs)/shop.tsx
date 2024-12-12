@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { router, useNavigation } from "expo-router";
+import { Filter, Search, ShoppingBag } from "lucide-react-native";
 import AppLogo from "@/components/AppLogo";
 import FilterBar from "@/components/FilterBar";
 import ShopContent from "@/components/ShopContent";
@@ -5,9 +8,6 @@ import { Box } from "@/components/ui/box";
 import { Button, ButtonIcon } from "@/components/ui/button";
 import { HStack } from "@/components/ui/hstack";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
-import { router, useNavigation } from "expo-router";
-import { Filter, Search, ShoppingBag } from "lucide-react-native";
-import { useEffect, useState } from "react";
 
 export default function Shop() {
     const [showFilterBar, setShowFilterBar] = useState<boolean>(true);

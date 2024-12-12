@@ -1,14 +1,9 @@
-import { Tabs, router } from 'expo-router';
 import React from 'react';
-
+import { Tabs} from 'expo-router';
+import { House, Store, Shirt, CircleUserRound } from 'lucide-react-native';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Icon } from '@/components/ui/icon';
-import { Search, ShoppingBag } from 'lucide-react-native';
-import { Box } from '@/components/ui/box';
-import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { House, Store, Shirt, CircleUserRound } from 'lucide-react-native';
 import AppLogo from '@/components/AppLogo';
 
 export default function TabLayout() {
@@ -52,7 +47,6 @@ export default function TabLayout() {
         }}
       />
 
-
       <Tabs.Screen
         name="wardrobe"
         options={{
@@ -62,7 +56,6 @@ export default function TabLayout() {
           ),
         }}
       />
-
 
       <Tabs.Screen
         name="profile"

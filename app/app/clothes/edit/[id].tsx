@@ -38,7 +38,7 @@ export default function EditClothes() {
                 </Button>
 
                 <Box className="mb-2">
-                    <ModalPostPieceOfClothingInMarket />
+                    <ModalPostPieceOfClothingInMarket clothingId={id} />
                 </Box>
                 <ModalDeletePieceOfClothing />
             </Box>

@@ -13,7 +13,7 @@ import { Store } from "lucide-react-native"
 import FormPostPieceOfClothingInMarket from "./FormPostPieceOfClothingInMarket";
 import FormConfirmProductPost from "./FormConfirmProductPost";
 
-export default function ModalPostPieceOfClothingInMarket() {
+const ModalPostPieceOfClothingInMarket: React.FC<{ clothingId: string }> = ({ clothingId }) => {
   const [showModal, setShowModal] = useState(false);
   const [step, setStep] = useState<1 | 2 | 3>(1);
 
@@ -57,6 +57,7 @@ export default function ModalPostPieceOfClothingInMarket() {
             step === 2 &&
             <FormPostPieceOfClothingInMarket
               onPost={() => setStep(3)}
+              pieceOfClothingId={clothingId}
             />
           }
 
@@ -94,3 +95,5 @@ export default function ModalPostPieceOfClothingInMarket() {
     </>
   );
 }
+
+export default ModalPostPieceOfClothingInMarket

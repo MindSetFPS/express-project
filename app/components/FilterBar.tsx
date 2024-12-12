@@ -8,10 +8,55 @@ import { Text } from "./ui/text";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Badge, BadgeIcon, BadgeText } from "./ui/badge";
 import { VStack } from "./ui/vstack";
+import { useMediaQuery } from "./ui/utils/use-media-query";
+import React, { Children, ReactNode, useEffect } from "react";
+import { Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText } from "./ui/select/select-actionsheet";
+import { router, useNavigation } from "expo-router";
+import { Button } from "./ui/button";
 
-export default function FilterBar() {
+const MobileBar: React.FC<{ children: ReactNode, isOpen: boolean, onClose: () => void, }> =
+    ({ children, isOpen, onClose }) => {
+        return (
+            <Box className="flex flex-col">
+                {/* {children} */}
+                <Actionsheet isOpen={isOpen} onClose={() => onClose()}>
+                    <ActionsheetBackdrop />
+                    <ActionsheetContent>
+                        <ActionsheetDragIndicatorWrapper>
+                            <ActionsheetDragIndicator />
+                        </ActionsheetDragIndicatorWrapper>
+                        <ActionsheetItem >
+                            <ActionsheetItemText>Edit Message</ActionsheetItemText>
+                        </ActionsheetItem>
+                        <ActionsheetItem >
+                            <ActionsheetItemText>Mark Unread</ActionsheetItemText>
+                        </ActionsheetItem>
+                        <ActionsheetItem >
+                            <ActionsheetItemText>Remind Me</ActionsheetItemText>
+                        </ActionsheetItem>
+                        <ActionsheetItem >
+                            <ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
+                        </ActionsheetItem>
+                        <ActionsheetItem isDisabled >
+                            <ActionsheetItemText>Delete</ActionsheetItemText>
+                        </ActionsheetItem>
+                    </ActionsheetContent>
+                </Actionsheet>
+            </Box>
+        )
+    }
+
+function DesktopBar() {
     return (
-        <VStack space="xl">
+        <VStack space="xl" className="w-1/5">
+            <Text> Return when its desktop</Text>
+        </VStack>
+    )
+}
+
+function Filters() {
+    return (
+        <>
             <Box>
                 <Heading> Precio </Heading>
                 <Progress value={40}>
@@ -61,6 +106,46 @@ export default function FilterBar() {
                     <BadgeIcon as={LucideSettings2} className="ml-1" />
                 </Badge>
             </Box>
-        </VStack>
+        </>
+    )
+}
+
+interface FilterBarProps {
+    showFilterBar: boolean;
+    onCloseFilterBar: () => void;
+}
+
+export default function FilterBar({ showFilterBar, onCloseFilterBar }: FilterBarProps) {
+
+    const [isMobile, isTablet, isSmallScreen, isLargeScreen] = useMediaQuery([
+        {
+            maxWidth: 480,
+        },
+        {
+            minWidth: 481,
+            maxWidth: 768,
+        },
+        {
+            minWidth: 769,
+            maxWidth: 1440,
+        },
+        {
+            minWidth: 1441,
+        },
+    ])
+
+    // let Bar: React.FC<{ children: ReactNode }>;
+    let Bar: React.FC<any>;
+
+    Bar = MobileBar
+
+    if (isSmallScreen || isTablet) {
+        Bar = DesktopBar
+    }
+
+    return (
+        <Bar isOpen={showFilterBar} onClose={onCloseFilterBar} >
+            <Filters />
+        </Bar>
     )
 }

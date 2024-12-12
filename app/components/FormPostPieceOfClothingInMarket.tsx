@@ -4,18 +4,23 @@ import { FormControl, FormControlLabel, FormControlLabelText } from "./ui/form-c
 import { ChevronDownIcon } from "./ui/icon";
 import { Input, InputField } from "./ui/input";
 import { Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectTrigger } from "./ui/select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
     onPost: () => void;
+    pieceOfClothingId: string;
 }
 
-export default function FormPostPieceOfClothingInMarket({ onPost } : Props) {
-    const { id } = useLocalSearchParams<{ id: string }>()
+export default function FormPostPieceOfClothingInMarket({ onPost, pieceOfClothingId } : Props) {
+    // const { id } = useLocalSearchParams<{ id: string }>()
     const [condition, setCondition] = useState<string>("");
     const [sellingPrice, setSellingPrice] = useState<number>(0);
     const [description, setDescription] = useState<string>("");
     const [posted, setPosted] = useState<boolean>(false);
+    
+    useEffect(() => {
+        console.log(pieceOfClothingId)
+    }, [pieceOfClothingId])
 
     async function postProduct(id: string, stock: number, sellingPrice: number, description: string, condition: string): Promise<any> {
         try {
@@ -46,8 +51,18 @@ export default function FormPostPieceOfClothingInMarket({ onPost } : Props) {
     }
 
     function handlePostProduct() {
+        
+        if(!(pieceOfClothingId && sellingPrice && description && condition)){
+            console.log("faltan datos: ", {
+                "id": pieceOfClothingId,
+                "sellingPrice": sellingPrice,
+                "description": description,
+                "condition": condition
+            })
+        }
+        
         postProduct(
-            id,
+            pieceOfClothingId,
             1,
             parseInt(sellingPrice.toString()),
             description,
