@@ -10,7 +10,7 @@ import { HStack } from "@/components/ui/hstack";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 
 export default function Shop() {
-    const [showFilterBar, setShowFilterBar] = useState<boolean>(true);
+    const [showFilterBar, setShowFilterBar] = useState<boolean>(false);
     const navigation = useNavigation()
 
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function Shop() {
                         variant="link"
                         className="mr-2"
                         size="xl"
-                        onPress={() => router.navigate('/shoppingCart') }
+                        onPress={() => router.navigate('/shoppingCart')}
                     >
                         <ButtonIcon size="xl" as={ShoppingBag} />
                     </Button>
