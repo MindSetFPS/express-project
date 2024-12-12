@@ -1,4 +1,4 @@
-import { Connection, ConnectionOptions, createConnection } from "mysql2/promise";
+import { Connection, ConnectionOptions, createConnection, RowDataPacket } from "mysql2/promise";
 import Product from "../domain/Products";
 import connection from "../../shared/MySQLConnectionOptions";
 
@@ -45,8 +45,17 @@ class MySQLProductRepository {
 
     async getAllProducts() {
         try {
-            const [rows] = await this.conn.query('SELECT * FROM products');
-            return rows;
+            const [rows] = await this.conn.query<RowDataPacket[]>(`
+                SELECT 
+                products.id, products.selling_price, products.product_condition, products.description,
+                piece_of_clothings.name, piece_of_clothings.type_of_clothing, piece_of_clothings.brand, 
+                piece_of_clothings.size, piece_of_clothings.color, piece_of_clothings.season, 
+                piece_of_clothings.image_url, piece_of_clothings.user_id, piece_of_clothings.is_for_sale
+                FROM products INNER JOIN piece_of_clothings ON products.id = piece_of_clothings.id 
+            `);
+            let productList: Product[]
+            productList = rows.map((el) => new Product(1, el[3], el[1],el[2], el[0], undefined, el[4], el[10]))
+            return productList;
         } catch (error) {
             console.log("Error: ", error);
         }

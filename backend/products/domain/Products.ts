@@ -8,7 +8,6 @@ export default class Product implements IProduct {
     id?: number;
     price?: number;
     name?: string;
-    url?: string;
     brand?: string;
     color?: string;
     imageURL?: string;
@@ -26,14 +25,14 @@ export default class Product implements IProduct {
         id?:number, 
         price?:number,
         name?:string,
-        url?: string,
+        imageURL?: string,
     ){
         this.name = name ;
         this.price = price;
         this.stock = stock;
         this.description = description ;
         this.sellingPrice = sellingPrice;
-        this.url = url ;
+        this.imageURL = imageURL;
         this.id = id;
         this.condition = condition;
     }
