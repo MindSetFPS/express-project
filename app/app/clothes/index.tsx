@@ -13,7 +13,7 @@ import ChipList from "@/components/ChipList";
 
 export default function ClothesPage() {
     const [products, setProducts] = useState([])
-    
+
     // https://dev.to/gboladetrue/react-custom-hooks-crafting-reusable-and-clean-code-like-a-pro-3kol
     const useGetProducts = () => {
         fetch(process.env.EXPO_PUBLIC_API_URL + "/api/piece-of-clothing/all")
@@ -22,8 +22,8 @@ export default function ClothesPage() {
                 setProducts(jsonResponse)
             })
     }
-    
-    useEffect( () => {
+
+    useEffect(() => {
         useGetProducts()
     }, [])
 
@@ -47,11 +47,13 @@ export default function ClothesPage() {
                 </HStack>
             </Box>
             <ScrollView >
-                <Box className="grid grid-cols-2 md:grid-cols-4 h-full mt-4">
+                <Box className="grid grid-cols-3 gap-4 md:grid-cols-4 h-full mt-4 mx-auto">
                     {
                         products && products.length > 0 ? (
                             products.map(product => (
                                 <ClothingImage
+                                    text={false}
+                                    size="xl"
                                     name={product[1]}
                                     url={product[8]}
                                     key={product[0]}
@@ -66,9 +68,9 @@ export default function ClothesPage() {
                             </Text>
                     }
                 </Box>
-                <ModalCreatePieceOfClothing 
-                    showModal={showModal} 
-                    setShowModal={setShowModal} 
+                <ModalCreatePieceOfClothing
+                    showModal={showModal}
+                    setShowModal={setShowModal}
                     onNewPieceOfClothingCreated={useGetProducts}
                 />
             </ScrollView>

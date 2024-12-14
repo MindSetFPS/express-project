@@ -29,10 +29,9 @@ const ClothingImage: React.FC<clothingImageProps> = ({
         setSelected(!selected)
     }
 
-
     return (
-        <TouchableWithoutFeedback onPress={ handleClick }>
-            <Box className=" rounded-lg" >
+        <TouchableWithoutFeedback className="mx-auto" onPress={handleClick}>
+            <Box className="rounded-lg" >
                 <Image
                     size={size}
                     source={{
