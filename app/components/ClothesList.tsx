@@ -2,7 +2,6 @@ import { ScrollView } from "react-native"
 import ClothesPiece from "./ClothesPiece"
 import React from "react"
 import { VStack } from "./ui/vstack"
-import { Box } from "./ui/box"
 
 interface ClothePiece {
     id: number,

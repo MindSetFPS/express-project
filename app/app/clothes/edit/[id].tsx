@@ -22,7 +22,7 @@ export default function EditClothes() {
 
     return (
         <ScrollView>
-            <Box className="container mx-auto px-4 md:px-12 bg-white h-screen">
+            <Box className="container mx-auto px-4 md:px-12 bg-white">
                 <FormCreatePieceOfClothing
                     liftProps={(d) => { setPieceOfClothing(d) }}
                     product={pieceOfClothing}

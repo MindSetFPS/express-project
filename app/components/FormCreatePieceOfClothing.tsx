@@ -42,14 +42,14 @@ export default function FormCreatePieceOfClothing({ liftProps, product }: update
             type: 'image/*',
             copyToCacheDirectory: true
         })
-        .then(response => {
-            if (response.output && response.assets[0].file) {
-                setDoc(response.output[0])
-                if (response.assets && response.assets[0]) {
-                    postApiPieceOfClothingCreateImage(response.assets[0].file)
+            .then(response => {
+                if (response.output && response.assets[0].file) {
+                    setDoc(response.output[0])
+                    if (response.assets && response.assets[0]) {
+                        postApiPieceOfClothingCreateImage(response.assets[0].file)
+                    }
                 }
-            }
-        })
+            })
     }
 
     useEffect(() => {
@@ -67,7 +67,7 @@ export default function FormCreatePieceOfClothing({ liftProps, product }: update
     }, [typeOfGarment, brand, size, color, purchasePrice, season])
 
     return (
-        <Box className="md:mx-auto ">
+        <Box className="md:mx-auto">
             <Box className="flex-1 md:flex-row h-min justify-evenly w-full items-center bg-white rounded-lg">
                 <Box>
                     {
@@ -87,7 +87,7 @@ export default function FormCreatePieceOfClothing({ liftProps, product }: update
                             </Button>
                     }
                 </Box>
-                <Box className="flex-col w-full md:w-auto h-min md:ml-4 ">
+                <Box className="flex-col pt-2 w-full md:w-auto h-min md:ml-4 ">
                     <FormControl>
                         <FormControlLabel>
                             <FormControlLabel className="font-bold text-xl">

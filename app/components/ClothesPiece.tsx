@@ -19,7 +19,7 @@ interface Props {
 const ClothesPiece: React.FC<Props> = ({ id, name, imageURL, size, sellingPrice }) => {
     return (
         <TouchableWithoutFeedback onPress={() => router.navigate(`/products/${id}`)} >
-            <Card className="p-0 rounded-lg elevation-md h-min">
+            <Card className="p-0 rounded-lg h-min">
                 {
                     imageURL ?
                         <Image
