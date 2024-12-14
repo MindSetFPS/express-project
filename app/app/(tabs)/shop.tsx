@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import { router, useNavigation } from "expo-router";
-import { Filter, Search, ShoppingBag } from "lucide-react-native";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { Search, ShoppingBag } from "lucide-react-native";
 import AppLogo from "@/components/AppLogo";
-import FilterBar from "@/components/FilterBar";
-import ShopContent from "@/components/ShopContent";
 import { Box } from "@/components/ui/box";
 import { Button, ButtonIcon } from "@/components/ui/button";
-import { HStack } from "@/components/ui/hstack";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
-import { Fab, FabIcon } from '@/components/ui/fab';
+import ShopTab from "../shopTab";
+import StylistsScreen from "../stylistsTab";
+
+const Tab = createMaterialTopTabNavigator();
 
 export default function Shop() {
-    const [showFilterBar, setShowFilterBar] = useState<boolean>(false);
     const navigation = useNavigation()
 
     useEffect(() => {
         navigation.setOptions({
             headerShown: true,
+            headerShadowVisible: false,
             headerLeft: () => (<AppLogo />),
             headerTitle: () => (
                 <Input variant='rounded' size='sm' className=' w-full md:w-auto' >
@@ -42,19 +43,17 @@ export default function Shop() {
     }, [])
 
     return (
-        <HStack className="md:container md:mx-auto flex flow-col w-screen ">
-            <FilterBar
-                showFilterBar={showFilterBar}
-                onCloseFilterBar={() => setShowFilterBar(false)}
-            />
-            <ShopContent />
-            <Fab
-                size="lg"
-                className="bg-primary-600 hover:bg-primary-700 active:bg-primary-800"
-                onPress={() => setShowFilterBar(true)}
-            >
-                <FabIcon as={Filter} color="white" />
-            </Fab>
-        </HStack>
+        <Tab.Navigator
+            screenOptions={{
+                tabBarContentContainerStyle: {
+                    justifyContent: "space-around"
+                },
+            }}
+        >
+            <Tab.Screen name="Tienda" component={ShopTab} />
+            <Tab.Screen name="Estilistas" component={StylistsScreen} />
+        </Tab.Navigator>
     )
+
+
 }
