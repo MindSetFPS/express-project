@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs} from 'expo-router';
+import { Tabs } from 'expo-router';
 import { House, Store, Shirt, CircleUserRound } from 'lucide-react-native';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -18,7 +18,7 @@ export default function TabLayout() {
           alignItems: 'center',
         },
         tabBarLabelStyle: {
-          marginTop: 5,
+          marginTop: 0,
         }
       }}>
 
@@ -31,7 +31,7 @@ export default function TabLayout() {
             <AppLogo />
           ),
           tabBarIcon: ({ color, focused }) => (
-            <Icon as={House} color={color} />
+            <Icon as={House} size='xl' color={color} />
           ),
         }}
       />
@@ -42,7 +42,7 @@ export default function TabLayout() {
           title: 'Shop',
           headerShown: true,
           tabBarIcon: ({ color, focused }) => (
-            <Icon as={Store} color={color} />
+            <Icon as={Store} size='xl' color={color} />
           ),
         }}
       />
@@ -52,7 +52,7 @@ export default function TabLayout() {
         options={{
           title: 'Wardrobe',
           tabBarIcon: ({ color, focused }) => (
-            <Icon as={Shirt} color={color} />
+            <Icon as={Shirt} size='xl' color={color} />
           ),
         }}
       />
@@ -62,7 +62,7 @@ export default function TabLayout() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ color, focused }) => (
-            <Icon as={CircleUserRound} color={color} />
+            <Icon as={CircleUserRound} size='xl' color={color} />
           ),
         }}
       />
