@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 import { Text } from "@/components/ui/text";
 import { Image } from "@/components/ui/image";
 import { Heading } from "@/components/ui/heading";
@@ -15,6 +15,16 @@ export default function Product() {
     const [product, setProduct] = useState<any>()
     const { id } = useLocalSearchParams<{ id: string }>()
     const productIdList = useShoppingCartStore((state) => state.productIdList)
+    const navigation = useNavigation()
+
+    useEffect(() => {
+        if (product) {
+            navigation.setOptions({
+                title: product.name,
+                headerShown: true,
+            })
+        }
+    }, [product])
 
     async function getProductById(id: number | string): Promise<any> {
         try {
@@ -48,8 +58,8 @@ export default function Product() {
                     <Heading> ${product.sellingPrice}</Heading>
                     <Condition condition={2} />
                 </HStack>
-                <AddToCartButton 
-                    id={parseInt(id)} 
+                <AddToCartButton
+                    id={parseInt(id)}
                     isOnCart={productIdList.includes(product.id)}
                 />
                 <Heading>Detalles</Heading>

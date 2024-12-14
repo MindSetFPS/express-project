@@ -7,11 +7,20 @@ import { Box } from '@/components/ui/box';
 import PurchaseSummary from '@/components/PurchseSummary';
 import Product from "../../backend/products/domain/Products"
 import useShoppingCartStore from '@/state';
+import { useNavigation } from 'expo-router';
 
 export default function ShoppingCart() {
   const [cart, setCart] = useState<Product[]>([]);
   const productIdList = useShoppingCartStore((state) => state.productIdList)
   const removeProductIdFromList = useShoppingCartStore((state) => state.removeProductIdFromList)
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: "Carrito",
+      headerShown: true,
+    })
+  }, [])
 
   async function getProductById(id: number | string): Promise<any> {
     try {

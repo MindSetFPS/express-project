@@ -9,6 +9,7 @@ import { CirclePlus, Search } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import ModalCreateOutfit from "@/components/ModalCreateOutfit";
+import { useNavigation } from "expo-router";
 
 interface outfitImageProps {
     name: string,
@@ -33,19 +34,27 @@ const OutfitImage: React.FC<outfitImageProps> = ({ name, url }) => {
 }
 
 const OutfitsPage = () => {
-    const [ outfits, setOutfits ] = useState([])
+    const [outfits, setOutfits] = useState([])
     const useGetOutfits = () => {
-        fetch( process.env.EXPO_PUBLIC_API_URL + '/api/outfits/all')
-       .then((res)=> res.json())
-       .then(out => setOutfits(out))
+        fetch(process.env.EXPO_PUBLIC_API_URL + '/api/outfits/all')
+            .then((res) => res.json())
+            .then(out => setOutfits(out))
     }
-    
-    
-    useEffect( () => {
+
+    const navigation = useNavigation()
+
+    useEffect(() => {
+        navigation.setOptions({
+            title: "Mis outfits",
+            headerShown: true
+        })
+    }, [])
+
+    useEffect(() => {
         useGetOutfits()
     }, [])
 
-    
+
     const [showModal, setShowModal] = useState(false);
     return (
         <Box className="container mx-auto px-4 md:px-12 bg-white h-screen">
@@ -84,9 +93,9 @@ const OutfitsPage = () => {
                             </Text>
                     }
                 </Box>
-                <ModalCreateOutfit 
-                    showModal={showModal} 
-                    setShowModal={setShowModal} 
+                <ModalCreateOutfit
+                    showModal={showModal}
+                    setShowModal={setShowModal}
                     onNewOutfitCreated={useGetOutfits}
                 />
             </ScrollView>
