@@ -9,18 +9,19 @@ export default function AppLogo() {
   })
 
   return (
-      <Heading
-        className="
+    <Heading
+      className="
                 font-['Bagel-Fat-One'] 
                 bg-gradient-to-r 
                 from-[#FF0F7B]  
               to-[#F89B29] 
                 inline-block text-transparent bg-clip-text 
                 px-2
+                pb-1
                 "
-        size='2xl'
-      >
-        mefit
-      </Heading>
+      size='2xl'
+    >
+      mefit
+    </Heading>
   )
 }
