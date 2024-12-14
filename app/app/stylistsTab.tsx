@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, TextInput, TouchableOpacity, View, Modal } from 'react-native';
-import { HStack } from '@/components/ui/hstack';
-import { Card } from '@/components/ui/card';
-import { Text } from '@/components/ui/text';
-import { Image } from 'react-native';
+import React from 'react';
+import { SafeAreaView, ScrollView } from 'react-native';
+import { VStack } from '@/components/ui/vstack';
+import StylistItem from '@/components/stylists/StylistItem';
+import { Heading } from '@/components/ui/heading';
 
 const stylists = [
   {
@@ -66,108 +65,126 @@ const stylists = [
       '¿Te gustaría explorar nuevas tendencias?',
     ],
   },
+  {
+    id: 7,
+    name: 'Sofía Ramírez',
+    profileImage: 'https://picsum.photos/seed/7/200',
+    message: 'Hola, soy Sofía. ¿Cómo puedo ayudarte hoy?',
+    responses: [
+      '¿Qué colores son tus favoritos?',
+      '¿Prefieres un look atrevido o algo más sencillo?',
+    ],
+  },
+  {
+    id: 8,
+    name: 'Javier Torres',
+    profileImage: 'https://picsum.photos/seed/8/200',
+    message: '¡Hola! Soy Javier. ¿Qué estilo tienes en mente?',
+    responses: [
+      '¿Te interesan las últimas tendencias?',
+      '¿Buscas algo cómodo o más elegante?',
+    ],
+  },
+  {
+    id: 9,
+    name: 'Clara Fernández',
+    profileImage: 'https://picsum.photos/seed/9/200',
+    message: 'Hola, soy Clara. Estoy aquí para inspirarte.',
+    responses: [
+      '¿Tienes alguna prenda específica en mente?',
+      '¿Qué tipo de materiales prefieres?',
+    ],
+  },
+  {
+    id: 10,
+    name: 'Andrés Castillo',
+    profileImage: 'https://picsum.photos/seed/10/200',
+    message: 'Hola, soy Andrés. ¿Cómo puedo ayudarte a destacar?',
+    responses: [
+      '¿Prefieres un look más urbano o clásico?',
+      '¿Tienes algún accesorio que te gustaría combinar?',
+    ],
+  },
+  {
+    id: 11,
+    name: 'Paula Ruiz',
+    profileImage: 'https://picsum.photos/seed/11/200',
+    message: '¡Hola! Soy Paula. Vamos a encontrar tu estilo.',
+    responses: [
+      '¿Qué estilos de zapatos prefieres?',
+      '¿Te gustan los estampados o los colores sólidos?',
+    ],
+  },
+  {
+    id: 12,
+    name: 'Diego Hernández',
+    profileImage: 'https://picsum.photos/seed/12/200',
+    message: 'Hola, soy Diego. ¿Qué necesitas para tu guardarropa?',
+    responses: [
+      '¿Buscas ropa de día o de noche?',
+      '¿Prefieres algo ajustado o más suelto?',
+    ],
+  },
+  {
+    id: 13,
+    name: 'Elena Vega',
+    profileImage: 'https://picsum.photos/seed/13/200',
+    message: '¡Hola! Soy Elena. ¿Cómo puedo ayudarte hoy?',
+    responses: [
+      '¿Qué tonos prefieres en tu vestuario?',
+      '¿Buscas algo formal o casual?',
+    ],
+  },
+  {
+    id: 14,
+    name: 'Gabriel Moreno',
+    profileImage: 'https://picsum.photos/seed/14/200',
+    message: 'Hola, soy Gabriel. ¿Listo para renovar tu estilo?',
+    responses: [
+      '¿Qué tipo de looks te inspiran?',
+      '¿Buscas algo para uso diario o para ocasiones especiales?',
+    ],
+  },
+  {
+    id: 15,
+    name: 'Valeria Ortiz',
+    profileImage: 'https://picsum.photos/seed/15/200',
+    message: '¡Hola! Soy Valeria. Estoy aquí para asesorarte.',
+    responses: [
+      '¿Qué estilo te resulta más cómodo?',
+      '¿Te gustaría incluir más accesorios en tu look?',
+    ],
+  },
+  {
+    id: 16,
+    name: 'Hugo Ramírez',
+    profileImage: 'https://picsum.photos/seed/16/200',
+    message: 'Hola, soy Hugo. ¿Qué necesitas para mejorar tu estilo?',
+    responses: [
+      '¿Prefieres marcas específicas o algo más general?',
+      '¿Qué prenda crees que falta en tu armario?',
+    ],
+  },
 ];
 
 export default function StylistsScreen() {
-  const [selectedStylist, setSelectedStylist] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
-
-  const handleChat = (stylist) => {
-    setSelectedStylist(stylist);
-    setMessages([
-      { id: 1, from: 'stylist', text: stylist.message },
-    ]);
-  };
-
-  const sendMessage = () => {
-    if (newMessage.trim()) {
-      const newId = messages.length + 1;
-      const userMessage = { id: newId, from: 'user', text: newMessage.trim() };
-
-      // Obtener respuesta personalizada
-      const autoResponse = {
-        id: newId + 1,
-        from: 'stylist',
-        text: selectedStylist.responses[
-          Math.floor(Math.random() * selectedStylist.responses.length)
-        ],
-      };
-
-      setMessages([...messages, userMessage, autoResponse]);
-      setNewMessage('');
-    }
-  };
-
-  const closeChat = () => {
-    setSelectedStylist(null);
-    setMessages([]);
-  };
-
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <HStack className="px-4 py-8 items-center">
-          <Text className="text-2xl font-bold">Conoce a los estilistas</Text>
-        </HStack>
-
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} className="px-4">
-          {stylists.map((stylist) => (
-            <TouchableOpacity key={stylist.id} onPress={() => handleChat(stylist)}>
-              <Card variant="outline" className="mb-4 mr-4 p-4 w-40 items-center">
-                <Image source={{ uri: stylist.profileImage }} className="w-24 h-24 rounded-full mb-2" />
-                <Text className="text-lg font-semibold">{stylist.name}</Text>
-                <Text className="text-sm text-gray-500 text-center">{stylist.message}</Text>
-              </Card>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </ScrollView>
-
-      {selectedStylist && (
-        <Modal animationType="slide" transparent={true} visible={true} onRequestClose={closeChat}>
-          <View className="flex-1 bg-black bg-opacity-50 justify-center items-center">
-            <View className="bg-white rounded-lg p-4 w-4/5 max-h-3/4">
-              <HStack className="items-center mb-4">
-                <Image source={{ uri: selectedStylist.profileImage }} className="w-10 h-10 rounded-full mr-4" />
-                <Text className="text-xl font-bold">{selectedStylist.name}</Text>
-              </HStack>
-              <ScrollView className="mb-4" style={{ maxHeight: 300 }}>
-                {messages.map((message) => (
-                  <HStack
-                    key={message.id}
-                    className={`mb-4 ${message.from === 'stylist' ? 'justify-start' : 'justify-end'}`}
-                  >
-                    <Card
-                      className={`p-4 ${
-                        message.from === 'stylist'
-                          ? 'bg-blue-100 rounded-tr-lg rounded-br-lg'
-                          : 'bg-gray-100 rounded-tl-lg rounded-bl-lg'
-                      }`}
-                    >
-                      <Text>{message.text}</Text>
-                    </Card>
-                  </HStack>
-                ))}
-              </ScrollView>
-              <HStack className="border-t border-gray-200 pt-4 items-center">
-                <TextInput
-                  value={newMessage}
-                  onChangeText={setNewMessage}
-                  placeholder="Escribe un mensaje..."
-                  className="flex-1 border border-gray-300 rounded-lg p-2"
-                />
-                <TouchableOpacity onPress={sendMessage} className="ml-2 bg-blue-500 p-2 rounded-full">
-                  <Text className="text-white">Enviar</Text>
-                </TouchableOpacity>
-              </HStack>
-              <TouchableOpacity onPress={closeChat} className="mt-4 bg-red-500 p-2 rounded-lg">
-                <Text className="text-white text-center">Cerrar Chat</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-      )}
-    </SafeAreaView>
+    <ScrollView>
+      <SafeAreaView>
+        <VStack space='lg' className='px-4 bg-white py-4'>
+          <Heading size='2xl'>Estilistas personales</Heading>
+          {
+            stylists.map((stylist) => (
+              <StylistItem
+                id={stylist.id}
+                name={stylist.name}
+                key={stylist.id}
+                pictureURL={stylist.profileImage}
+              />
+            ))
+          }
+        </VStack>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
