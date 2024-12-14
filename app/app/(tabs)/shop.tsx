@@ -8,6 +8,8 @@ import { Box } from "@/components/ui/box";
 import { Button, ButtonIcon } from "@/components/ui/button";
 import { HStack } from "@/components/ui/hstack";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { Fab, FabLabel, FabIcon } from '@/components/ui/fab';
+import { EditIcon } from "@/components/ui/icon";
 
 export default function Shop() {
     const [showFilterBar, setShowFilterBar] = useState<boolean>(false);
@@ -16,8 +18,8 @@ export default function Shop() {
     useEffect(() => {
         navigation.setOptions({
             headerShown: true,
-            headerLeft: () => <AppLogo />,
-            headerTitle: () => (
+            headerLeft: () => (<AppLogo />),
+            /* headerTitle: () => (
                 <Input variant='rounded' size='sm' className=' w-full md:w-auto' >
                     <InputField />
                     <InputSlot className='pr-3'>
@@ -27,7 +29,6 @@ export default function Shop() {
             ),
             headerRight: () => (
                 <Box className="flex flex-row justify-between items-center mx-auto">
-
                     <Button
                         variant="link"
                         className="mr-2"
@@ -36,15 +37,8 @@ export default function Shop() {
                     >
                         <ButtonIcon size="xl" as={ShoppingBag} />
                     </Button>
-                    <Button
-                        variant="link"
-                        className=""
-                        onPress={() => setShowFilterBar(true)}
-                    >
-                        <ButtonIcon as={Filter} />
-                    </Button>
                 </Box>
-            )
+            ) */
         })
     }, [])
 
@@ -55,6 +49,13 @@ export default function Shop() {
                 onCloseFilterBar={() => setShowFilterBar(false)}
             />
             <ShopContent />
+            <Fab
+                size="lg"
+                className="bg-primary-600 hover:bg-primary-700 active:bg-primary-800"
+                onPress={() => setShowFilterBar(true)}
+            >
+                <FabIcon as={Filter} color="white" />
+            </Fab>
         </HStack>
     )
 }
