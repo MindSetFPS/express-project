@@ -4,6 +4,8 @@ export default interface IProduct extends IPieceOfClothing {
     sellingPrice: number;
     stock: number;
     description?: string;
+    condition: 1 | 2 | 3 | 4;
+    isForSale?: boolean;
 }
 
 const productExample: IProduct = {
@@ -16,10 +18,12 @@ const productExample: IProduct = {
     description: 'High-performance laptop with the latest specs.',
     brand: 'sarah',
     color: 'blue',
+    isForSale: false,
     purchasePrice: 122,
     season: 'Summer',
     size: 'big',
-    typeOfClothing: "t-shrt"
+    typeOfClothing: "t-shrt",
+    condition: 1
 };
 
 export { productExample }; 

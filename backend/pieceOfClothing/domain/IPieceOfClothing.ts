@@ -9,6 +9,7 @@ export default interface IPieceOfClothing {
     purchasePrice?: number;
     season?: string;
     imageURL?: string;
+    isForSale?: boolean;
 }
 
 const pieceOfClothingExample: IPieceOfClothing = {
@@ -20,7 +21,8 @@ const pieceOfClothingExample: IPieceOfClothing = {
     color: 'White',
     purchasePrice: 20.99,
     season: 'Summer',
-    imageURL: "http://myimage.com/image.png"
+    imageURL: "http://myimage.com/image.png",
+    isForSale: false
 };
 
 interface IPieceOfClothingImage {

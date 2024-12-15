@@ -15,11 +15,31 @@ globalRouter.use(
     userRouter
     // #swagger.tags = ['Users']
 )
-globalRouter.use('/products', productRouter)
-globalRouter.use('/orders', orderRouter)
-globalRouter.use('/orderproduct', orderProductRouter)
-globalRouter.use('/outfits', outfitRouter)
-globalRouter.use('/piece-of-clothing', pieceOfClothingRouter)
+globalRouter.use(
+    '/products', 
+    productRouter
+    // #swagger.tags = ['Products']
+)
+globalRouter.use(
+    '/orders', 
+    orderRouter
+    // #swagger.tags = ['Orders']
+)
+globalRouter.use(
+    '/orderproduct', 
+    orderProductRouter
+    // #swagger.tags = ['OrderProducts']
+)
+globalRouter.use(
+    '/outfits', 
+    outfitRouter
+    // #swagger.tags = ['Outfits']
+)
+globalRouter.use(
+    '/piece-of-clothing', 
+    pieceOfClothingRouter
+    // #swagger.tags = ['PieceOfClothing']
+)
 globalRouter.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput))
 
 export default globalRouter;

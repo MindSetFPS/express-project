@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS products (
   id INT AUTO_INCREMENT PRIMARY KEY,
   selling_price DECIMAL(10,2) NOT NULL,
   stock INT NOT NULL DEFAULT 0,
+  product_condition INT NOT NULL DEFAULT 1,
   description TEXT NULL
 );
 
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS piece_of_clothings (
   purchase_price DECIMAL(10,2) NULL,
   season VARCHAR(255) NULL,
   image_url VARCHAR(255) NULL,
+  is_for_sale BOOLEAN DEFAULT TRUE
   user_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );

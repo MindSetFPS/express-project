@@ -1,14 +1,9 @@
-import { Tabs, router } from 'expo-router';
 import React from 'react';
-
+import { Tabs } from 'expo-router';
+import { House, Store, Shirt, CircleUserRound } from 'lucide-react-native';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Icon } from '@/components/ui/icon';
-import { Search, ShoppingBag } from 'lucide-react-native';
-import { Box } from '@/components/ui/box';
-import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { House, Store, Shirt, CircleUserRound } from 'lucide-react-native';
 import AppLogo from '@/components/AppLogo';
 
 export default function TabLayout() {
@@ -23,7 +18,7 @@ export default function TabLayout() {
           alignItems: 'center',
         },
         tabBarLabelStyle: {
-          marginTop: 5,
+          marginTop: 0,
         }
       }}>
 
@@ -32,11 +27,11 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           headerShown: true,
-          headerTitle: (props) => (
+          headerTitle: () => (
             <AppLogo />
           ),
           tabBarIcon: ({ color, focused }) => (
-            <Icon as={House} color={color} />
+            <Icon as={House} size='xl' color={color} />
           ),
         }}
       />
@@ -46,50 +41,28 @@ export default function TabLayout() {
         options={{
           title: 'Shop',
           headerShown: true,
-          headerTitle: (props) => (
-            <Box className='flex flex-row justify-end items-center w-screen p-8'>
-              <Input variant='rounded' size='sm' className='w-2/4 md:w-auto' >
-                <InputField />
-                <InputSlot className='pr-3'>
-                  <InputIcon as={Search} />
-                </InputSlot>
-              </Input>
-              <Button onPress={() => {
-                router.push('/shoppingCart');
-              }}>Carrito</Button>
-              <Button onPress={() => {
-                router.push('/paymentMethod');
-              }}>paymentMethod</Button>
-              <Button onPress={() => {
-                router.push('/addPaymentMethod');
-              }}>paymentMethod</Button>
-              <Icon as={ShoppingBag} size='xl' />
-            </Box>
-          ),
           tabBarIcon: ({ color, focused }) => (
-            <Icon as={Store} color={color} />
+            <Icon as={Store} size='xl' color={color} />
           ),
         }}
       />
-
 
       <Tabs.Screen
         name="wardrobe"
         options={{
           title: 'Wardrobe',
           tabBarIcon: ({ color, focused }) => (
-            <Icon as={Shirt} color={color} />
+            <Icon as={Shirt} size='xl' color={color} />
           ),
         }}
       />
-
 
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
           tabBarIcon: ({ color, focused }) => (
-            <Icon as={CircleUserRound} color={color} />
+            <Icon as={CircleUserRound} size='xl' color={color} />
           ),
         }}
       />

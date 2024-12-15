@@ -1,13 +1,13 @@
 import IProduct from "./IProduct";
 
 export default class Product implements IProduct {
-    name: string;
-    price: number;
     stock: number;
     description: string;
     sellingPrice: number;
-    url?: string;
+    condition: 1 | 2 | 3 | 4;
     id?: number;
+    price?: number;
+    name?: string;
     brand?: string;
     color?: string;
     imageURL?: string;
@@ -15,23 +15,43 @@ export default class Product implements IProduct {
     season?: string;
     size?: string;
     typeOfClothing?: string;
+    isForSale?: boolean;
+    userId?: number | undefined;
 
     constructor(
-        name:string,
-        price:number,
         stock:number, 
         description: string, 
         sellingPrice: number,
+        condition: 1 | 2 | 3 | 4,
         id?:number, 
-        url?: string
+        price?:number,
+        name?:string,
+        brand?: string,
+        color?: string,
+        imageURL?: string,
+        originalPrice?: number,
+        season?: string,
+        size? : string,
+        typeOfClothing?: string,
+        isForSale?: boolean,
+        userId?: number,
     ){
         this.name = name ;
         this.price = price;
         this.stock = stock;
         this.description = description ;
         this.sellingPrice = sellingPrice;
-        this.url = url ;
-        this.id = id ;
+        this.imageURL = imageURL;
+        this.id = id;
+        this.condition = condition;
+        this.size = size;
+        this.brand = brand;
+        this.color = color;
+        this.originalPrice = originalPrice;
+        this.season = season;
+        this.typeOfClothing = typeOfClothing;
+        this.isForSale = isForSale;
+        this.userId = userId;
     }
 }
 
@@ -42,12 +62,22 @@ export class ProductRequestDTO implements IProduct {
     sellingPrice: number;
     stock: number;
     url?: string | undefined;
+    condition: 1 | 2 | 3 | 4;
 
-    constructor(name: string, sellingPrice: number, stock: number, url?: string, description?: string, id?: number){
+    constructor(
+        name: string, 
+        sellingPrice: number, 
+        stock: number, 
+        condition: 1 | 2 | 3 | 4,
+        url?: string, 
+        description?: string, 
+        id?: number
+    ){
         this.name = name;
         this.sellingPrice = sellingPrice;
         this.stock = stock;
         this.description = description;
+        this.condition = condition;
         this.url = url;
         this.id = id;
     }

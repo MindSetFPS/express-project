@@ -1,11 +1,7 @@
 import { Box } from "@/components/ui/box";
 import { FormControl, FormControlLabel, FormControlLabelText } from "@/components/ui/form-control";
-import { Image } from "@/components/ui/image";
 import { Input, InputField } from "@/components/ui/input";
 import { useEffect, useState } from "react";
-import { ProductPost } from "@/interfaces";
-import * as DocumentPicker from 'expo-document-picker';
-import { Button, ButtonText } from "@/components/ui/button";
 import { Text } from "./ui/text";
 import ClothingImage from "./ClothingImage";
 import { ScrollView } from "react-native";

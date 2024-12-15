@@ -3,56 +3,57 @@ import { FormControl, FormControlError, FormControlErrorIcon, FormControlErrorTe
 import { Image } from "@/components/ui/image";
 import { Input, InputField } from "@/components/ui/input";
 import { useEffect, useState } from "react";
-import { ProductPost } from "@/interfaces";
+import { PostPieceOfClothing } from "@/interfaces";
 import * as DocumentPicker from 'expo-document-picker';
 import { Button, ButtonText } from "@/components/ui/button";
 
 interface updateProp {
-    liftProps: (object: ProductPost) => void;
+    liftProps: (object: PostPieceOfClothing) => void;
+    product?: PostPieceOfClothing;
 }
 
-export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
-    const [typeOfGarment, setTypeOfGarment] = useState("");
-    const [brand, setBrand] = useState("");
-    const [size, setSize] = useState("");
-    const [color, setColor] = useState("");
-    const [purchasePrice, setPurchasePrice] = useState<number>(0);
-    const [season, setSeason] = useState("");
-    const [imageURL, setImageURL] = useState<string | null>(null);
-    const [userId, setUserId] = useState()
+export default function FormCreatePieceOfClothing({ liftProps, product }: updateProp) {
+    const [typeOfGarment, setTypeOfGarment] = useState(product?.typeOfClothing || "");
+    const [brand, setBrand] = useState(product?.brand || "");
+    const [size, setSize] = useState(product?.size || "");
+    const [color, setColor] = useState(product?.color || "");
+    const [purchasePrice, setPurchasePrice] = useState<number>(product?.purchasePrice || 0);
+    const [season, setSeason] = useState(product?.season || "");
+    const [imageURL, setImageURL] = useState<string | null>(product?.imageURL || null);
+    const [userId, setUserId] = useState(product?.userId || 0)
     const [doc, setDoc] = useState<any>();
-    
-    function postApiPieceOfClothingCreateImage(image: File){
+
+    function postApiPieceOfClothingCreateImage(image: File) {
         const formData = new FormData()
         formData.append('file', image)
         fetch(process.env.EXPO_PUBLIC_API_URL + '/api/piece-of-clothing/createImage', {
-            method:'POST',
+            method: 'POST',
             body: formData,
         })
-       .then((res) => res.json())
-       .then(data => {
-            setImageURL(data.fileURL)
-        })
-       .catch(err => console.log(err))
+            .then((res) => res.json())
+            .then(data => {
+                setImageURL(data.fileURL)
+            })
+            .catch(err => console.log(err))
     }
-    
+
     const pickDocument = async () => {
         let result = await DocumentPicker.getDocumentAsync({
             type: 'image/*',
             copyToCacheDirectory: true
         })
-        .then(response => {
-            if (response.output && response.assets[0].file) {
-                setDoc(response.output[0])
-                if(response.assets && response.assets[0]){
-                    postApiPieceOfClothingCreateImage(response.assets[0].file)
+            .then(response => {
+                if (response.output && response.assets[0].file) {
+                    setDoc(response.output[0])
+                    if (response.assets && response.assets[0]) {
+                        postApiPieceOfClothingCreateImage(response.assets[0].file)
+                    }
                 }
-            }
-        })
+            })
     }
 
     useEffect(() => {
-        var productPost: ProductPost = {
+        var postPieceOfClothing: PostPieceOfClothing = {
             name: typeOfGarment + " " + brand + " " + size,
             brand: brand,
             size: size,
@@ -62,28 +63,31 @@ export default function FormCreatePieceOfClothing({ liftProps }: updateProp) {
             season: season,
             imageURL: imageURL
         }
-        liftProps(productPost)
+        liftProps(postPieceOfClothing)
     }, [typeOfGarment, brand, size, color, purchasePrice, season])
 
     return (
-        <Box className="mx-auto container flex items-center">
-            <Box className="flex-1 flex-row h-min justify-evenly w-full items-center bg-white rounded-lg">
-                {imageURL && imageURL.length > 0 ?
-                    <Image
-                        size="2xl"
-                        source={{
-                            uri: imageURL
-                        }}
-                        alt="user image"
-                    />
-                    :
-                    <Button onPress={() => pickDocument()}>
-                        <ButtonText>
-                            Subir una foto
-                        </ButtonText>
-                    </Button>
-                }
-                <Box className="flex-col h-min ml-4 ">
+        <Box className="md:mx-auto">
+            <Box className="flex-1 md:flex-row h-min justify-evenly w-full items-center bg-white rounded-lg">
+                <Box>
+                    {
+                        imageURL && imageURL.length > 0 ?
+                            <Image
+                                size="2xl"
+                                source={{
+                                    uri: imageURL
+                                }}
+                                alt="user image"
+                            />
+                            :
+                            <Button onPress={() => pickDocument()}>
+                                <ButtonText>
+                                    Subir una foto
+                                </ButtonText>
+                            </Button>
+                    }
+                </Box>
+                <Box className="flex-col pt-2 w-full md:w-auto h-min md:ml-4 ">
                     <FormControl>
                         <FormControlLabel>
                             <FormControlLabel className="font-bold text-xl">
