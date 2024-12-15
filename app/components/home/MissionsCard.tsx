@@ -5,6 +5,7 @@ import { HStack } from "../ui/hstack";
 import { Text } from "../ui/text";
 import MissionTracker from "./MissionTracker";
 
+// TODO: Make real tracking of stats
 export default function MissionCard() {
     return (
         <Card variant='outline' className='w-full bg-white rounded-2xl' >

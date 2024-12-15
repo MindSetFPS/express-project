@@ -5,6 +5,7 @@ import { VStack } from "./ui/vstack";
 import { useEffect, useState } from "react";
 import { Text } from "./ui/text";
 
+// TODO: Filter content
 export default function ShopContent() {
   const [products, setProducts] = useState([])
   /**

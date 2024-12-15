@@ -9,6 +9,8 @@ import Product from "../../backend/products/domain/Products"
 import useShoppingCartStore from '@/state';
 import { useNavigation } from 'expo-router';
 
+// TODO: Shopping cart depends changes UI if no products
+// TODO: Shopping cart shows buying flow when confirm purchase
 export default function ShoppingCart() {
   const [cart, setCart] = useState<Product[]>([]);
   const productIdList = useShoppingCartStore((state) => state.productIdList)

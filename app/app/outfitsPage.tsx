@@ -33,6 +33,7 @@ const OutfitImage: React.FC<outfitImageProps> = ({ name, url }) => {
     )
 }
 
+// TODO: Outfits UI draggable images
 const OutfitsPage = () => {
     const [outfits, setOutfits] = useState([])
     const useGetOutfits = () => {

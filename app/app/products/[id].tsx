@@ -11,6 +11,8 @@ import AddToCartButton from "@/components/AddToCartButton";
 import Condition from "@/components/Condition";
 import useShoppingCartStore from "@/state";
 
+// TODO: Finish product page
+// TODO: Actually build magic mirror 
 export default function Product() {
     const [product, setProduct] = useState<any>()
     const { id } = useLocalSearchParams<{ id: string }>()

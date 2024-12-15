@@ -5,6 +5,8 @@ import { HStack } from "@/components/ui/hstack";
 import { Filter } from "lucide-react-native";
 import { useState } from "react";
 
+// TODO: Remove products when bougth
+// TODO: When user buys product, it is move to his wardrobe
 export default function ShopTab() {
     const [showFilterBar, setShowFilterBar] = useState<boolean>(false);
 
