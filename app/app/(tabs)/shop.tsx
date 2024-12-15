@@ -7,7 +7,7 @@ import { Box } from "@/components/ui/box";
 import { Button, ButtonIcon } from "@/components/ui/button";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import ShopTab from "../shopTab";
-import StylistsScreen from "../stylistsTab";
+import StylistsScreen from "../stylists";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -50,8 +50,8 @@ export default function Shop() {
                 },
             }}
         >
-            <Tab.Screen name="Tienda" component={ShopTab} />
-            <Tab.Screen name="Estilistas" component={StylistsScreen} />
+            <Tab.Screen name="index" component={ShopTab} />
+            <Tab.Screen name="stylists" component={StylistsScreen} />
         </Tab.Navigator>
     )
 
