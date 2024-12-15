@@ -14,9 +14,9 @@ outfitRouter.get('/all', (req: Request, res: Response) => {
 
 // https://javascript.plainenglish.io/typed-express-request-and-response-with-typescript-7277aea028c
 outfitRouter.post('/create', async (req: Request, res: Response) => {
-    let { userId, pieceOfClothingIdList } = req.body;
+    let { userId, pieceOfClothingIdList, imageURL } = req.body;
 
-    let outfit = await createOutfit(userId, pieceOfClothingIdList)
+    let outfit = await createOutfit(userId, imageURL, pieceOfClothingIdList)
     console.log(outfit)
     res.json({
         ok: true
@@ -26,12 +26,12 @@ outfitRouter.post('/create', async (req: Request, res: Response) => {
 outfitRouter.get('/:id', (req: Request, res: Response) => {
     const outfitId = req.params.id
     getOutfitByID(parseInt(outfitId))
-    .then(data => {
-        res.json(data)
-    })
-    .catch(err => {
-        console.error(err)
-    })
+        .then(data => {
+            res.json(data)
+        })
+        .catch(err => {
+            console.error(err)
+        })
 })
 
 export default outfitRouter;

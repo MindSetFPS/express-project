@@ -73,10 +73,11 @@ CREATE TABLE IF NOT EXISTS brands (
 );
 
 -- Create outfits table
-CREATE TABLE IF NOT EXISTS outfits(
+CREATE TABLE IF NOT EXISTS outfits (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  image_url VARCHAR(255) 
 );
 
  -- Create table to store pieces of clothing in outfits
