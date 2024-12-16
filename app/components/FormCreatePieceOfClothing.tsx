@@ -32,7 +32,7 @@ export default function FormCreatePieceOfClothing({ liftProps, product }: update
         })
             .then((res) => res.json())
             .then(data => {
-                setImageURL(data.fileURL)
+                setImageURL("http://" + data.fileURL)
             })
             .catch(err => console.log(err))
     }
