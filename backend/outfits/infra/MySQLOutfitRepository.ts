@@ -5,6 +5,7 @@ import { Connection, ConnectionOptions, createConnection, RowDataPacket } from "
 interface DBOutfit extends RowDataPacket {
     0: number;
     1: number;
+    2: string;
 }
 
 class MySQLOutfitRepository {
@@ -25,8 +26,8 @@ class MySQLOutfitRepository {
         // a user, befor saving.
         // And it will also save to at least 2 tables.
         try {
-            let query = 'INSERT INTO outfits (user_id) VALUES (?)'
-            let params = [outfit.userId]
+            let query = 'INSERT INTO outfits (user_id, image_url) VALUES (?, ?)'
+            let params = [outfit.userId, outfit.imageURL]
             await this.conn.query(query, params);
             const [result] = await this.conn.query<RowDataPacket[]>("SELECT * FROM outfits WHERE id = LAST_INSERT_ID()")
             return {
@@ -40,12 +41,9 @@ class MySQLOutfitRepository {
 
     async getAllOutfits() {
         try {
-            const [fields] = await this.conn.query<RowDataPacket[]>(`SELECT DISTINCT outfit_piece_of_clothing.outfit_id, MIN(piece_of_clothings.image_url) AS image_url
-            FROM outfit_piece_of_clothing 
-            JOIN piece_of_clothings ON piece_of_clothings.id = outfit_piece_of_clothing.piece_of_clothing_id
-            GROUP BY outfit_piece_of_clothing.outfit_id;
-            `)
-            
+            let query = "SELECT * FROM outfits"
+            const [fields] = await this.conn.query<RowDataPacket[]>(query)
+
             return fields
         } catch (error) {
             console.error(error)
@@ -53,15 +51,16 @@ class MySQLOutfitRepository {
     }
 
     async getOutfitByID(id: number): Promise<Outfit | null> {
-        let query: string = 'SELECT * FROM outfits WHERE id = ? LIMIT 1;'
+        let query: string = 'SELECT id, user_id, image_url FROM outfits WHERE id = ? LIMIT 1;'
         let params = [id]
         let outfit: Outfit;
 
         try {
             const [outfits] = await this.conn.query<DBOutfit[]>(query, params)
             let res = outfits[0];
-            outfit = new Outfit(res[0], res[1]);
-
+            let userId = res[1]
+            let imageURL = res[2]
+            outfit = new Outfit(userId, imageURL);
             return outfit;
         } catch (error) {
             console.error(error)

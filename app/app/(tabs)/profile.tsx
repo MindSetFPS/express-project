@@ -6,6 +6,8 @@ import ProfileContent from '@/components/profile/ProfileContent';
 import ProfileDescription from '@/components/profile/ProfileDescription';
 import { VStack } from '@/components/ui/vstack';
 
+// TODO: Build Auth System
+// TODO: Populate profile with content
 const ProfileScreen: React.FC = () => {
   const navigation = useNavigation()
 
