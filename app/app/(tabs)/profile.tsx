@@ -5,6 +5,7 @@ import { router, useNavigation } from 'expo-router';
 import ProfileContent from '@/components/profile/ProfileContent';
 import ProfileDescription from '@/components/profile/ProfileDescription';
 import { VStack } from '@/components/ui/vstack';
+import RecomendedProducts from '@/components/product/RecomendedProducts';
 
 // TODO: Build Auth System
 // TODO: Populate profile with content
@@ -30,14 +31,13 @@ const ProfileScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView>
-      <ScrollView className='px-4 mt-4'>
-        <VStack space='lg'>
-          <ProfileDescription />
-          <ProfileContent />
-        </VStack>
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView className='px-4 mt-4'>
+      <VStack space='lg'>
+        <ProfileDescription />
+        <ProfileContent />
+        <RecomendedProducts />
+      </VStack>
+    </ScrollView>
   );
 };
 
