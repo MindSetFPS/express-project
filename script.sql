@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS piece_of_clothings (
   purchase_price DECIMAL(10,2) NULL,
   season VARCHAR(255) NULL,
   image_url VARCHAR(255) NULL,
-  is_for_sale BOOLEAN DEFAULT TRUE
+  is_for_sale BOOLEAN DEFAULT TRUE,
   user_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
