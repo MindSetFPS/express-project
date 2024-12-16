@@ -15,11 +15,11 @@ export const pieceOfClothingRouter = Router();
 
 pieceOfClothingRouter.post("/create", (req: Request, res: Response) => {
     let { name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, userId } = req.body
-    
+
     let newPieceOfClothing = new NewPieceOfClothing(
         name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, 2, false
     )
-    
+
     createPieceOfClothing(newPieceOfClothing)
         .then(data => {
             res.json(data)
@@ -28,30 +28,30 @@ pieceOfClothingRouter.post("/create", (req: Request, res: Response) => {
 
 pieceOfClothingRouter.get('/all', async (req: Request, res: Response) => {
     let conn = await createConnection(connection);
-    
+
     try {
         let [rows] = await conn.query("SELECT * FROM piece_of_clothings WHERE is_for_sale = FALSE;")
         res.json(rows)
-    } catch(e) {
+    } catch (e) {
         console.error(e)
         res.json({
             text: "error"
         })
     }
-    
+
 })
 
 pieceOfClothingRouter.get('/get-by-id/:id', async (req: Request, res: Response) => {
     let conn = await createConnection(connection);
-    
+
     try {
         let [rows] = await conn.query<RowDataPacket[]>("SELECT * FROM piece_of_clothings WHERE id = ?", [req.params.id])
-        if(rows.length > 0) {
+        if (rows.length > 0) {
             res.json(rows[0])
         } else {
             res.status(404).json({ message: "Piece of clothing not found" })
         }
-    } catch(e) {
+    } catch (e) {
         console.error(e)
         res.status(404).json({ message: "Piece of clothing not found" })
     }
@@ -61,14 +61,14 @@ pieceOfClothingRouter.put(
     '/update/:id',
     async (req: Request, res: Response) => {
         let conn = await createConnection(connection);
-        
+
         try {
             const updatedFields: Partial<IPieceOfClothing> = req.body;
             let { name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, userId } = req.body
             console.log(name, typeOfClothing, brand, size, color, purchasePrice, season, imageURL, userId)
             const pieceIdToBeUpdated: number = parseInt(req.params.id);
 
-            if ( !(name || typeOfClothing || brand || size|| color || purchasePrice || season || imageURL) ) {
+            if (!(name || typeOfClothing || brand || size || color || purchasePrice || season || imageURL)) {
                 throw new Error('No fields provided to update');
             }
             if (!pieceIdToBeUpdated) {
@@ -87,12 +87,12 @@ pieceOfClothingRouter.put(
                     season = ?,
                     image_url = ? 
                 WHERE id = ?;`;
-            
+
             let data = [
                 updatedFields.name,
                 updatedFields.typeOfClothing,
-                updatedFields.brand,                
-                updatedFields.size,				
+                updatedFields.brand,
+                updatedFields.size,
                 updatedFields.color,
                 updatedFields.purchasePrice,
                 updatedFields.season,
@@ -101,12 +101,12 @@ pieceOfClothingRouter.put(
             ]
 
             let [results, fp] = await conn.execute(query, data);
-            
+
             res.json({
                 ok: true
             })
 
-        } catch(e) {
+        } catch (e) {
             console.error(e);
             res.json({ status: "error", message: `Failed to Update PieceOfClothing` });
         }
@@ -129,7 +129,7 @@ pieceOfClothingRouter.post("/createImage", upload.single('file'), (req: Request,
     if (req.file?.originalname && req.file.buffer) {
         var fileURL = createImage(req.file.originalname, req.file.buffer)
         res.json({
-            fileURL: fileURL
+            fileURL: "http://" + fileURL
         })
     } else {
         res.json({
