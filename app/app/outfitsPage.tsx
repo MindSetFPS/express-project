@@ -10,26 +10,22 @@ import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import ModalCreateOutfit from "@/components/ModalCreateOutfit";
 import { useNavigation } from "expo-router";
+import { router } from "expo-router";
 
 interface outfitImageProps {
     name: string,
     url: string
 }
 
-const OutfitImage: React.FC<outfitImageProps> = ({ name, url }) => {
+const OutfitImage: React.FC<outfitImageProps> = ({ url }) => {
     return (
-        <Box>
-            <Image
-                size="xl"
-                source={{
-                    uri: url
-                }}
-                alt="image"
-            />
-            <Text>
-                {name}
-            </Text>
-        </Box>
+        <Image
+            size="xl"
+            source={{
+                uri: url
+            }}
+            alt="image"
+        />
     )
 }
 
@@ -58,11 +54,11 @@ const OutfitsPage = () => {
 
     const [showModal, setShowModal] = useState(false);
     return (
-        <Box className="container mx-auto px-4 md:px-12 bg-white h-screen">
+        <Box className="container mx-auto px-4 md:px-12 h-screen">
             <Box>
                 <HStack
                     className="
-                        flex-1 items-center flex-row justify-between bg-white p-6
+                        flex-1 items-center flex-row justify-between  p-6
                         hidden md:flex
                     "
                 >
@@ -82,7 +78,7 @@ const OutfitsPage = () => {
                             outfits.map(product => (
                                 <OutfitImage
                                     name={product[0]}
-                                    url={product[1]}
+                                    url={product[2]}
                                     key={product[0]}
                                 />
                             )
@@ -101,7 +97,8 @@ const OutfitsPage = () => {
                 />
             </ScrollView>
             <Fab
-                onPress={() => setShowModal(true)}
+                // onPress={() => setShowModal(true)}
+                onPress={() => router.navigate("/drag")}
             >
                 <FabLabel> Agregar </FabLabel>
                 <FabIcon as={CirclePlus} />

@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function EmojiSticker({ imageSize, stickerSource }: Props) {
-    const scaleImage = useSharedValue(imageSize);
+    const scaleImage = useSharedValue(imageSize * 3);
     const translateX = useSharedValue(0);
     const translateY = useSharedValue(0);
 
@@ -54,7 +54,7 @@ export default function EmojiSticker({ imageSize, stickerSource }: Props) {
 
     return (
         <GestureDetector gesture={drag}>
-            <Animated.View id={"animatedView"} style={[containerStyle, { top: -350, width: imageSize }]}>
+            <Animated.View id={"animatedView"} style={[containerStyle, { top: -350, width: imageSize * 3 }]}>
                 <GestureDetector gesture={doubleTap}>
                     <Animated.Image
                         id={"animatedImage"}
