@@ -20,7 +20,7 @@ interface outfitImageProps {
 const OutfitImage: React.FC<outfitImageProps> = ({ url }) => {
     return (
         <Image
-            size="xl"
+            className="rounded-lg w-full h-full"
             source={{
                 uri: url
             }}
@@ -51,7 +51,6 @@ const OutfitsPage = () => {
         useGetOutfits()
     }, [])
 
-
     const [showModal, setShowModal] = useState(false);
     return (
         <Box className="container mx-auto px-4 md:px-12 h-screen">
@@ -72,15 +71,17 @@ const OutfitsPage = () => {
                 </HStack>
             </Box>
             <ScrollView >
-                <Box className="grid grid-cols-2 md:grid-cols-4 h-full mt-4">
+                <Box className="grid grid-cols-2 gap-2 md:grid-cols-4 h-full mt-4">
                     {
                         outfits && outfits.length > 0 ? (
                             outfits.map(product => (
-                                <OutfitImage
-                                    name={product[0]}
-                                    url={product[2]}
-                                    key={product[0]}
-                                />
+                                <Box className="aspect-square w-full">
+                                    <OutfitImage
+                                        name={product[0]}
+                                        url={product[2]}
+                                        key={product[0]}
+                                    />
+                                </Box>
                             )
                             )
                         )

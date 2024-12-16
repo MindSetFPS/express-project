@@ -10,6 +10,7 @@ import { VStack } from "@/components/ui/vstack";
 import AddToCartButton from "@/components/AddToCartButton";
 import Condition from "@/components/Condition";
 import useShoppingCartStore from "@/state";
+import RecomendedProducts from "@/components/product/RecomendedProducts";
 
 // TODO: Finish product page
 // TODO: Actually build magic mirror 
@@ -51,14 +52,13 @@ export default function Product() {
 
     return (
         <ScrollView>
-            <VStack space="sm" className="px-2">
+            <VStack space="sm" className="px-2 bg-white">
                 <Heading size="2xl">{product.name}</Heading>
                 <Box>{product.brand}</Box>
                 <Image size="2xl" className="mx-auto" source={product.imageURL} alt={product.name} />
-                <Text>Vendido por pepito34</Text>
+                <Text>Vendido por jazmin32</Text>
                 <HStack>
                     <Heading> ${product.sellingPrice}</Heading>
-                    <Condition condition={2} />
                 </HStack>
                 <AddToCartButton
                     id={parseInt(id)}
@@ -66,13 +66,23 @@ export default function Product() {
                 />
                 <Heading>Detalles</Heading>
                 <Text>{product.description}</Text>
+                <HStack className="items-baseline">
+                    <Heading>Condición:</Heading>
+                    <Condition condition={2} />
+                </HStack>
+                <Text>Puede tener leves marcas de uso prácticamente imperceptibles a simple vista.</Text>
                 <Heading>Materiales</Heading>
+                <Text>Algodón, poliester.</Text>
                 <Heading>Talla</Heading>
                 <Box>{product.size}</Box>
                 <Heading>Envíos</Heading>
+                <Text>Envíos gratis a partir de pedidos con valor de $300.00mxn</Text>
                 <Heading>Más del vendedor</Heading>
+                <RecomendedProducts />
                 <Heading>De esta marca</Heading>
+                <RecomendedProducts />
                 <Heading>De esta talla</Heading>
+                <RecomendedProducts />
             </VStack>
         </ScrollView>
     )

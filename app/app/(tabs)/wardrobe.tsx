@@ -33,7 +33,7 @@ export default function Wardrobe() {
         >
             <Tab.Screen name="Prendas" component={ClothesPage} />
             <Tab.Screen name="Outfits" component={OutfitsPage} />
-            <Tab.Screen name="Calendario" component={CalendarPage} />
+            {/* <Tab.Screen name="Calendario" component={CalendarPage} /> */}
         </Tab.Navigator>
     )
 }

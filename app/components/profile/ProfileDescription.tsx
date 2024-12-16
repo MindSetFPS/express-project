@@ -8,7 +8,7 @@ import SocialStats from "./SocialStats";
 export default function ProfileDescription() {
     return (
         <HStack className="w-full items-center ">
-            <Image source={{ uri: 'https://via.placeholder.com/120' }} className="w-28 h-28 rounded-full " />
+            <Image source={{ uri: 'https://media.istockphoto.com/id/894670560/photo/beautiful-cheerful-teenage-girl-taking-a-selfie-in-bedroom.jpg?s=612x612&w=0&k=20&c=RQxnIpgwOP6CTl--xTbIFWuGm0vNY_33E55_w8KcXhE=' }} className="w-28 h-28 rounded-full " />
             <VStack className=' px-2'>
                 <Box className="flex-row w-full justify-start ">
                     <SocialStats count={256} text='seguidores' />
