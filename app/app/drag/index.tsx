@@ -16,8 +16,6 @@ import { Button, ButtonText } from "@/components/ui/button";
 import { createFileFromBlob, postApiPieceOfClothingCreateImage } from "@/components/drag/postApiPieceOfClothingCreateImage";
 import generateUniqueFilename from "@/components/drag/fileNameGenerator";
 
-const PlaceholderImage = require("@/assets/images/background-image.png");
-
 export default function DragView() {
     const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -116,7 +114,6 @@ export default function DragView() {
             <View style={styles.imageContainer}>
                 <View id="imageRef" className="w-full aspect-square overflow-hidden" ref={imageRef} collapsable={false}>
                     <OutfitCanvas
-                        imgSource={PlaceholderImage}
                         selectedImage={selectedImage}
                     />
                     {
