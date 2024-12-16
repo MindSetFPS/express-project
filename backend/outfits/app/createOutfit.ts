@@ -15,10 +15,11 @@ export default async function createOutfit(
 
     try {
         const conne = await createConnection(connection);
-        console.log('Connected to the database!');
 
         pieceOfClothingIdList.forEach(pieceOfClothingId => {
-            conne.execute('INSERT INTO outfit_piece_of_clothing (outfit_id, piece_of_clothing_id) VALUES (?, ?)', [obj?.outfitId, pieceOfClothingId]);
+            let data = [obj?.outfitId, pieceOfClothingId]
+            let query = 'INSERT INTO outfit_piece_of_clothing (outfit_id, piece_of_clothing_id) VALUES (?, ?)'
+            conne.execute(query, data);
         });
 
     } catch (error) {
